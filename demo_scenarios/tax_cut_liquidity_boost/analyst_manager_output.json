@@ -1,0 +1,33 @@
+{
+  "scenario": "tax_cut_liquidity_boost",
+  "analyst_outputs": {
+    "news_analyst": {
+      "headline": "Tax cut + liquidity support announced",
+      "sentiment_score": 0.62,
+      "key_event": "Policy package reduces transaction friction"
+    },
+    "quant_analyst": {
+      "momentum": 0.41,
+      "herding_intensity": 0.23,
+      "signal": "risk_on"
+    },
+    "risk_analyst": {
+      "cvar": -0.014,
+      "max_drawdown": -0.021,
+      "risk_level": "moderate"
+    }
+  },
+  "manager_decision": {
+    "stance": "RISK_ON_CONTROLLED",
+    "allocation": {
+      "equity": 0.68,
+      "cash": 0.17,
+      "hedge": 0.15
+    },
+    "execution_plan": [
+      "Increase index exposure in three tranches",
+      "Keep liquidity buffer to avoid chasing spikes",
+      "Switch to defensive plan if regulation reverses"
+    ]
+  }
+}

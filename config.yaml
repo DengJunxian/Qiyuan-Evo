@@ -1,0 +1,22 @@
+data_flywheel:
+  enable_mock_source: true
+  llm_model: deepseek-chat
+  llm_temperature: 0.3
+  max_articles_per_fetch: 50
+  output_path: data/seed_events.jsonl
+  poll_interval_seconds: 300
+  rss_feeds:
+  - https://rsshub.app/cls/telegraph
+  - https://rsshub.app/eastmoney/report
+default_starting_cash: 100000.0
+ebbinghaus_alpha: 0.5
+ebbinghaus_base_decay_rate: 0.1
+ebbinghaus_retention_threshold: 0.1
+initial_market_price: 100.0
+llm_model_name: gpt-4-turbo
+llm_temperature: 0.7
+market_slippage: 0.001
+price_impact_factor: 0.05
+retrieval_cosine_weight: 0.6
+retrieval_retention_weight: 0.4
+transaction_costs: 0.0005

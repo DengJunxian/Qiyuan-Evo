@@ -1,0 +1,11 @@
+﻿{
+  "title": "2015 Stabilization Replay",
+  "summary": "Mid-crash stabilization window with policy backstop and liquidity support.",
+  "policy_text": "Stabilization package combining liquidity support, margin relief and official guidance during a selloff.",
+  "recommended_intensity": 1.2,
+  "background": "绱х缉",
+  "start_date": "2015-07-01",
+  "end_date": "2015-07-24",
+  "symbol": "sh000300",
+  "event_tags": ["equity_selloff", "policy_backstop", "liquidity_support"]
+}

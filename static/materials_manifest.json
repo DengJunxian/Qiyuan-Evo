@@ -1,0 +1,9 @@
+﻿{
+  "outputs": [
+    "competition_summary.md",
+    "design_outline.md",
+    "figures/index.json",
+    "demo_script_10min.md"
+  ],
+  "notes": "由 app.py 的自动生成比赛材料功能产出。"
+}

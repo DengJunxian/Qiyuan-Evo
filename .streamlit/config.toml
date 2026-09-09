@@ -1,0 +1,30 @@
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = "none"
+
+[theme]
+base = "dark"
+primaryColor = "#1890ff"
+backgroundColor = "#050b14"
+secondaryBackgroundColor = "#0a1931"
+textColor = "#e2e8f0"
+borderColor = "#1f365c"
+showWidgetBorder = true
+showSidebarBorder = true
+font = "sans-serif"
+
+[theme.sidebar]
+primaryColor = "#1890ff"
+backgroundColor = "#030811"
+secondaryBackgroundColor = "#0a1931"
+textColor = "#e2e8f0"
+borderColor = "#1f365c"
+showWidgetBorder = true
+
+[server]
+headless = true
+showEmailPrompt = false
+enableStaticServing = true

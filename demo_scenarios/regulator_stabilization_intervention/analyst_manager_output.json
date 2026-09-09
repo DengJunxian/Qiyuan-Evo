@@ -1,0 +1,33 @@
+{
+  "scenario": "regulator_stabilization_intervention",
+  "analyst_outputs": {
+    "news_analyst": {
+      "headline": "Regulator launches stabilization package",
+      "sentiment_score": 0.35,
+      "key_event": "Market receives coordinated policy backstop"
+    },
+    "quant_analyst": {
+      "momentum": 0.12,
+      "herding_intensity": 0.16,
+      "signal": "stabilizing"
+    },
+    "risk_analyst": {
+      "cvar": -0.019,
+      "max_drawdown": -0.028,
+      "risk_level": "controlled"
+    }
+  },
+  "manager_decision": {
+    "stance": "STABILIZE_AND_REBALANCE",
+    "allocation": {
+      "equity": 0.52,
+      "cash": 0.29,
+      "hedge": 0.19
+    },
+    "execution_plan": [
+      "Rebalance exposure toward liquid large caps",
+      "Reduce tail-risk hedge gradually as panic cools",
+      "Track policy persistence before adding risk"
+    ]
+  }
+}

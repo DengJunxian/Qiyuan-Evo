@@ -1,0 +1,18 @@
+{
+  "config_hash": "history-news",
+  "dataset_version": "history_replay_news",
+  "event_counts": {
+    "news": 13
+  },
+  "feature_flags": {
+    "persist_news_events": true
+  },
+  "metadata": {
+    "module": "history_news_service",
+    "symbol": "sh000300"
+  },
+  "scenario_id": "history_replay_news_c7ebd2904e07",
+  "seed": 0,
+  "snapshot_id": "20260410T164144Z_ca7efb7cde63a8f4",
+  "timestamp": "2026-04-10T16:41:44+00:00"
+}

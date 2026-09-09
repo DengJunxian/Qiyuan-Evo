@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d1" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d0" for="edge" attr.name="predicate" attr.type="string"/>
+<graph edgedefault="directed"><node id="央行"/>
+<node id="释放流动性"/>
+<node id="稳定资本市场预期"/>
+<node id="监管"/>
+<node id="强化异常交易监测"/>
+<node id="政策目标"/>
+<node id="监管措施"/>
+<edge source="央行" target="释放流动性">
+  <data key="d0">实施</data>
+  <data key="d1">0.9</data>
+</edge>
+<edge source="央行" target="监管">
+  <data key="d0">与</data>
+  <data key="d1">0.7</data>
+</edge>
+<edge source="释放流动性" target="稳定资本市场预期">
+  <data key="d0">导致</data>
+  <data key="d1">0.8</data>
+</edge>
+<edge source="稳定资本市场预期" target="政策目标">
+  <data key="d0">属于</data>
+  <data key="d1">0.6</data>
+</edge>
+<edge source="监管" target="强化异常交易监测">
+  <data key="d0">实施</data>
+  <data key="d1">0.9</data>
+</edge>
+<edge source="强化异常交易监测" target="监管措施">
+  <data key="d0">属于</data>
+  <data key="d1">0.6</data>
+</edge>
+</graph></graphml>

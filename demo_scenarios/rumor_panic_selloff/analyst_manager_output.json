@@ -1,0 +1,33 @@
+{
+  "scenario": "rumor_panic_selloff",
+  "analyst_outputs": {
+    "news_analyst": {
+      "headline": "Unverified restructuring rumor spreads",
+      "sentiment_score": -0.71,
+      "key_event": "Negative social amplification accelerates risk-off"
+    },
+    "quant_analyst": {
+      "momentum": -0.58,
+      "herding_intensity": 0.47,
+      "signal": "panic_sell"
+    },
+    "risk_analyst": {
+      "cvar": -0.041,
+      "max_drawdown": -0.073,
+      "risk_level": "high"
+    }
+  },
+  "manager_decision": {
+    "stance": "DEFENSIVE_DELEVERAGING",
+    "allocation": {
+      "equity": 0.31,
+      "cash": 0.51,
+      "hedge": 0.18
+    },
+    "execution_plan": [
+      "Cut high-beta positions first",
+      "Increase cash and wait for volatility compression",
+      "Activate emergency hedge against gap risk"
+    ]
+  }
+}

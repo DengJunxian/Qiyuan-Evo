@@ -1,0 +1,19 @@
+{
+  "config_hash": "history-news",
+  "created_at": "2026-04-10T16:41:43+00:00",
+  "dataset_version": "history_replay_news",
+  "end_time": "2026-04-09T23:59:59+00:00",
+  "event_types": [
+    "news"
+  ],
+  "feature_flags": {},
+  "filters": {},
+  "metadata": {
+    "module": "history_news_service",
+    "symbol": "sh000300"
+  },
+  "scenario_id": "history_replay_news_3444395316a6",
+  "seed": 0,
+  "snapshot_id": "20260410T164143Z_5f4251b8e83748f6",
+  "start_time": "2024-09-24T00:00:00+00:00"
+}

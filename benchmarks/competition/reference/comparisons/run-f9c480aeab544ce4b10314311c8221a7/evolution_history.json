@@ -1,0 +1,410 @@
+[
+  {
+    "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5",
+    "timestamp": "2026-09-09T15:16:31.783912+00:00",
+    "actions": [
+      {
+        "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5-1",
+        "target": "planner",
+        "action_type": "prompt_update",
+        "before": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": []}</plan_contract>",
+        "after": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"counterfactual_search\", \"replicate\"]}</plan_contract>",
+        "rationale": "Critic 的缺失证据反馈转化为可执行规划契约",
+        "source_trace_ids": [
+          "run-f9c480aeab544ce4b10314311c8221a7",
+          "run-1a0e069f0e844ab996be4c1cef97c43e"
+        ],
+        "expected_gain": "同输入评估候选；不预设增益",
+        "accepted": true,
+        "evaluation_before": {
+          "task_success": false,
+          "quality_score": 0.5800000000000001,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 0.6666666666666667,
+          "reproducibility": null,
+          "steps": 5,
+          "retries": 0,
+          "tool_calls": 4,
+          "token_usage": 0,
+          "latency": 5.344211791001726,
+          "active_agent_count": 5,
+          "dimensions": {
+            "completeness": 0.6,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 0.0,
+            "reproducibility": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "evaluation_after": {
+          "task_success": true,
+          "quality_score": 1.0,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 1.0,
+          "reproducibility": 1.0,
+          "steps": 6,
+          "retries": 0,
+          "tool_calls": 8,
+          "token_usage": 0,
+          "latency": 19.714993875008076,
+          "active_agent_count": 6,
+          "dimensions": {
+            "completeness": 1.0,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 1.0,
+            "reproducibility": 1.0,
+            "risk_reduction": 0.0,
+            "intervention_cost": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "diff": "--- old_prompt\n+++ new_prompt\n@@ -1,3 +1,3 @@\n 你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n 以下机器可读执行契约决定要安排的额外核验任务：\n-<plan_contract>{\"checks\": []}</plan_contract>\n+<plan_contract>{\"checks\": [\"counterfactual_search\", \"replicate\"]}</plan_contract>"
+      },
+      {
+        "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5-2",
+        "target": "tool_policy",
+        "action_type": "tool_routing",
+        "before": {
+          "executor": {
+            "preferred": "market_simulation",
+            "cache": false
+          },
+          "max_retries": 0
+        },
+        "after": {
+          "executor": {
+            "preferred": "market_simulation",
+            "cache": true,
+            "reason": "reuse identical deterministic calls; replicate always bypasses cache"
+          },
+          "max_retries": 0
+        },
+        "rationale": "读取按任务上下文聚合的成功率、质量、时延和失败次数，探索/复用工具策略",
+        "source_trace_ids": [
+          "run-f9c480aeab544ce4b10314311c8221a7",
+          "run-1a0e069f0e844ab996be4c1cef97c43e"
+        ],
+        "expected_gain": "同输入评估候选；不预设增益",
+        "accepted": true,
+        "evaluation_before": {
+          "task_success": false,
+          "quality_score": 0.5800000000000001,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 0.6666666666666667,
+          "reproducibility": null,
+          "steps": 5,
+          "retries": 0,
+          "tool_calls": 4,
+          "token_usage": 0,
+          "latency": 5.344211791001726,
+          "active_agent_count": 5,
+          "dimensions": {
+            "completeness": 0.6,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 0.0,
+            "reproducibility": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "evaluation_after": {
+          "task_success": true,
+          "quality_score": 1.0,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 1.0,
+          "reproducibility": 1.0,
+          "steps": 6,
+          "retries": 0,
+          "tool_calls": 8,
+          "token_usage": 0,
+          "latency": 19.714993875008076,
+          "active_agent_count": 6,
+          "dimensions": {
+            "completeness": 1.0,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 1.0,
+            "reproducibility": 1.0,
+            "risk_reduction": 0.0,
+            "intervention_cost": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "diff": ""
+      },
+      {
+        "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5-3",
+        "target": "topology",
+        "action_type": "spawn_reroute",
+        "before": {
+          "active_agents": [
+            "planner",
+            "analyst",
+            "executor",
+            "critic",
+            "reporter"
+          ],
+          "communication_edges": [
+            [
+              "planner",
+              "analyst"
+            ],
+            [
+              "analyst",
+              "executor"
+            ],
+            [
+              "executor",
+              "critic"
+            ],
+            [
+              "critic",
+              "reporter"
+            ]
+          ],
+          "routing": {
+            "planner": [
+              "analyst"
+            ],
+            "analyst": [
+              "executor"
+            ],
+            "executor": [
+              "critic"
+            ],
+            "critic": [
+              "reporter"
+            ]
+          },
+          "scheduling_policy": "serial"
+        },
+        "after": {
+          "active_agents": [
+            "planner",
+            "analyst",
+            "executor",
+            "critic",
+            "reporter",
+            "counterfactual"
+          ],
+          "communication_edges": [
+            [
+              "planner",
+              "analyst"
+            ],
+            [
+              "analyst",
+              "executor"
+            ],
+            [
+              "critic",
+              "reporter"
+            ],
+            [
+              "executor",
+              "counterfactual"
+            ],
+            [
+              "counterfactual",
+              "critic"
+            ]
+          ],
+          "routing": {
+            "planner": [
+              "analyst"
+            ],
+            "analyst": [
+              "executor"
+            ],
+            "executor": [
+              "counterfactual"
+            ],
+            "critic": [
+              "reporter"
+            ],
+            "reporter": [],
+            "counterfactual": [
+              "critic"
+            ]
+          },
+          "scheduling_policy": "serial"
+        },
+        "rationale": "将遗漏任务交给实际执行的专家 ['counterfactual']；审查等待所有依赖完成",
+        "source_trace_ids": [
+          "run-f9c480aeab544ce4b10314311c8221a7",
+          "run-1a0e069f0e844ab996be4c1cef97c43e"
+        ],
+        "expected_gain": "同输入评估候选；不预设增益",
+        "accepted": true,
+        "evaluation_before": {
+          "task_success": false,
+          "quality_score": 0.5800000000000001,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 0.6666666666666667,
+          "reproducibility": null,
+          "steps": 5,
+          "retries": 0,
+          "tool_calls": 4,
+          "token_usage": 0,
+          "latency": 5.344211791001726,
+          "active_agent_count": 5,
+          "dimensions": {
+            "completeness": 0.6,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 0.0,
+            "reproducibility": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "evaluation_after": {
+          "task_success": true,
+          "quality_score": 1.0,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 1.0,
+          "reproducibility": 1.0,
+          "steps": 6,
+          "retries": 0,
+          "tool_calls": 8,
+          "token_usage": 0,
+          "latency": 19.714993875008076,
+          "active_agent_count": 6,
+          "dimensions": {
+            "completeness": 1.0,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 1.0,
+            "reproducibility": 1.0,
+            "risk_reduction": 0.0,
+            "intervention_cost": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "diff": ""
+      }
+    ],
+    "source_trace_ids": [
+      "run-f9c480aeab544ce4b10314311c8221a7"
+    ],
+    "optimizer": {
+      "requested_model": "deepseek-chat",
+      "temperature": 0,
+      "prompt_version": "v1",
+      "timestamp": "2026-09-09T15:16:31.783775+00:00",
+      "input_hash": "8a9c9e9b38d6bd6fdc206e8bd51b9e41e80aad5b7cef8895d195bfd70b1aa0c3",
+      "prompt_hash": "d3cb1fa9326c673fb30dd4c7124926461451724eb3ca54947e9070adb969f265",
+      "provider_response_hash": null,
+      "backend": "LOCAL FALLBACK",
+      "reason": "API key missing or cloud optimizer disabled",
+      "token_usage": 0,
+      "provider_called": false,
+      "model": "none",
+      "finished_at": "2026-09-09T15:16:31.783788+00:00",
+      "response_hash": "e8096211f928a43f383a996e914763eefb9d839dda581ed876b9cdad7d2766f5",
+      "latency": 3.837500116787851e-05
+    },
+    "controller_trace": {
+      "agent": "evolution_controller",
+      "role_type": "evolution_controller",
+      "status": "completed",
+      "latency": 0.0002963749866466969,
+      "decision_summary": "由 2 条规划反馈生成 3 个配置变更",
+      "tool_statistics": {
+        "analyst:policy_compile": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.5800000000000001,
+          "average_latency": 0.0009107499790843576,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        },
+        "executor:market_simulation": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.5800000000000001,
+          "average_latency": 5.3328262499999255,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        },
+        "critic:risk_analysis": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.5800000000000001,
+          "average_latency": 0.000349292007740587,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        },
+        "reporter:structured_report": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.5800000000000001,
+          "average_latency": 0.0008692499832250178,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        }
+      },
+      "started_at": "2026-09-09T15:16:31.783491+00:00",
+      "finished_at": "2026-09-09T15:16:31.783916+00:00"
+    },
+    "promotion": {
+      "accepted": true,
+      "rule": "strict quality gain; no coverage/critic/success regression; no execution errors",
+      "reason": "candidate improved measured score",
+      "comparison_scope": "same task, seed, dataset and role-model configuration; training-task comparison"
+    },
+    "experiment_id": "exp-626a061fb6a14ae5a51aaee5f67617fd",
+    "candidate_run_id": "run-1a0e069f0e844ab996be4c1cef97c43e",
+    "evaluation_before": {
+      "task_success": false,
+      "quality_score": 0.5800000000000001,
+      "evidence_coverage": 1.0,
+      "critic_pass_rate": 0.6666666666666667,
+      "reproducibility": null,
+      "steps": 5,
+      "retries": 0,
+      "tool_calls": 4,
+      "token_usage": 0,
+      "latency": 5.344211791001726,
+      "active_agent_count": 5,
+      "dimensions": {
+        "completeness": 0.6,
+        "evidence": 1.0,
+        "consistency": 1.0,
+        "task_quality": 0.0,
+        "reproducibility": 0.0,
+        "schema_completeness": 1.0
+      }
+    },
+    "evaluation_after": {
+      "task_success": true,
+      "quality_score": 1.0,
+      "evidence_coverage": 1.0,
+      "critic_pass_rate": 1.0,
+      "reproducibility": 1.0,
+      "steps": 6,
+      "retries": 0,
+      "tool_calls": 8,
+      "token_usage": 0,
+      "latency": 19.714993875008076,
+      "active_agent_count": 6,
+      "dimensions": {
+        "completeness": 1.0,
+        "evidence": 1.0,
+        "consistency": 1.0,
+        "task_quality": 1.0,
+        "reproducibility": 1.0,
+        "risk_reduction": 0.0,
+        "intervention_cost": 0.0,
+        "schema_completeness": 1.0
+      }
+    },
+    "training_cost": {
+      "candidate_tool_calls": 8,
+      "candidate_latency": 19.714993875008076,
+      "optimizer_token_usage": 0,
+      "controller_latency": 0.0002963749866466969
+    }
+  }
+]

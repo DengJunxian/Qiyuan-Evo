@@ -1,0 +1,11 @@
+﻿{
+  "title": "2020 Liquidity Rebound Replay",
+  "summary": "Early-pandemic liquidity injection followed by rapid rebound in broad risk appetite.",
+  "policy_text": "Liquidity easing, targeted credit support and confidence signaling after a sharp macro shock.",
+  "recommended_intensity": 1.1,
+  "background": "鏀跨瓥鎵樺簳",
+  "start_date": "2020-02-03",
+  "end_date": "2020-03-20",
+  "symbol": "sh000300",
+  "event_tags": ["pandemic_shock", "liquidity_injection", "risk_recovery"]
+}

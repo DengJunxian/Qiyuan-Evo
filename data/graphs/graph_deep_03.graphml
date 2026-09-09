@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d1" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d0" for="edge" attr.name="predicate" attr.type="string"/>
+<graph edgedefault="directed"><node id="下调印花税"/>
+<node id="政策"/>
+<node id="释放流动性"/>
+<node id="重大新闻冲击"/>
+<node id="盘中事件"/>
+<node id="市场情绪提振"/>
+<node id="市场资金充裕"/>
+<node id="市场波动"/>
+<node id="宽松政策"/>
+<node id="金融市场"/>
+<node id="释放流动性支持"/>
+<node id="资本市场"/>
+<node id="流动性不足"/>
+<node id="流动性支持"/>
+<node id="股市"/>
+<node id="稳市政策"/>
+<node id="稳定市场预期"/>
+<node id="重大新闻"/>
+<node id="提高流动性支持"/>
+<edge source="下调印花税" target="政策">
+  <data key="d0">属于</data>
+  <data key="d1">13.600000000000003</data>
+</edge>
+<edge source="下调印花税" target="市场情绪提振">
+  <data key="d0">导致</data>
+  <data key="d1">0.8</data>
+</edge>
+<edge source="下调印花税" target="宽松政策">
+  <data key="d0">属于</data>
+  <data key="d1">0.9</data>
+</edge>
+<edge source="下调印花税" target="释放流动性">
+  <data key="d0">导致</data>
+  <data key="d1">8.4</data>
+</edge>
+<edge source="下调印花税" target="资本市场">
+  <data key="d0">利好</data>
+  <data key="d1">2.4000000000000004</data>
+</edge>
+<edge source="政策" target="流动性支持">
+  <data key="d0">提高</data>
+  <data key="d1">1.0</data>
+</edge>
+<edge source="释放流动性" target="政策">
+  <data key="d0">属于</data>
+  <data key="d1">10.900000000000002</data>
+</edge>
+<edge source="释放流动性" target="市场资金充裕">
+  <data key="d0">导致</data>
+  <data key="d1">0.9</data>
+</edge>
+<edge source="释放流动性" target="宽松政策">
+  <data key="d0">属于</data>
+  <data key="d1">0.9</data>
+</edge>
+<edge source="重大新闻冲击" target="盘中事件">
+  <data key="d0">属于</data>
+  <data key="d1">1.0</data>
+</edge>
+<edge source="重大新闻冲击" target="市场波动">
+  <data key="d0">导致</data>
+  <data key="d1">2.7</data>
+</edge>
+<edge source="宽松政策" target="金融市场">
+  <data key="d0">利好</data>
+  <data key="d1">0.8</data>
+</edge>
+<edge source="释放流动性支持" target="政策">
+  <data key="d0">属于</data>
+  <data key="d1">2.7</data>
+</edge>
+<edge source="释放流动性支持" target="流动性不足">
+  <data key="d0">缓解</data>
+  <data key="d1">0.7</data>
+</edge>
+<edge source="释放流动性支持" target="资本市场">
+  <data key="d0">利好</data>
+  <data key="d1">1.6</data>
+</edge>
+<edge source="流动性支持" target="股市">
+  <data key="d0">利好</data>
+  <data key="d1">0.6</data>
+</edge>
+<edge source="流动性支持" target="稳定市场预期">
+  <data key="d0">导致</data>
+  <data key="d1">0.9</data>
+</edge>
+<edge source="稳市政策" target="政策">
+  <data key="d0">发布</data>
+  <data key="d1">3.0</data>
+</edge>
+<edge source="重大新闻" target="盘中事件">
+  <data key="d0">属于</data>
+  <data key="d1">2.4000000000000004</data>
+</edge>
+<edge source="提高流动性支持" target="稳定市场预期">
+  <data key="d0">导致</data>
+  <data key="d1">1.8</data>
+</edge>
+</graph></graphml>

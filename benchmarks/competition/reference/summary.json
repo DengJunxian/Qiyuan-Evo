@@ -1,0 +1,41 @@
+{
+  "scope": "first recorded pair of each fixed task family",
+  "experiments": [
+    {
+      "experiment_id": "exp-8911569200344c0a81433aa02f06207b",
+      "task_id": "policy_report_v1",
+      "seed": 42,
+      "evolution_gain": {
+        "quality_gain": 0.30000000000000004,
+        "success_gain": 1,
+        "step_reduction": -0.2,
+        "token_reduction": null,
+        "latency_reduction": -1.3552629352877101
+      }
+    },
+    {
+      "experiment_id": "exp-3ef3c1f3873e4ede86dd1d668c5a1a91",
+      "task_id": "historical_analysis_v1",
+      "seed": 42,
+      "evolution_gain": {
+        "quality_gain": 0.4049576526581191,
+        "success_gain": 1,
+        "step_reduction": -0.4,
+        "token_reduction": null,
+        "latency_reduction": 0.996831049777181
+      }
+    },
+    {
+      "experiment_id": "exp-626a061fb6a14ae5a51aaee5f67617fd",
+      "task_id": "regulatory_planning_v1",
+      "seed": 42,
+      "evolution_gain": {
+        "quality_gain": 0.41999999999999993,
+        "success_gain": 1,
+        "step_reduction": -0.2,
+        "token_reduction": null,
+        "latency_reduction": -2.550902155291059
+      }
+    }
+  ]
+}

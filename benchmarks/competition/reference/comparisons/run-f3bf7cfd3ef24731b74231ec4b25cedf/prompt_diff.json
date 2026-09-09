@@ -1,0 +1,62 @@
+{
+  "experiment_id": "exp-8911569200344c0a81433aa02f06207b",
+  "changes": [
+    {
+      "evolution_id": "evo-0d3762cdc6fd48569e10dda777cb73e9-1",
+      "target": "planner",
+      "action_type": "prompt_update",
+      "before": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": []}</plan_contract>",
+      "after": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>",
+      "rationale": "Critic 的缺失证据反馈转化为可执行规划契约",
+      "source_trace_ids": [
+        "run-f3bf7cfd3ef24731b74231ec4b25cedf",
+        "run-55f3ec3716f84e0d8e0c450c6f2bc13d"
+      ],
+      "expected_gain": "同输入评估候选；不预设增益",
+      "accepted": true,
+      "evaluation_before": {
+        "task_success": false,
+        "quality_score": 0.7,
+        "evidence_coverage": 1.0,
+        "critic_pass_rate": 0.6666666666666667,
+        "reproducibility": null,
+        "steps": 5,
+        "retries": 0,
+        "tool_calls": 4,
+        "token_usage": 0,
+        "latency": 5.402153167000506,
+        "active_agent_count": 5,
+        "dimensions": {
+          "completeness": 0.6,
+          "evidence": 1.0,
+          "consistency": 1.0,
+          "task_quality": 0.6,
+          "reproducibility": 0.0,
+          "schema_completeness": 1.0
+        }
+      },
+      "evaluation_after": {
+        "task_success": true,
+        "quality_score": 1.0,
+        "evidence_coverage": 1.0,
+        "critic_pass_rate": 1.0,
+        "reproducibility": 1.0,
+        "steps": 6,
+        "retries": 0,
+        "tool_calls": 6,
+        "token_usage": 0,
+        "latency": 13.31483649997972,
+        "active_agent_count": 6,
+        "dimensions": {
+          "completeness": 1.0,
+          "evidence": 1.0,
+          "consistency": 1.0,
+          "task_quality": 1.0,
+          "reproducibility": 1.0,
+          "schema_completeness": 1.0
+        }
+      },
+      "diff": "--- old_prompt\n+++ new_prompt\n@@ -1,3 +1,3 @@\n 你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n 以下机器可读执行契约决定要安排的额外核验任务：\n-<plan_contract>{\"checks\": []}</plan_contract>\n+<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>"
+    }
+  ]
+}

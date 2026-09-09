@@ -1,0 +1,6 @@
+scenario_name: tax_cut_liquidity_boost
+mode: COMPETITION_DEMO_MODE
+start_date: 2025-03-03
+ticks: 12
+policy_text: "阶段性下调交易印花税，并注入流动性支持。"
+goal: "观察政策宽松对风险偏好和成交活跃度的提升。"

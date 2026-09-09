@@ -1,0 +1,6 @@
+scenario_name: regulator_stabilization_intervention
+mode: COMPETITION_DEMO_MODE
+start_date: 2025-05-12
+ticks: 12
+policy_text: "监管组合拳：窗口指导、流动性支持与波动抑制。"
+goal: "展示监管干预如何缓释恐慌并重建市场稳定预期。"

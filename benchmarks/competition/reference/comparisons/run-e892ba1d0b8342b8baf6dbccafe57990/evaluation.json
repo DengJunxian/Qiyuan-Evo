@@ -1,0 +1,90 @@
+{
+  "experiment_id": "exp-3ef3c1f3873e4ede86dd1d668c5a1a91",
+  "rules": {
+    "version": "competition_v1",
+    "success_threshold": 0.85,
+    "weights": {
+      "completeness": 0.3,
+      "evidence": 0.2,
+      "consistency": 0.2,
+      "task_quality": 0.2,
+      "reproducibility": 0.1
+    }
+  },
+  "baseline": {
+    "task_success": false,
+    "quality_score": 0.55,
+    "evidence_coverage": 1.0,
+    "critic_pass_rate": 0.5714285714285714,
+    "reproducibility": null,
+    "steps": 5,
+    "retries": 0,
+    "tool_calls": 4,
+    "token_usage": 0,
+    "latency": 4.387954375008121,
+    "active_agent_count": 5,
+    "dimensions": {
+      "completeness": 0.5,
+      "evidence": 1.0,
+      "consistency": 1.0,
+      "task_quality": 0.0,
+      "reproducibility": 0.0,
+      "schema_completeness": 1.0
+    }
+  },
+  "evolved": {
+    "task_success": true,
+    "quality_score": 0.9549576526581192,
+    "evidence_coverage": 1.0,
+    "critic_pass_rate": 1.0,
+    "reproducibility": 1.0,
+    "steps": 7,
+    "retries": 0,
+    "tool_calls": 7,
+    "token_usage": 0,
+    "latency": 0.013905208994401619,
+    "active_agent_count": 7,
+    "dimensions": {
+      "completeness": 1.0,
+      "evidence": 1.0,
+      "consistency": 1.0,
+      "task_quality": 0.7747882632905956,
+      "reproducibility": 1.0,
+      "normalized_rmse": 0.040213366732838984,
+      "normalized_mae": 0.029855180025883204,
+      "direction_consistency": 0.5882352941176471,
+      "schema_completeness": 1.0
+    }
+  },
+  "evolution_gain": {
+    "quality_gain": 0.4049576526581191,
+    "success_gain": 1,
+    "step_reduction": -0.4,
+    "token_reduction": null,
+    "latency_reduction": 0.996831049777181
+  },
+  "candidate": {
+    "task_success": true,
+    "quality_score": 0.9549576526581192,
+    "evidence_coverage": 1.0,
+    "critic_pass_rate": 1.0,
+    "reproducibility": 1.0,
+    "steps": 7,
+    "retries": 0,
+    "tool_calls": 7,
+    "token_usage": 0,
+    "latency": 0.094525791995693,
+    "active_agent_count": 7,
+    "dimensions": {
+      "completeness": 1.0,
+      "evidence": 1.0,
+      "consistency": 1.0,
+      "task_quality": 0.7747882632905956,
+      "reproducibility": 1.0,
+      "normalized_rmse": 0.040213366732838984,
+      "normalized_mae": 0.029855180025883204,
+      "direction_consistency": 0.5882352941176471,
+      "schema_completeness": 1.0
+    }
+  }
+}

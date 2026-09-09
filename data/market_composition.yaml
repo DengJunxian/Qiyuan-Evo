@@ -1,0 +1,79 @@
+version: "1.0"
+default_regime: default
+archetypes:
+  - retail_day_trader
+  - retail_swing
+  - mutual_fund
+  - pension_fund
+  - insurer
+  - prop_desk
+  - market_maker
+  - state_stabilization_fund
+  - rumor_trader
+  - etf_arbitrageur
+regimes:
+  default:
+    label: Balanced retail-plus-institutional mix
+    weights:
+      retail_day_trader: 0.09
+      retail_swing: 0.22
+      mutual_fund: 0.17
+      pension_fund: 0.08
+      insurer: 0.07
+      prop_desk: 0.12
+      market_maker: 0.10
+      state_stabilization_fund: 0.03
+      rumor_trader: 0.08
+      etf_arbitrageur: 0.04
+  bull:
+    label: Risk-on regime
+    weights:
+      retail_day_trader: 0.16
+      retail_swing: 0.20
+      mutual_fund: 0.13
+      pension_fund: 0.06
+      insurer: 0.05
+      prop_desk: 0.14
+      market_maker: 0.08
+      state_stabilization_fund: 0.02
+      rumor_trader: 0.08
+      etf_arbitrageur: 0.08
+  bear:
+    label: Risk-off regime
+    weights:
+      retail_day_trader: 0.06
+      retail_swing: 0.14
+      mutual_fund: 0.20
+      pension_fund: 0.12
+      insurer: 0.12
+      prop_desk: 0.10
+      market_maker: 0.08
+      state_stabilization_fund: 0.10
+      rumor_trader: 0.06
+      etf_arbitrageur: 0.02
+  rumor_wave:
+    label: Rumor-driven regime
+    weights:
+      retail_day_trader: 0.18
+      retail_swing: 0.16
+      mutual_fund: 0.10
+      pension_fund: 0.05
+      insurer: 0.05
+      prop_desk: 0.12
+      market_maker: 0.08
+      state_stabilization_fund: 0.02
+      rumor_trader: 0.18
+      etf_arbitrageur: 0.06
+  stabilization:
+    label: Policy stabilization regime
+    weights:
+      retail_day_trader: 0.05
+      retail_swing: 0.10
+      mutual_fund: 0.14
+      pension_fund: 0.15
+      insurer: 0.15
+      prop_desk: 0.08
+      market_maker: 0.12
+      state_stabilization_fund: 0.16
+      rumor_trader: 0.03
+      etf_arbitrageur: 0.02

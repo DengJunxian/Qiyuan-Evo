@@ -1,0 +1,14 @@
+{
+  "dataset_id": "sse_2024_policy_window_v1",
+  "kind": "observed_market_data",
+  "symbol": "000001.SS",
+  "provider": "Yahoo Finance chart API",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/000001.SS?period1=1726617600&period2=1729296000&interval=1d",
+  "retrieved_at": "2026-09-09",
+  "start": "2024-09-18",
+  "end": "2024-10-18",
+  "rows": 18,
+  "sha256": "48abaf185050544cf93ef4adf7dcebab9225555fd4c8ac2be2b3b2b12481fb3c",
+  "file": "sse_2024_policy_window.csv",
+  "usage": "Frozen educational replay fixture; no live download during benchmark. Macro paths are separate synthetic assumptions, not observations."
+}

@@ -1,0 +1,6 @@
+scenario_name: rumor_panic_selloff
+mode: COMPETITION_DEMO_MODE
+start_date: 2025-04-07
+ticks: 12
+policy_text: "市场谣言扩散，触发短时恐慌抛售。"
+goal: "展示情绪传染与羊群效应在下跌期的放大机制。"
