@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 import json
+import os
 from pathlib import Path
 import re
 
@@ -18,7 +19,7 @@ from ui.components.evolution import (ACTION_NAMES, EVIDENCE_NAMES, ROLE_NAMES, c
                                      render_events, render_evidence, render_graph, render_timeline, render_market_result, section)
 from ui.presentation import (PROFILE_NAMES, TASK_TITLES, chinese, evidence_progress, outcome_summary)
 
-TEAM_PAGES = ["自演进驾驶舱", "协作过程", "演进实验", "三类任务", "技术与复现"]
+TEAM_PAGES = ["自演进驾驶舱", "协作过程", "演进实验", "三类任务", "技术与复现", "展示页面"]
 TASK_LABELS = {"policy_report": "政策研判", "historical_analysis": "历史事件分析", "regulatory_planning": "监管优化"}
 TASK_ENGLISH = {"policy_report": "REPORT GENERATION", "historical_analysis": "DATA ANALYSIS", "regulatory_planning": "TASK PLANNING"}
 
@@ -35,6 +36,9 @@ def navigate(page):
 
 
 def load_context():
+    if "ev_profile" not in st.session_state:
+        key=os.environ.get("QIYUAN_LLM_API_KEY", "").strip()
+        st.session_state.ev_profile="ONLINE LIVE" if key and not key.startswith("your_") else "REPRODUCIBLE DEMO"
     requested = st.query_params.get("artifact_run", "")
     if "ev_archive_dir" not in st.session_state and re.fullmatch(r"run-[a-f0-9]{32}", requested):
         # Restore a selected demo artifact using an identifier, never a URL-supplied filesystem path.
@@ -193,104 +197,120 @@ def provenance_strip(archive, result):
             f'<span>{trace["task"]["constraints"]["simulation_days"]} 个模拟交易日</span></div>')
 
 
+def runtime_record(result):
+    """Label only the backend/model that produced the selected artifact."""
+    trace=selected_trace(result)
+    if not trace: return "等待实验", "尚无模型调用记录"
+    runtime=trace.get("runtime", {})
+    backend="openJiuwen 工作流" if runtime.get("workflow_completed") and runtime.get("backend")=="OPENJIUWEN" else "本地工作流"
+    histories=result.get("evolution_history", [])
+    optimizer=histories[-1].get("optimizer", {}) if histories else {}
+    if optimizer.get("backend")=="OPENJIUWEN" and optimizer.get("provider_called"):
+        model=optimizer.get("model", "已记录模型")
+        label="DeepSeek V4.1 Flash" if model.startswith("deepseek-v4.1-flash") else model
+        return backend, label+" · 提示词优化"
+    return backend, "规则驱动提示词优化"
+
+
+def run_controls(task_type, running):
+    columns=st.columns([1.25,1,.75])
+    columns[0].button("开始讲解：团队如何协作",type="primary",width="stretch",on_click=navigate,
+                      args=("协作过程",),key="ev_to_collaboration")
+    columns[1].button("重新运行此案例",width="stretch",key="ev_demo",disabled=running,
+                     on_click=begin_run,kwargs={"fresh":True,"task_type":task_type})
+    with columns[2].popover("运行设置",width="stretch"):
+        st.radio("运行方式",list(PROFILES),format_func=lambda x:PROFILE_NAMES[x],key="ev_profile",disabled=running)
+        st.radio("实验规模",list(DEMO_SCALES),key="ev_scale",disabled=running,
+                 format_func=lambda x:f"{x} · {DEMO_SCALES[x]} 天")
+    if st.session_state.get("ev_action_error"): st.error(st.session_state.ev_action_error)
+
+
 def cockpit(archive, comparisons, result):
     caps=capabilities()
     job=job_snapshot()
     running=bool(job and job["status"] in {"QUEUED","RUNNING"})
     trace=selected_trace(result) or idle_trace()
     comparison=result if result and "baseline" in result else None
-    runtime=trace.get("runtime", {}) if result else archive.runtime(st.session_state.get("ev_profile","REPRODUCIBLE DEMO"))
+    task_type=job["task"]["task_type"] if running else trace.get("task",{}).get("task_type",DEFAULT_COMPETITION_DEMO["task_type"])
+    backend,model=runtime_record(result)
     if running:
-        runtime=next((o["trace"]["runtime"] for o in reversed(job["observations"])
-                      if o.get("trace",{}).get("runtime",{}).get("backend")),
-                     archive.runtime(job["profile"]))
-    backend={"OPENJIUWEN":"openJiuwen 工作流", "LOCAL FALLBACK":"本地备用工作流"}.get(runtime.get("backend"),"运行环境待检查")
-    st.html('<div class="ev-hero"><h1>自演进多智能体 · 金融政策数字风洞</h1>'
-            '<p>团队完成政策任务，发现遗漏后调整分工、提示词和工具，再用同一任务复评。</p></div>')
-    st.html('<div class="ev-capabilities">'+''.join(f'<span>{html(v)}</span>' for v in (
-        f'{caps["role_count"]} 类基础角色', f'{caps["task_count"]} 类实验任务',
-        f'{caps["mechanism_count"]} 类配置调整', backend))+'</div>')
-    task_type=trace.get("task",{}).get("task_type",DEFAULT_COMPETITION_DEMO["task_type"])
-    if running: task_type=job["task"]["task_type"]
+        backend="本地备用工作流" if job["profile"]=="OFFLINE FALLBACK" else "工作流执行中"
+        model=PROFILE_NAMES[job["profile"]]
+    st.html('<div class="demo-hero"><h1>一次任务，让团队学会更好的分工。</h1>'
+            '<p>自演进多智能体金融政策数字风洞</p></div>')
+    st.html('<div class="demo-runtime">'+''.join(f'<span>{html(v)}</span>' for v in (
+        f'{caps["role_count"]} 类功能角色',f'{caps["task_count"]} 类可复现实验',backend,model))+'</div>')
     st.markdown("### "+TASK_TITLES.get(task_type,"当前实验"))
     if not running: provenance_strip(archive,result)
-    buttons=st.columns([1.2,1.2,1.8])
-    buttons[0].button("查看任务与审查记录",type="primary",width="stretch",on_click=navigate,args=("协作过程",),key="ev_to_collaboration",disabled=not result)
-    buttons[1].button("重新运行此案例",width="stretch",key="ev_demo",disabled=running,
-                      on_click=begin_run,kwargs={"fresh":True,"task_type":task_type})
-    with buttons[2].popover("运行设置",width="stretch"):
-        st.radio("运行方式",list(PROFILES),format_func=lambda x:PROFILE_NAMES[x],key="ev_profile",disabled=running)
-        st.radio("实验规模",list(DEMO_SCALES),key="ev_scale",disabled=running,
-                 format_func=lambda x:f"{x} · {DEMO_SCALES[x]} 天")
-    if st.session_state.get("ev_action_error"): st.error(st.session_state.ev_action_error)
+    run_controls(task_type,running)
     if running:
         live_job_panel()
         return
-    if job_snapshot() and job_snapshot()["status"] == "FAILED": live_job_panel(expanded=False)
+    if job and job["status"]=="FAILED": live_job_panel(expanded=False)
     if comparison:
         a,b=comparison["baseline"],comparison["evolved"]
         ca,total=evidence_progress(a); cb,_=evidence_progress(b)
-        st.html('<div class="ev-proof-strip"><div><small>初轮审查</small><b>'+html("；".join(critique_label(c) for c in a["critiques"]) or "未发现缺失项")+
-                '</b></div><div><small>改进后验证</small><b>'+f'{ca}/{total} 项 → {cb}/{total} 项'+
-                '</b></div><div><small>实际用时</small><b>'+f'{a["latency"]:.2f} 秒 → {b["latency"]:.2f} 秒</b></div></div>')
-    left,right=st.columns([1.65,1],gap="large")
+        st.html('<div class="demo-scoreboard"><div><span>完成验证</span><strong>'+f'{ca}/{total} <i>→</i> {cb}/{total}'+'</strong></div>'
+            '<div><span>规则评分</span><strong>'+f'{a["evaluation"]["quality_score"]:.0%} <i>→</i> {b["evaluation"]["quality_score"]:.0%}'+'</strong></div>'
+            '<div><span>执行成员</span><strong>'+f'{a["evaluation"]["active_agent_count"]} <i>→</i> {b["evaluation"]["active_agent_count"]}'+'</strong></div></div>')
+    left,right=st.columns([1.7,1],gap="large")
     with left:
-        st.markdown("### 团队分工")
-        history=comparison.get("evolution_history",[]) if comparison else []
-        controller=history[-1]["controller_trace"] if history else None
-        render_graph(trace,controller=controller)
+        st.markdown("### 改进后的团队")
+        histories=comparison.get("evolution_history",[]) if comparison else []
+        render_graph(trace,controller=histories[-1]["controller_trace"] if histories else None,
+                     previous=comparison["baseline"] if comparison else None)
     with right:
-        st.markdown("### 本轮执行记录")
-        render_events(trace,compact=True)
-    section("", "团队做了哪些调整")
-    render_timeline(comparison,compact=True)
-    st.button("查看两轮对照与提示词变化",on_click=navigate,args=("演进实验",),width="stretch",key="ev_to_evolution")
-    if result:
-        section("", "任务产出")
-        render_market_result(trace,"ev_home_result")
-    else: st.info("暂无可复现实验结果。运行一个案例即可开始。")
+        st.markdown("### 从审查到改进")
+        if comparison:
+            failures=comparison["baseline"].get("critiques",[])
+            st.html('<div class="demo-feedback"><b>初轮审查发现遗漏</b><p>'+html("；".join(critique_label(c) for c in failures) or "本轮未发现遗漏")+'</p></div>')
+            render_timeline(comparison,compact=True)
+            st.button("查看优化前后对比 →",on_click=navigate,args=("演进实验",),width="stretch",key="ev_to_evolution")
+        else: st.info("暂无可复现实验结果。运行一个案例即可开始。")
+    if comparison:
+        with st.expander("实验条件与运行成本"):
+            a,b=comparison["baseline"],comparison["evolved"]
+            st.write(f'同任务、同数据、同评价规则；随机种子 {comparison["seed"]}。完成验证 {evidence_progress(a)[0]}/{evidence_progress(a)[1]} 项 → {evidence_progress(b)[0]}/{evidence_progress(b)[1]} 项。')
+            st.write(f'初轮 {a["latency"]:.2f} 秒，改进后 {b["latency"]:.2f} 秒。额外核验的执行成本保留在对照记录中。')
 
 
 def collaboration_page(archive, comparisons, result):
-    section("", "任务执行与审查")
+    section("", "团队如何协作，审查又发现了什么")
     if not result:
         st.info("暂无可复现实验结果")
         return
     st.write(TASK_TITLES.get(selected_trace(result)["task"]["task_type"],"当前实验"))
     options={"初始团队":result["baseline"],"改进后团队":result["evolved"]} if "baseline" in result else {"当前运行":result}
     if result.get("candidate"): options["候选配置复评"]=result["candidate"]
-    choice=st.radio("执行阶段",list(options),horizontal=True,key="ev_trace_phase")
+    choice=st.radio("执行阶段",list(options),horizontal=True,key="ev_trace_phase",label_visibility="collapsed")
     trace=options[choice]
-    provenance_strip(archive,trace)
-    events=events_from_trace(trace)
-    if trace.get("critiques"):
-        st.info("审查发现：" + "；".join(critique_label(c) for c in trace["critiques"]))
-    controls=st.columns(2)
-    controls[0].button("下一步：查看团队如何调整",on_click=navigate,args=("演进实验",),type="primary",width="stretch")
-    controls[1].button("按本轮配置复跑",key="ev_reproduce_trace",on_click=begin_run,
-                       kwargs={"task_type":trace["task"]["task_type"],"action":"reproduce","saved_trace":trace},width="stretch")
-
-    with st.container(border=True):
+    left,right=st.columns([1.65,1],gap="large")
+    with left:
         render_graph(trace,inspect=True)
+    with right:
+        st.markdown("#### 审查结论")
+        critiques=trace.get("critiques",[])
+        if critiques:
+            for c in critiques:
+                st.html('<div class="demo-feedback"><b>'+html(critique_label(c))+'</b><p>'+html(chinese(c["recommendation"]))+'</p></div>')
+        else: st.success("必需验证已完成，报告与证据一致。")
+        count,total=evidence_progress(trace)
+        st.html(f'<div class="demo-verdict"><span>验证完成度</span><strong>{count} / {total} 项</strong></div>')
+        st.button("下一步：团队如何改进 →",on_click=navigate,args=("演进实验",),type="primary",width="stretch")
     if trace.get("errors"): st.warning(f'此运行保留 {len(trace["errors"])} 条执行错误。')
-    tabs=st.tabs(["协作事件流","时间线回放","报告与证据"])
-    with tabs[0]:
-        kinds=["全部"]+sorted({e["kind"] for e in events})
-        selected=st.selectbox("事件类型",kinds,key="ev_event_kind",format_func=lambda k:{"agent":"成员执行","delegation":"任务分派","message":"消息传递","review":"送交审查","result":"结果移交","feedback":"审查反馈"}.get(k,k))
-        render_events(trace,rows=[e for e in events if selected=="全部" or e["kind"]==selected])
-    with tabs[1]:
-        if events:
-            cursor=st.slider("查看第几条记录",1,len(events),len(events),key="ev_cursor_"+trace["run_id"])
-            event=events[cursor-1]
-            replay=deepcopy(trace)
-            at=event["timestamp"]
-            replay["agent_events"]=[e for e in trace["agent_events"] if e.get("started_at","")<=at]
-            for item in replay["agent_events"]:
-                if item.get("finished_at","")>at: item["status"]="running"
-            replay["evaluation"]={} if cursor<len(events) else trace["evaluation"]
-            render_graph(replay)
-            render_events(trace,rows=[event])
-    with tabs[2]: render_evidence(trace,"ev_trace_")
+    st.markdown("### 分解任务与移交结果")
+    events=events_from_trace(trace)
+    handoffs=[e for e in events if e["kind"] in {"delegation","message","review","result"}]
+    planning=next((e for e in events if e["kind"]=="agent" and e["actor"]==ROLE_NAMES["planner"]),None)
+    render_events(trace,compact=True,rows=([planning] if planning else [])+handoffs[:4])
+    with st.expander("展开任务分解、通信与完整轨迹"):
+        plan=trace.get("plan",{})
+        st.json(plan,expanded=False)
+        render_events(trace)
+        st.button("按本轮配置复跑",key="ev_reproduce_trace",on_click=begin_run,
+                  kwargs={"task_type":trace["task"]["task_type"],"action":"reproduce","saved_trace":trace})
+    with st.expander("结构化报告与金融结果"):
+        render_evidence(trace,"ev_trace_")
 
 
 def memory_panel(archive, trace):
@@ -320,45 +340,63 @@ def memory_panel(archive, trace):
 
 
 def evolution_page(archive, comparisons, result):
-    section("", "从初轮审查到再次验证")
-    provenance_strip(archive,result)
+    section("", "同一任务，团队改进了什么")
     if not result or "baseline" not in result:
         st.info("暂无可复现实验结果。请先运行两轮对照。")
         return
     st.write(TASK_TITLES[result["baseline"]["task"]["task_type"]])
-    tabs=st.tabs(["调整记录","两轮对照","组织变化","历史经验"])
-    with tabs[0]:
-        baseline=result["baseline"]
-        if baseline["critiques"]:
-            st.markdown("**初轮遗漏了什么**")
-            for critique in baseline["critiques"]:
-                st.write(f'• {critique_label(critique)} → {chinese(critique["recommendation"])}')
-        render_timeline(result)
+    views={"compare":"前后对比","prompt":"提示词与工具","memory":"经验复用"}
+    requested=st.query_params.get("view", "compare")
+    if "ev_evolution_view" not in st.session_state: st.session_state.ev_evolution_view=requested if requested in views else "compare"
+    choice=st.radio("演进证据",list(views),format_func=views.get,horizontal=True,key="ev_evolution_view",label_visibility="collapsed")
+    st.query_params["view"]=choice
+    a,b=result["baseline"],result["evolved"]
+    if choice=="compare":
         render_comparison(result,detail=False)
-        extra=[h for h in archive.history() if h["evolution_id"] not in {x["evolution_id"] for x in result["evolution_history"]}
-               and any(rid==result["baseline"]["run_id"] or rid in {t["run_id"] for c in comparisons if c["task_id"]==result["task_id"] for t in (c["baseline"],c["evolved"])} for rid in h["source_trace_ids"])]
-        if extra:
-            with st.expander(f"同任务的其他 {len(extra)} 条演进记录"):
-                render_timeline(result,history=extra)
-    with tabs[1]: render_comparison(result)
-    with tabs[2]:
-        rows=generations(comparisons+[result],result["baseline"]["task"])
-        st.dataframe(pd.DataFrame([{"Generation":r["generation"],"Team Version":r["config"]["version"],
-                                    "执行成员数":len(r["config"]["topology"]["active_agents"]),"规则评分":f'{r["quality"]:.1%}',
-                                    "词元用量":r["trace"]["evaluation"]["token_usage"],"耗时（秒）":r["trace"]["latency"]} for r in rows]),hide_index=True,width="stretch")
-        if rows:
-            columns=st.columns(2)
-            for index,column in enumerate(columns):
-                with column:
-                    selected=st.selectbox("比较起点" if index==0 else "比较终点",range(len(rows)),index=0 if index==0 else len(rows)-1,
-                                           format_func=lambda i:f'第 {rows[i]["generation"]} 代 · 配置 {rows[i]["config"]["version"]}',key=f"ev_generation_{index}")
-                    row=rows[selected]
-                    render_graph(row["trace"])
-                    with st.expander("提示词、工具配置与用量"):
-                        st.json({"prompt_versions":{k:v["prompt_version"] for k,v in row["config"]["roles"].items()},
-                                 "tool_policy":row["config"]["tool_policy"],"score":row["trace"]["evaluation"],"currency_cost":None},expanded=False)
-    with tabs[3]: memory_panel(archive,result["evolved"])
-    st.button("下一步：查看其他实验案例",on_click=navigate,args=("三类任务",),width="stretch")
+        left,right=st.columns(2,gap="large")
+        with left:
+            st.markdown("#### 初始分工")
+            render_graph(a)
+        with right:
+            st.markdown("#### 改进后分工")
+            render_graph(b,previous=a)
+        render_timeline(result,compact=True)
+        with st.expander("完整指标、成本与评分细则"):
+            render_comparison(result,show_config=False)
+    elif choice=="prompt":
+        from core.team_evolution.config import prompt_checks
+        import difflib
+        old,new=a["team_config"]["roles"]["planner"],b["team_config"]["roles"]["planner"]
+        history=result.get("evolution_history",[])
+        optimizer=history[-1].get("optimizer",{}) if history else {}
+        st.html('<div class="demo-runtime"><span>'+html(runtime_record(result)[1])+'</span><span>规划员提示词 '+html(old["prompt_version"])+" → "+html(new["prompt_version"])+
+                '</span><span>'+('复评后已采用' if history and history[-1].get("promotion",{}).get("accepted") else '沿用已有配置')+'</span></div>')
+        st.markdown("#### 审查意见进入下一轮任务计划")
+        columns=st.columns(2,gap="large")
+        for col,label,role in zip(columns,("修改前","修改后"),(old,new)):
+            with col:
+                checks=prompt_checks(role["system_prompt"])
+                st.html('<div class="demo-prompt"><b>'+label+' · '+html(role["prompt_version"])+
+                    '</b><p>'+html(role["system_prompt"].split("<plan_contract>")[0].strip())+
+                    '</p><div class="demo-contract">额外核验：'+html("、".join(chinese(k) for k in checks) or "未安排")+'</div></div>')
+        st.markdown("#### 工具策略也随之调整")
+        st.dataframe(pd.DataFrame([{"阶段":label,"首选工具":chinese(t["team_config"]["tool_policy"]["executor"]["preferred"]),
+            "相同输入缓存":"启用" if t["team_config"]["tool_policy"]["executor"].get("cache") else "关闭",
+            "实际工具调用":t["evaluation"]["tool_calls"]} for label,t in (("修改前",a),("修改后",b))]),hide_index=True,width="stretch")
+        if optimizer.get("provider_called"):
+            count=optimizer.get("token_usage")
+            st.write(f'提示词优化用时 {optimizer.get("latency",0):.2f} 秒 · 模型用量 {count if count is not None else "未返回"} 词元。')
+        with st.expander("提示词逐行差异与模型调用凭据"):
+            st.code("\n".join(difflib.unified_diff(old["system_prompt"].splitlines(),new["system_prompt"].splitlines(),fromfile="修改前",tofile="修改后",lineterm="")),language="diff")
+            st.json({k:optimizer.get(k) for k in ("api","model","timestamp","input_hash","request_messages_hash","response_hash","usage","backend")},expanded=False)
+    else:
+        refs=b.get("plan",{}).get("retrieved_experience_ids",[])
+        st.html('<div class="demo-memory-flow"><div><span>上一轮</span><b>保存通过复评的配置</b></div><i>→</i>'
+                f'<div><span>本轮检索</span><b>{len(refs)} 条相似任务经验</b></div><i>→</i>'
+                f'<div><span>规划员采用</span><b>{len(b["team_config"]["topology"]["active_agents"])} 名成员 · 提示词 {html(b["team_config"]["roles"]["planner"]["prompt_version"])}</b></div></div>')
+        st.markdown("### 这条经验如何影响了本轮分工")
+        memory_panel(archive,b)
+    st.button("下一步：验证三类任务 →",on_click=navigate,args=("三类任务",),width="stretch")
 
 
 def show_artifact(comparison, page):
@@ -379,6 +417,8 @@ def tasks_page(archive, comparisons, result):
     columns=st.columns(3,gap="medium")
     for index,(task,column) in enumerate(zip(benchmark_tasks(),columns)):
         with column,st.container(border=True):
+            kind={"policy_report":"报告生成","historical_analysis":"数据分析","regulatory_planning":"任务规划"}[task.task_type]
+            st.html('<div class="demo-case-type">'+html(kind)+'</div>')
             st.html(f'<div class="ev-task-card"><h2>{html(TASK_LABELS[task.task_type])}</h2>'
                     f'<p>{html(task.objective)}</p></div>')
             available=[c for c in comparisons if c["baseline"]["task"]["task_type"]==task.task_type]
@@ -388,6 +428,7 @@ def tasks_page(archive, comparisons, result):
                 a,b=comparison["baseline"],comparison["evolved"]
                 ca,total=evidence_progress(a); cb,_=evidence_progress(b)
                 st.markdown(f'**完成验证 {ca}/{total} → {cb}/{total} 项**')
+                st.write(f'执行成员 {a["evaluation"]["active_agent_count"]} → {b["evaluation"]["active_agent_count"]} 名')
                 st.html('<div class="ev-case-outcome">'+html(outcome_summary(b))+'</div>')
             else: st.info("暂无可复现实验结果")
             st.button("查看案例",key="ev_archive_"+task.task_type,width="stretch",disabled=not comparison,
@@ -420,7 +461,7 @@ def technology_page(archive, comparisons, result):
         st.write(f'选中运行：{trace["runtime"]["backend"]} · 工作流完成：{"是" if trace["runtime"]["workflow_completed"] else "否"}')
         if result.get("evolution_history"):
             opt=result["evolution_history"][-1]["optimizer"]
-            st.write("提示词优化：" + ("本地规则" if opt["backend"]=="LOCAL FALLBACK" else opt["backend"]))
+            st.write("提示词优化：" + runtime_record(result)[1])
     with st.expander("真实调用位置与运行详情"):
         st.code("openjiuwen.core.workflow.Workflow\nWorkflowComponent.invoke → Agent handler\nWorkflow.invoke(inputs, create_workflow_session(...))\nFeedbackPromptBuilder.build → optional cloud Prompt optimization",language="python")
         st.json({"selected_runtime":runtime,"recorded_runtime":trace.get("runtime") if trace else None},expanded=False)
@@ -458,10 +499,11 @@ def technology_page(archive, comparisons, result):
     with st.expander("版本与数据来源"):
         st.json({"artifact_directory":str(archive.root),"current_source_hash":current["source_hash"],"recorded_source_hash":recorded,
              "dataset_hash":trace["runtime"].get("dataset_hash") if trace else None},expanded=False)
-    for name in ("summary.json","before_after.json","run_trace.json","evolution_history.json","team_topology.json","source_manifest.json"):
-        value=archive.read(name)
-        if value is not None:
-            st.download_button("下载 "+name,json.dumps(value,ensure_ascii=False,indent=2),name,"application/json",key="ev_file_"+name)
+    with st.expander("单项实验文件下载"):
+        for name in ("summary.json","before_after.json","run_trace.json","evolution_history.json","team_topology.json","source_manifest.json"):
+            value=archive.read(name)
+            if value is not None:
+                st.download_button("下载 "+name,json.dumps(value,ensure_ascii=False,indent=2),name,"application/json",key="ev_file_"+name)
     with st.expander("当前实现边界"):
         st.write("角色规划、评审和报告使用确定性规则。云端提示词优化需配置密钥，缺少密钥时使用本地规则。"
                  "尚不支持自动移除、合并或生成任意新角色。现有对照来自固定任务，尚未完成泛化与逐因素消融实验。")
@@ -481,6 +523,7 @@ def render_team_evolution(page="自演进驾驶舱"):
             st.write({"original": job["result"]["original_run_id"], "replay": job["result"]["rerun"]["run_id"]})
             st.download_button("下载复跑结果",json.dumps(job["result"],ensure_ascii=False,indent=2),"reproduction.json","application/json",key="ev_reproduction_download")
     if page!="自演进驾驶舱" and st.session_state.get("ev_action_error"): st.error(st.session_state.ev_action_error)
-    renderer={"自演进驾驶舱":cockpit,"协作过程":collaboration_page,"演进实验":evolution_page,
+    from ui.demo_gallery import gallery_page
+    renderer={"展示页面":gallery_page,"自演进驾驶舱":cockpit,"协作过程":collaboration_page,"演进实验":evolution_page,
               "三类任务":tasks_page,"技术与复现":technology_page}[page]
     renderer(archive,comparisons,result)

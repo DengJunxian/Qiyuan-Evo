@@ -1,5 +1,5 @@
 {
-  "source_hash": "45afeac9c368033b729cb35bd362c84f3bb2ac97f805ebfee36c28c55b5f94bd",
+  "source_hash": "51927b4d74244226dd172d5932a667416a65defa1f8a0b25e9d315bd959cb30c",
   "python": "3.12.13",
   "files": {
     "agents/__init__.py": "f37138f052391863e1b17b2754b0f07b6a1b034a986bae9198786ea2747e0fb3",
@@ -158,7 +158,7 @@
     "core/system/__init__.py": "60177cba52fa16d00a31654667aa2ad3489e22187ba0ff366960e47b2c69907d",
     "core/system/runner.py": "a46d899b144c7622b8f62d8121905b1fdfe0e8f50fc85ab9e5b1883f86d9a7a4",
     "core/team_evolution/__init__.py": "9d7945fafcb307c5792e2c3d79c62706f00c675caccecbda1f9762ec6753d1a5",
-    "core/team_evolution/backend.py": "529d8a08cb39b4d6d5939798dd3002d1586d6511919ba486ecb87da58d98ac97",
+    "core/team_evolution/backend.py": "18959516cac65e4e14fec78dd8afff152c3f589b29ea076e8cc1dc8ae7bacf66",
     "core/team_evolution/benchmark.py": "e247a1cb7dfaf90703dd8144e0b5bb2525ad9b85b8fea075c22caba8a08da2b4",
     "core/team_evolution/config.py": "27a70c4e430158947252987d0922b8a58dab2e64e487c0aee99df8278baf2435",
     "core/team_evolution/evaluation.py": "68a2d62587590e02a730b14d2d24f7fabaa5381d9f7be666956e806965842b24",

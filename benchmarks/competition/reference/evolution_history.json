@@ -1,18 +1,18 @@
 [
   {
-    "evolution_id": "evo-0d3762cdc6fd48569e10dda777cb73e9",
-    "timestamp": "2026-09-09T15:15:55.831223+00:00",
+    "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86",
+    "timestamp": "2026-09-09T15:40:23.244039+00:00",
     "actions": [
       {
-        "evolution_id": "evo-0d3762cdc6fd48569e10dda777cb73e9-1",
+        "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86-1",
         "target": "planner",
         "action_type": "prompt_update",
         "before": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": []}</plan_contract>",
         "after": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>",
         "rationale": "Critic 的缺失证据反馈转化为可执行规划契约",
         "source_trace_ids": [
-          "run-f3bf7cfd3ef24731b74231ec4b25cedf",
-          "run-55f3ec3716f84e0d8e0c450c6f2bc13d"
+          "run-458d044fd89b4a3bbb19d4fe114c4088",
+          "run-0522a3c18d4c46528964b43a7d7f1781"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -26,7 +26,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 5.402153167000506,
+          "latency": 5.6456096670008264,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.6,
@@ -47,7 +47,7 @@
           "retries": 0,
           "tool_calls": 6,
           "token_usage": 0,
-          "latency": 13.31483649997972,
+          "latency": 12.478374124999391,
           "active_agent_count": 6,
           "dimensions": {
             "completeness": 1.0,
@@ -61,7 +61,7 @@
         "diff": "--- old_prompt\n+++ new_prompt\n@@ -1,3 +1,3 @@\n 你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n 以下机器可读执行契约决定要安排的额外核验任务：\n-<plan_contract>{\"checks\": []}</plan_contract>\n+<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>"
       },
       {
-        "evolution_id": "evo-0d3762cdc6fd48569e10dda777cb73e9-2",
+        "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86-2",
         "target": "tool_policy",
         "action_type": "tool_routing",
         "before": {
@@ -81,8 +81,8 @@
         },
         "rationale": "读取按任务上下文聚合的成功率、质量、时延和失败次数，探索/复用工具策略",
         "source_trace_ids": [
-          "run-f3bf7cfd3ef24731b74231ec4b25cedf",
-          "run-55f3ec3716f84e0d8e0c450c6f2bc13d"
+          "run-458d044fd89b4a3bbb19d4fe114c4088",
+          "run-0522a3c18d4c46528964b43a7d7f1781"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -96,7 +96,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 5.402153167000506,
+          "latency": 5.6456096670008264,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.6,
@@ -117,7 +117,7 @@
           "retries": 0,
           "tool_calls": 6,
           "token_usage": 0,
-          "latency": 13.31483649997972,
+          "latency": 12.478374124999391,
           "active_agent_count": 6,
           "dimensions": {
             "completeness": 1.0,
@@ -131,7 +131,7 @@
         "diff": ""
       },
       {
-        "evolution_id": "evo-0d3762cdc6fd48569e10dda777cb73e9-3",
+        "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86-3",
         "target": "topology",
         "action_type": "spawn_reroute",
         "before": {
@@ -229,8 +229,8 @@
         },
         "rationale": "将遗漏任务交给实际执行的专家 ['verifier']；审查等待所有依赖完成",
         "source_trace_ids": [
-          "run-f3bf7cfd3ef24731b74231ec4b25cedf",
-          "run-55f3ec3716f84e0d8e0c450c6f2bc13d"
+          "run-458d044fd89b4a3bbb19d4fe114c4088",
+          "run-0522a3c18d4c46528964b43a7d7f1781"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -244,7 +244,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 5.402153167000506,
+          "latency": 5.6456096670008264,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.6,
@@ -265,7 +265,7 @@
           "retries": 0,
           "tool_calls": 6,
           "token_usage": 0,
-          "latency": 13.31483649997972,
+          "latency": 12.478374124999391,
           "active_agent_count": 6,
           "dimensions": {
             "completeness": 1.0,
@@ -280,37 +280,46 @@
       }
     ],
     "source_trace_ids": [
-      "run-f3bf7cfd3ef24731b74231ec4b25cedf"
+      "run-458d044fd89b4a3bbb19d4fe114c4088"
     ],
     "optimizer": {
-      "requested_model": "deepseek-chat",
+      "requested_model": "deepseek-v4.1-flash-expires-on-0910",
       "temperature": 0,
       "prompt_version": "v1",
-      "timestamp": "2026-09-09T15:15:55.831081+00:00",
+      "timestamp": "2026-09-09T15:40:20.941060+00:00",
       "input_hash": "215e4091c3761987e76800ab80c070f87059c5e0181648c447fa5404c0f0aace",
       "prompt_hash": "d3cb1fa9326c673fb30dd4c7124926461451724eb3ca54947e9070adb969f265",
-      "provider_response_hash": null,
-      "backend": "LOCAL FALLBACK",
-      "reason": "API key missing or cloud optimizer disabled",
-      "token_usage": 0,
-      "provider_called": false,
-      "model": "none",
-      "finished_at": "2026-09-09T15:15:55.831092+00:00",
+      "provider_response_hash": "bf1d54f228a306b6a6fa41e2213c3a4ace1e930f917894872daac5d91fff854f",
+      "request_messages_hash": "4eaaeba6d1835375fa1e04fb851645d485b3a87a1012cae152c94b64293f5cbc",
+      "usage": {
+        "input_tokens": 439,
+        "output_tokens": 589,
+        "total_tokens": 1028,
+        "cache_tokens": 256
+      },
+      "response_received": true,
+      "backend": "OPENJIUWEN",
+      "provider_called": true,
+      "api": "FeedbackPromptBuilder.build",
+      "token_usage": 1028,
+      "reason": "SDK feedback optimizer; validated executable contract",
+      "model": "deepseek-v4.1-flash-expires-on-0910",
+      "finished_at": "2026-09-09T15:40:23.243548+00:00",
       "response_hash": "bf1d54f228a306b6a6fa41e2213c3a4ace1e930f917894872daac5d91fff854f",
-      "latency": 3.083300543949008e-05
+      "latency": 2.3025328749790788
     },
     "controller_trace": {
       "agent": "evolution_controller",
       "role_type": "evolution_controller",
       "status": "completed",
-      "latency": 0.000254457991104573,
+      "latency": 2.303083874983713,
       "decision_summary": "由 2 条规划反馈生成 3 个配置变更",
       "tool_statistics": {
         "analyst:policy_compile": {
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.7,
-          "average_latency": 0.0021687909902539104,
+          "average_latency": 0.002279624983202666,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -318,7 +327,7 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.7,
-          "average_latency": 4.504538582987152,
+          "average_latency": 4.7277516670001205,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -326,7 +335,7 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.7,
-          "average_latency": 0.00024379201931878924,
+          "average_latency": 0.0002212919935118407,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -334,13 +343,13 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.7,
-          "average_latency": 0.0007709589845035225,
+          "average_latency": 0.0006905419868417084,
           "average_token_cost": 0.0,
           "failure_count": 0
         }
       },
-      "started_at": "2026-09-09T15:15:55.830825+00:00",
-      "finished_at": "2026-09-09T15:15:55.831227+00:00"
+      "started_at": "2026-09-09T15:40:20.940844+00:00",
+      "finished_at": "2026-09-09T15:40:23.244062+00:00"
     },
     "promotion": {
       "accepted": true,
@@ -348,8 +357,8 @@
       "reason": "candidate improved measured score",
       "comparison_scope": "same task, seed, dataset and role-model configuration; training-task comparison"
     },
-    "experiment_id": "exp-8911569200344c0a81433aa02f06207b",
-    "candidate_run_id": "run-55f3ec3716f84e0d8e0c450c6f2bc13d",
+    "experiment_id": "exp-5641d623ad504b1fa60a6a87e364fcae",
+    "candidate_run_id": "run-0522a3c18d4c46528964b43a7d7f1781",
     "evaluation_before": {
       "task_success": false,
       "quality_score": 0.7,
@@ -360,7 +369,7 @@
       "retries": 0,
       "tool_calls": 4,
       "token_usage": 0,
-      "latency": 5.402153167000506,
+      "latency": 5.6456096670008264,
       "active_agent_count": 5,
       "dimensions": {
         "completeness": 0.6,
@@ -381,7 +390,7 @@
       "retries": 0,
       "tool_calls": 6,
       "token_usage": 0,
-      "latency": 13.31483649997972,
+      "latency": 12.478374124999391,
       "active_agent_count": 6,
       "dimensions": {
         "completeness": 1.0,
@@ -394,25 +403,25 @@
     },
     "training_cost": {
       "candidate_tool_calls": 6,
-      "candidate_latency": 13.31483649997972,
-      "optimizer_token_usage": 0,
-      "controller_latency": 0.000254457991104573
+      "candidate_latency": 12.478374124999391,
+      "optimizer_token_usage": 1028,
+      "controller_latency": 2.303083874983713
     }
   },
   {
-    "evolution_id": "evo-8fbffcd49d184fdbb693e8feef56d3ac",
-    "timestamp": "2026-09-09T15:16:26.296771+00:00",
+    "evolution_id": "evo-ca765f0f1a464a5387b42c076af66ca0",
+    "timestamp": "2026-09-09T15:40:54.755105+00:00",
     "actions": [
       {
-        "evolution_id": "evo-8fbffcd49d184fdbb693e8feef56d3ac-1",
+        "evolution_id": "evo-ca765f0f1a464a5387b42c076af66ca0-1",
         "target": "planner",
         "action_type": "prompt_update",
         "before": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": []}</plan_contract>",
         "after": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"historical_comparison\", \"replicate\"]}</plan_contract>",
         "rationale": "Critic 的缺失证据反馈转化为可执行规划契约",
         "source_trace_ids": [
-          "run-e892ba1d0b8342b8baf6dbccafe57990",
-          "run-20b7dcefb5e74cbd9aa4ea4f2724eb35"
+          "run-0f131394dfda47789f308e3978c6a973",
+          "run-c8f9bd0ac4664d2fb8da9dcb999edaca"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -426,7 +435,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 4.387954375008121,
+          "latency": 4.347798083996167,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.5,
@@ -447,7 +456,7 @@
           "retries": 0,
           "tool_calls": 7,
           "token_usage": 0,
-          "latency": 0.094525791995693,
+          "latency": 0.1079873749986291,
           "active_agent_count": 7,
           "dimensions": {
             "completeness": 1.0,
@@ -464,7 +473,7 @@
         "diff": "--- old_prompt\n+++ new_prompt\n@@ -1,3 +1,3 @@\n 你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n 以下机器可读执行契约决定要安排的额外核验任务：\n-<plan_contract>{\"checks\": []}</plan_contract>\n+<plan_contract>{\"checks\": [\"historical_comparison\", \"replicate\"]}</plan_contract>"
       },
       {
-        "evolution_id": "evo-8fbffcd49d184fdbb693e8feef56d3ac-2",
+        "evolution_id": "evo-ca765f0f1a464a5387b42c076af66ca0-2",
         "target": "tool_policy",
         "action_type": "tool_routing",
         "before": {
@@ -484,7 +493,7 @@
                 "calls": 1,
                 "success_rate": 1.0,
                 "average_quality": 0.55,
-                "average_latency": 4.379392834001919,
+                "average_latency": 4.339033500000369,
                 "average_token_cost": 0.0,
                 "failure_count": 0
               },
@@ -495,8 +504,8 @@
         },
         "rationale": "读取按任务上下文聚合的成功率、质量、时延和失败次数，探索/复用工具策略",
         "source_trace_ids": [
-          "run-e892ba1d0b8342b8baf6dbccafe57990",
-          "run-20b7dcefb5e74cbd9aa4ea4f2724eb35"
+          "run-0f131394dfda47789f308e3978c6a973",
+          "run-c8f9bd0ac4664d2fb8da9dcb999edaca"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -510,7 +519,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 4.387954375008121,
+          "latency": 4.347798083996167,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.5,
@@ -531,7 +540,7 @@
           "retries": 0,
           "tool_calls": 7,
           "token_usage": 0,
-          "latency": 0.094525791995693,
+          "latency": 0.1079873749986291,
           "active_agent_count": 7,
           "dimensions": {
             "completeness": 1.0,
@@ -548,7 +557,7 @@
         "diff": ""
       },
       {
-        "evolution_id": "evo-8fbffcd49d184fdbb693e8feef56d3ac-3",
+        "evolution_id": "evo-ca765f0f1a464a5387b42c076af66ca0-3",
         "target": "topology",
         "action_type": "split_parallelize",
         "before": {
@@ -659,8 +668,8 @@
         },
         "rationale": "将遗漏任务交给实际执行的专家 ['historian', 'quant']；审查等待所有依赖完成",
         "source_trace_ids": [
-          "run-e892ba1d0b8342b8baf6dbccafe57990",
-          "run-20b7dcefb5e74cbd9aa4ea4f2724eb35"
+          "run-0f131394dfda47789f308e3978c6a973",
+          "run-c8f9bd0ac4664d2fb8da9dcb999edaca"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -674,7 +683,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 4.387954375008121,
+          "latency": 4.347798083996167,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.5,
@@ -695,7 +704,7 @@
           "retries": 0,
           "tool_calls": 7,
           "token_usage": 0,
-          "latency": 0.094525791995693,
+          "latency": 0.1079873749986291,
           "active_agent_count": 7,
           "dimensions": {
             "completeness": 1.0,
@@ -713,37 +722,46 @@
       }
     ],
     "source_trace_ids": [
-      "run-e892ba1d0b8342b8baf6dbccafe57990"
+      "run-0f131394dfda47789f308e3978c6a973"
     ],
     "optimizer": {
-      "requested_model": "deepseek-chat",
+      "requested_model": "deepseek-v4.1-flash-expires-on-0910",
       "temperature": 0,
       "prompt_version": "v1",
-      "timestamp": "2026-09-09T15:16:26.296621+00:00",
+      "timestamp": "2026-09-09T15:40:52.603862+00:00",
       "input_hash": "52211a60595ed171e54859716583a3b444cdde9af6f467ec9adf8331318defa2",
       "prompt_hash": "d3cb1fa9326c673fb30dd4c7124926461451724eb3ca54947e9070adb969f265",
-      "provider_response_hash": null,
-      "backend": "LOCAL FALLBACK",
-      "reason": "API key missing or cloud optimizer disabled",
-      "token_usage": 0,
-      "provider_called": false,
-      "model": "none",
-      "finished_at": "2026-09-09T15:16:26.296637+00:00",
+      "provider_response_hash": "1e6548ad38576006042f1a52002ac41587c5702ac85459979674de9f4702b43f",
+      "request_messages_hash": "0b60fab80e4a68ead548a488e2f98f99fabc2619b817de91a38d24d804368b27",
+      "usage": {
+        "input_tokens": 499,
+        "output_tokens": 498,
+        "total_tokens": 997,
+        "cache_tokens": 256
+      },
+      "response_received": true,
+      "backend": "OPENJIUWEN",
+      "provider_called": true,
+      "api": "FeedbackPromptBuilder.build",
+      "token_usage": 997,
+      "reason": "SDK feedback optimizer; validated executable contract",
+      "model": "deepseek-v4.1-flash-expires-on-0910",
+      "finished_at": "2026-09-09T15:40:54.754474+00:00",
       "response_hash": "1e6548ad38576006042f1a52002ac41587c5702ac85459979674de9f4702b43f",
-      "latency": 4.445799277164042e-05
+      "latency": 2.150650374998804
     },
     "controller_trace": {
       "agent": "evolution_controller",
       "role_type": "evolution_controller",
       "status": "completed",
-      "latency": 0.0002732090069912374,
+      "latency": 2.151370292005595,
       "decision_summary": "由 3 条规划反馈生成 3 个配置变更",
       "tool_statistics": {
         "analyst:policy_compile": {
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.55,
-          "average_latency": 0.0008725829829927534,
+          "average_latency": 0.0008904999995138496,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -751,7 +769,7 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.55,
-          "average_latency": 4.379392834001919,
+          "average_latency": 4.339033500000369,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -759,7 +777,7 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.55,
-          "average_latency": 0.00022495898883789778,
+          "average_latency": 0.00022133401944302022,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -767,13 +785,13 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.55,
-          "average_latency": 0.0008388749847654253,
+          "average_latency": 0.0009910840017255396,
           "average_token_cost": 0.0,
           "failure_count": 0
         }
       },
-      "started_at": "2026-09-09T15:16:26.296365+00:00",
-      "finished_at": "2026-09-09T15:16:26.296775+00:00"
+      "started_at": "2026-09-09T15:40:52.603600+00:00",
+      "finished_at": "2026-09-09T15:40:54.755128+00:00"
     },
     "promotion": {
       "accepted": true,
@@ -781,8 +799,8 @@
       "reason": "candidate improved measured score",
       "comparison_scope": "same task, seed, dataset and role-model configuration; training-task comparison"
     },
-    "experiment_id": "exp-3ef3c1f3873e4ede86dd1d668c5a1a91",
-    "candidate_run_id": "run-20b7dcefb5e74cbd9aa4ea4f2724eb35",
+    "experiment_id": "exp-41feddc0162a434bb5ec33081f48a7d3",
+    "candidate_run_id": "run-c8f9bd0ac4664d2fb8da9dcb999edaca",
     "evaluation_before": {
       "task_success": false,
       "quality_score": 0.55,
@@ -793,7 +811,7 @@
       "retries": 0,
       "tool_calls": 4,
       "token_usage": 0,
-      "latency": 4.387954375008121,
+      "latency": 4.347798083996167,
       "active_agent_count": 5,
       "dimensions": {
         "completeness": 0.5,
@@ -814,7 +832,7 @@
       "retries": 0,
       "tool_calls": 7,
       "token_usage": 0,
-      "latency": 0.094525791995693,
+      "latency": 0.1079873749986291,
       "active_agent_count": 7,
       "dimensions": {
         "completeness": 1.0,
@@ -830,25 +848,25 @@
     },
     "training_cost": {
       "candidate_tool_calls": 7,
-      "candidate_latency": 0.094525791995693,
-      "optimizer_token_usage": 0,
-      "controller_latency": 0.0002732090069912374
+      "candidate_latency": 0.1079873749986291,
+      "optimizer_token_usage": 997,
+      "controller_latency": 2.151370292005595
     }
   },
   {
-    "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5",
-    "timestamp": "2026-09-09T15:16:31.783912+00:00",
+    "evolution_id": "evo-20ade57f346d4124b7f9638b02273c4a",
+    "timestamp": "2026-09-09T15:41:02.518565+00:00",
     "actions": [
       {
-        "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5-1",
+        "evolution_id": "evo-20ade57f346d4124b7f9638b02273c4a-1",
         "target": "planner",
         "action_type": "prompt_update",
         "before": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": []}</plan_contract>",
         "after": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"counterfactual_search\", \"replicate\"]}</plan_contract>",
         "rationale": "Critic 的缺失证据反馈转化为可执行规划契约",
         "source_trace_ids": [
-          "run-f9c480aeab544ce4b10314311c8221a7",
-          "run-1a0e069f0e844ab996be4c1cef97c43e"
+          "run-c263f8b049ae4515b6249e755ac32ed3",
+          "run-57657a381f8940d888942c9fa856b3c7"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -862,7 +880,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 5.344211791001726,
+          "latency": 5.039541082980577,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.6,
@@ -883,7 +901,7 @@
           "retries": 0,
           "tool_calls": 8,
           "token_usage": 0,
-          "latency": 19.714993875008076,
+          "latency": 18.713466957997298,
           "active_agent_count": 6,
           "dimensions": {
             "completeness": 1.0,
@@ -899,7 +917,7 @@
         "diff": "--- old_prompt\n+++ new_prompt\n@@ -1,3 +1,3 @@\n 你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n 以下机器可读执行契约决定要安排的额外核验任务：\n-<plan_contract>{\"checks\": []}</plan_contract>\n+<plan_contract>{\"checks\": [\"counterfactual_search\", \"replicate\"]}</plan_contract>"
       },
       {
-        "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5-2",
+        "evolution_id": "evo-20ade57f346d4124b7f9638b02273c4a-2",
         "target": "tool_policy",
         "action_type": "tool_routing",
         "before": {
@@ -919,8 +937,8 @@
         },
         "rationale": "读取按任务上下文聚合的成功率、质量、时延和失败次数，探索/复用工具策略",
         "source_trace_ids": [
-          "run-f9c480aeab544ce4b10314311c8221a7",
-          "run-1a0e069f0e844ab996be4c1cef97c43e"
+          "run-c263f8b049ae4515b6249e755ac32ed3",
+          "run-57657a381f8940d888942c9fa856b3c7"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -934,7 +952,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 5.344211791001726,
+          "latency": 5.039541082980577,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.6,
@@ -955,7 +973,7 @@
           "retries": 0,
           "tool_calls": 8,
           "token_usage": 0,
-          "latency": 19.714993875008076,
+          "latency": 18.713466957997298,
           "active_agent_count": 6,
           "dimensions": {
             "completeness": 1.0,
@@ -971,7 +989,7 @@
         "diff": ""
       },
       {
-        "evolution_id": "evo-eb59bb8e617346ac9a17e79c4c43cbb5-3",
+        "evolution_id": "evo-20ade57f346d4124b7f9638b02273c4a-3",
         "target": "topology",
         "action_type": "spawn_reroute",
         "before": {
@@ -1069,8 +1087,8 @@
         },
         "rationale": "将遗漏任务交给实际执行的专家 ['counterfactual']；审查等待所有依赖完成",
         "source_trace_ids": [
-          "run-f9c480aeab544ce4b10314311c8221a7",
-          "run-1a0e069f0e844ab996be4c1cef97c43e"
+          "run-c263f8b049ae4515b6249e755ac32ed3",
+          "run-57657a381f8940d888942c9fa856b3c7"
         ],
         "expected_gain": "同输入评估候选；不预设增益",
         "accepted": true,
@@ -1084,7 +1102,7 @@
           "retries": 0,
           "tool_calls": 4,
           "token_usage": 0,
-          "latency": 5.344211791001726,
+          "latency": 5.039541082980577,
           "active_agent_count": 5,
           "dimensions": {
             "completeness": 0.6,
@@ -1105,7 +1123,7 @@
           "retries": 0,
           "tool_calls": 8,
           "token_usage": 0,
-          "latency": 19.714993875008076,
+          "latency": 18.713466957997298,
           "active_agent_count": 6,
           "dimensions": {
             "completeness": 1.0,
@@ -1122,37 +1140,46 @@
       }
     ],
     "source_trace_ids": [
-      "run-f9c480aeab544ce4b10314311c8221a7"
+      "run-c263f8b049ae4515b6249e755ac32ed3"
     ],
     "optimizer": {
-      "requested_model": "deepseek-chat",
+      "requested_model": "deepseek-v4.1-flash-expires-on-0910",
       "temperature": 0,
       "prompt_version": "v1",
-      "timestamp": "2026-09-09T15:16:31.783775+00:00",
+      "timestamp": "2026-09-09T15:40:59.951590+00:00",
       "input_hash": "8a9c9e9b38d6bd6fdc206e8bd51b9e41e80aad5b7cef8895d195bfd70b1aa0c3",
       "prompt_hash": "d3cb1fa9326c673fb30dd4c7124926461451724eb3ca54947e9070adb969f265",
-      "provider_response_hash": null,
-      "backend": "LOCAL FALLBACK",
-      "reason": "API key missing or cloud optimizer disabled",
-      "token_usage": 0,
-      "provider_called": false,
-      "model": "none",
-      "finished_at": "2026-09-09T15:16:31.783788+00:00",
+      "provider_response_hash": "e8096211f928a43f383a996e914763eefb9d839dda581ed876b9cdad7d2766f5",
+      "request_messages_hash": "556f2e0d72b3fccb751432d7f93ba5bb4d70a322aa8d9899753cf0053679d501",
+      "usage": {
+        "input_tokens": 451,
+        "output_tokens": 709,
+        "total_tokens": 1160,
+        "cache_tokens": 256
+      },
+      "response_received": true,
+      "backend": "OPENJIUWEN",
+      "provider_called": true,
+      "api": "FeedbackPromptBuilder.build",
+      "token_usage": 1160,
+      "reason": "SDK feedback optimizer; validated executable contract",
+      "model": "deepseek-v4.1-flash-expires-on-0910",
+      "finished_at": "2026-09-09T15:41:02.518125+00:00",
       "response_hash": "e8096211f928a43f383a996e914763eefb9d839dda581ed876b9cdad7d2766f5",
-      "latency": 3.837500116787851e-05
+      "latency": 2.56656866701087
     },
     "controller_trace": {
       "agent": "evolution_controller",
       "role_type": "evolution_controller",
       "status": "completed",
-      "latency": 0.0002963749866466969,
+      "latency": 2.567101124994224,
       "decision_summary": "由 2 条规划反馈生成 3 个配置变更",
       "tool_statistics": {
         "analyst:policy_compile": {
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.5800000000000001,
-          "average_latency": 0.0009107499790843576,
+          "average_latency": 0.0008044590067584068,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -1160,7 +1187,7 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.5800000000000001,
-          "average_latency": 5.3328262499999255,
+          "average_latency": 5.03142820901121,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -1168,7 +1195,7 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.5800000000000001,
-          "average_latency": 0.000349292007740587,
+          "average_latency": 0.00020937499357387424,
           "average_token_cost": 0.0,
           "failure_count": 0
         },
@@ -1176,13 +1203,13 @@
           "calls": 1,
           "success_rate": 1.0,
           "average_quality": 0.5800000000000001,
-          "average_latency": 0.0008692499832250178,
+          "average_latency": 0.0010089169954881072,
           "average_token_cost": 0.0,
           "failure_count": 0
         }
       },
-      "started_at": "2026-09-09T15:16:31.783491+00:00",
-      "finished_at": "2026-09-09T15:16:31.783916+00:00"
+      "started_at": "2026-09-09T15:40:59.951319+00:00",
+      "finished_at": "2026-09-09T15:41:02.518581+00:00"
     },
     "promotion": {
       "accepted": true,
@@ -1190,8 +1217,8 @@
       "reason": "candidate improved measured score",
       "comparison_scope": "same task, seed, dataset and role-model configuration; training-task comparison"
     },
-    "experiment_id": "exp-626a061fb6a14ae5a51aaee5f67617fd",
-    "candidate_run_id": "run-1a0e069f0e844ab996be4c1cef97c43e",
+    "experiment_id": "exp-8806ebf3e5d14904bcf65401998065c6",
+    "candidate_run_id": "run-57657a381f8940d888942c9fa856b3c7",
     "evaluation_before": {
       "task_success": false,
       "quality_score": 0.5800000000000001,
@@ -1202,7 +1229,7 @@
       "retries": 0,
       "tool_calls": 4,
       "token_usage": 0,
-      "latency": 5.344211791001726,
+      "latency": 5.039541082980577,
       "active_agent_count": 5,
       "dimensions": {
         "completeness": 0.6,
@@ -1223,7 +1250,7 @@
       "retries": 0,
       "tool_calls": 8,
       "token_usage": 0,
-      "latency": 19.714993875008076,
+      "latency": 18.713466957997298,
       "active_agent_count": 6,
       "dimensions": {
         "completeness": 1.0,
@@ -1238,9 +1265,9 @@
     },
     "training_cost": {
       "candidate_tool_calls": 8,
-      "candidate_latency": 19.714993875008076,
-      "optimizer_token_usage": 0,
-      "controller_latency": 0.0002963749866466969
+      "candidate_latency": 18.713466957997298,
+      "optimizer_token_usage": 1160,
+      "controller_latency": 2.567101124994224
     }
   }
 ]

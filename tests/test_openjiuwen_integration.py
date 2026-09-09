@@ -59,3 +59,25 @@ def test_cloud_model_failure_returns_explicit_fallback(monkeypatch):
     assert info["backend"] == "LOCAL FALLBACK" and info["provider_called"]
     assert info["token_usage"] is None
     assert "test-credential" not in str(info)
+
+
+def test_prompt_usage_is_observed_from_sdk_callbacks_across_event_loops(monkeypatch):
+    import json
+    from openjiuwen.core.foundation.llm.model_clients.openai_model_client import OpenAIModelClient
+    from openjiuwen.core.foundation.llm.schema.message import AssistantMessage, UsageMetadata
+    received_configs=[]
+    async def measured(self, *args, **kwargs):
+        received_configs.append(self.model_client_config)
+        return AssistantMessage(content=planner_prompt(['replicate']),
+                                reasoning_content='private reasoning must not be exported',
+                                usage_metadata=UsageMetadata(input_tokens=100,output_tokens=20,total_tokens=120))
+    monkeypatch.setenv('QIYUAN_LLM_API_KEY','test-credential-never-exported')
+    monkeypatch.setattr(OpenAIModelClient,'invoke',measured)
+    for _ in range(2):
+        _,audit=run_sync(PromptOptimizer(enabled=True).optimize(planner_prompt(),'独立复核',['replicate']))
+        assert audit['backend']=='OPENJIUWEN',audit
+        assert audit['token_usage']==120 and audit['usage']['input_tokens']==100
+        assert audit['response_received'] and len(audit['request_messages_hash'])==64
+        assert 'test-credential' not in json.dumps(audit)
+        assert 'private reasoning' not in json.dumps(audit)
+    assert all(not c.use_shared_llm_http_client for c in received_configs)

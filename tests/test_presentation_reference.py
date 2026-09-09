@@ -66,9 +66,9 @@ def test_default_home_needs_neither_outputs_nor_online_runtime(monkeypatch):
     assert app.session_state["ev_scale"] == "完整实验"
     assert not app.caption  # No developer narration under the home modules.
     text = " ".join(item.value for item in app.get("html"))
-    assert "3/5 项 → 5/5 项" in text
+    assert "3/5" in text and "5/5" in text
     assert "AGENT EVOLUTION COCKPIT" not in text and "QUALITY" not in text
-    assert app.button(key="ev_to_collaboration").label == "查看任务与审查记录"
+    assert app.button(key="ev_to_collaboration").label == "开始讲解：团队如何协作"
     app.button(key="ev_to_collaboration").click().run()
     assert not app.exception
     assert app.radio(key="ev_trace_phase").options == ["初始团队", "改进后团队", "候选配置复评"]

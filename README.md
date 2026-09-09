@@ -30,6 +30,24 @@ flowchart TB
 
 启动后默认进入“自演进驾驶舱”。原政策实验、历史验证、研判分析和成果展示入口作为金融政策风洞的业务能力保留。市场参与者的 StrategyGenome / personality evolution 仍属于 Layer B，不计作团队演化。
 
+## 演示与运行截图
+
+打开应用后，按 **演示总览 → 团队协作 → 自演进 → 三类实验** 讲解。在“自演进”页可切换前后对比、提示词与工具、经验复用；“运行截图”保存本次真实页面，研究工具内保留金融风洞、历史验证和技术资料。
+
+![自演进总览](static/competition_gallery/01-overview.png)
+
+<details>
+<summary>查看提示词、团队结构与历史经验的执行证据</summary>
+
+![优化前后与组织变化](static/competition_gallery/03-comparison.png)
+![提示词与工具优化](static/competition_gallery/04-prompt.png)
+![经验复用](static/competition_gallery/05-memory.png)
+![三类任务](static/competition_gallery/06-benchmarks.png)
+
+</details>
+
+截图来自已完成实验，原图及实验编号见 [截图清单](static/competition_gallery/manifest.json)。[本次运行记录](docs/DEEPSEEK_DEMO_RUN.md)包含模型用量、失败修复与复现命令。
+
 ## 赛题对应与 Agent Roles
 
 完整 30 项 Requirement → Code / Runtime / UI 验收表见 [`FINAL_COMPETITION_READINESS_REPORT.md`](docs/FINAL_COMPETITION_READINESS_REPORT.md)。
@@ -141,9 +159,9 @@ python scripts/run_competition_benchmark.py --task all --seed 42 --mode evolved
 
 [`core/team_evolution/backend.py`](core/team_evolution/backend.py) 直接调用已验证的 `openjiuwen==0.1.17.post1`：`Workflow`、`WorkflowComponent`、`WorkflowCard`、`Start`、`End`、`create_workflow_session`、`Workflow.invoke`。每个任务 Agent 是真实 Workflow 节点，边映射为消息依赖，并行节点由 SDK 的 DAG 运行时调度。每次 trace 记录 package version、实际 invoke/completion 状态。
 
-Prompt 优化默认使用本地可执行契约修复。配置 `QIYUAN_LLM_API_KEY`、`QIYUAN_LLM_BASE_URL` 和 `QIYUAN_LLM_MODEL`，并指定 `--cloud-optimizer` 后，直接调用官方 `FeedbackPromptBuilder.build`；超时、返回无效契约或 API 故障会记录明确回退。无密钥运行不会声称调用 LLM。云端优化器返回文本而无 token usage 时记录 `null`，不估造 token 数。
+Prompt 优化默认使用本地可执行契约修复。配置 `QIYUAN_LLM_API_KEY`、`QIYUAN_LLM_BASE_URL` 和 `QIYUAN_LLM_MODEL`，并指定 `--cloud-optimizer` 后，直接调用官方 `FeedbackPromptBuilder.build`；超时、返回无效契约或 API 故障会记录明确回退。无密钥运行不会声称调用 LLM。通过 SDK 回调读取实际词元用量；接口未返回用量时记录 `null`。
 
-每次优化调用记录 model、temperature、prompt_version、input hash、timestamp、backend、provider response hash 和最终使用的 response hash；密钥不进入 trace。云端服务实连另需有效密钥，本次验收覆盖原生 Workflow 与受控故障/返回测试。
+每次优化调用记录 model、temperature、prompt_version、input hash、timestamp、backend、provider response hash 和最终使用的 response hash；密钥不进入 trace。2026-09-09 已使用 DeepSeek V4.1 Flash 实连完成三类任务；调用用量、输入输出哈希与优化结果随默认实验归档。
 
 API 依据：[官方 PyPI 发行包](https://pypi.org/project/openjiuwen/0.1.17.post1/)、[官方 agent-core 仓库](https://github.com/openJiuwen-ai/agent-core)。具体接口已通过安装包源码和真实 Workflow 测试核验。
 
@@ -151,7 +169,7 @@ API 依据：[官方 PyPI 发行包](https://pypi.org/project/openjiuwen/0.1.17.
 
 [`CompetitionService`](core/competition_service.py) 提供 `run_competition_task`、`run_baseline`、`run_evolved`、`run_before_after`、`rerun_execution`、`get_execution_trace`、`get_team_topology`、`get_evolution_history`、`get_benchmark_summary`、`get_openjiuwen_runtime_info`。UI 只渲染这些返回值。
 
-当前自动拓扑演化支持新增已注册专家、拆分历史分析、并行执行和重连审查路径；未实现任意新角色代码生成、自动合并/退休角色、跨任务元学习或分布式集群。Prompt/工具/拓扑作为联合候选评估，尚无逐因素因果归因。任务角色目前采用确定性规划与专业工具，真实云模型 Prompt 优化需配置密钥另行验证。
+当前自动拓扑演化支持新增已注册专家、拆分历史分析、并行执行和重连审查路径；未实现任意新角色代码生成、自动合并/退休角色、跨任务元学习或分布式集群。Prompt/工具/拓扑作为联合候选评估，尚无逐因素因果归因。任务角色目前采用确定性规划与专业工具，本次三类默认实验均实际调用了云模型优化提示词；任务角色与价格事实仍由确定性程序和专业工具生成。
 
 历史回放使用冻结的观测行情及前一期真实价格，宏观面板为明确标识的合成假设；属于条件回放，不是未来走势预测。监管推荐按实测回撤和预设成本比较，允许推荐不干预与零风险改善。最终验收、30 项证据表和限制见 [`FINAL_COMPETITION_READINESS_REPORT.md`](docs/FINAL_COMPETITION_READINESS_REPORT.md)；前两阶段记录保留在 [`COCKPIT_VALIDATION.md`](docs/COCKPIT_VALIDATION.md) 与 [`QIYUAN_VALIDATION.md`](docs/QIYUAN_VALIDATION.md)。
 

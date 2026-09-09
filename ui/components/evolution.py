@@ -61,13 +61,14 @@ def edge_kind(a, b):
     return "message"
 
 
-def graph_svg(trace):
+def graph_svg(trace, previous=None):
     """Stable serpentine topological layout, including genuine parallel branches."""
     config = trace["team_config"]
     topology = TeamTopology(**config["topology"])
     layers = topology.layers()
     nodes = [node for layer in layers for node in layer]
     states = agent_states(trace)
+    added = set(topology.active_agents) - set(previous["team_config"]["topology"]["active_agents"]) if previous else set()
     positions = {}
     for index, name in enumerate(nodes):
         row, col = divmod(index, 3)
@@ -105,17 +106,20 @@ def graph_svg(trace):
         display = ROLE_NAMES.get(name, name)
         if len(display) > 24:
             display = "Repro. Reviewer"
-        parts.append(f'<g class="ev-node" role="group" aria-label="{html(title)}" tabindex="0"><title>{html(title)}</title><rect x="{x}" y="{y}" width="202" height="100" rx="10" fill="#101c2d" stroke="#2a4058"/>'
+        fill,stroke=("#103039", "#64c8c5") if name in added else ("#101c2d", "#2a4058")
+        parts.append(f'<g class="ev-node" role="group" aria-label="{html(title)}" tabindex="0"><title>{html(title)}</title><rect x="{x}" y="{y}" width="202" height="100" rx="10" fill="{fill}" stroke="{stroke}"/>'
                      f'<rect x="{x}" y="{y+17}" width="3" height="65" rx="1.5" fill="{color}"/>'
                      f'<text x="{x+14}" y="{y+23}" fill="#eef4ff" font-size="20" font-weight="600">{html(display)}</text>'
                      f'<text x="{x+14}" y="{y+43}" fill="#a7b8cc" font-size="13">提示词 {html(spec["prompt_version"])}</text>'
                      f'<text x="{x+14}" y="{y+64}" fill="{color}" font-size="13" letter-spacing=".6">{html(STATE_NAMES.get(status,status))}{" · 并行" if parallel else ""}</text>'
                      f'<text x="{x+14}" y="{y+85}" fill="#a3b3c7" font-size="12">{html(tools[:28])}{"…" if len(tools)>28 else ""}</text></g>')
+        if name in added:
+            parts.append(f'<text x="{x+156}" y="{y+23}" fill="#96e3d8" font-size="12">新增</text>')
     parts.append('</svg>')
     return ''.join(parts)
 
 
-def render_graph(trace, *, inspect=False, controller=None):
+def render_graph(trace, *, inspect=False, controller=None, previous=None):
     height = math.ceil(len(trace["team_config"]["topology"]["active_agents"]) / 3) * 139 + 4
     # st.html sanitizes SVG in some Streamlit builds. All variable text below is
     # escaped; this static local document needs no CDN or executable scripts.
@@ -123,7 +127,7 @@ def render_graph(trace, *, inspect=False, controller=None):
                 'body{margin:0;background:transparent;font-family:Arial,"Microsoft YaHei",sans-serif}'
                 'svg{display:block;width:100%;height:auto;max-height:390px}'
                 '.ev-node:hover rect{stroke:#58bac7}'
-                '</style></head><body>' + graph_svg(trace) + '</body></html>')
+                '</style></head><body>' + graph_svg(trace,previous) + '</body></html>')
     st.iframe(document, height="content")
     if controller:
         status = "EVOLVING" if controller.get("status") == "running" else controller.get("status", "IDLE").upper()
@@ -199,7 +203,7 @@ def render_events(trace, *, compact=False, rows=None):
         st.info("还没有执行记录。运行一次实验即可查看成员分工。")
         return
     if compact:
-        selected = [e for e in events if e["kind"] in {"agent", "feedback"}][-5:]
+        selected = events[:5] if rows is not None else [e for e in events if e["kind"] in {"agent", "feedback"}][-5:]
         for event in selected:
             st.html(f'<div class="ev-event"><time>{clock_text(event["timestamp"])}</time><div><b>{html(event["actor"])}</b>'
                     f'<p>{html(chinese(event["summary"])[:80])}</p></div><span class="ev-dot" style="background:{STATE_COLORS.get(event["status"],"#718399")}"></span></div>')
@@ -242,7 +246,7 @@ def value_text(value, key):
     return f"{value:g}"
 
 
-def render_comparison(comparison, *, detail=True):
+def render_comparison(comparison, *, detail=True, show_config=True):
     if not comparison:
         st.info("暂无可复现实验结果")
         return
@@ -254,8 +258,11 @@ def render_comparison(comparison, *, detail=True):
             '<div class="ev-evolved"><span>改进后团队</span>'
             f'<strong>{cb}<em> / {total} 项</em></strong><p>已完成验证</p></div></div>')
     if not detail:
-        st.write(f'执行成员 {x["active_agent_count"]} → {y["active_agent_count"]} 个 · '
-                 f'用时 {x["latency"]:.2f} → {y["latency"]:.2f} 秒')
+        delta=(y["quality_score"]-x["quality_score"])*100
+        st.html('<div class="demo-comparison-facts">'
+                f'<span>规则评分 {x["quality_score"]:.1%} → {y["quality_score"]:.1%}（{delta:+.1f} 个百分点）</span>'
+                f'<span>执行成员 {x["active_agent_count"]} → {y["active_agent_count"]} 个</span>'
+                f'<span>相同任务 · 相同数据 · 种子 {comparison["seed"]}</span></div>')
         return
     st.write(f'两轮使用相同任务、数据和评价规则，随机种子为 {comparison["seed"]}。')
     rows=[]
@@ -277,6 +284,8 @@ def render_comparison(comparison, *, detail=True):
         st.write(f'审查通过率 {x["critic_pass_rate"]:.1%} → {y["critic_pass_rate"]:.1%}；'
                  f'工具调用 {x["tool_calls"]} → {y["tool_calls"]} 次；执行成员 {x["active_agent_count"]} → {y["active_agent_count"]} 个。')
         if y.get("token_usage") == 0: st.write("本轮任务角色使用规则执行，未调用语言模型，词元用量为零。")
+    if not show_config:
+        return
     tabs=st.tabs(["分工变化", "提示词变化", "工具变化"])
     with tabs[0]:
         left,right=st.columns(2)

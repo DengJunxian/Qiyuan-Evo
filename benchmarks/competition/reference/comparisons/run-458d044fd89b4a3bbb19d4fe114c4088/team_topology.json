@@ -1,0 +1,96 @@
+{
+  "experiment_id": "exp-5641d623ad504b1fa60a6a87e364fcae",
+  "before": {
+    "active_agents": [
+      "planner",
+      "analyst",
+      "executor",
+      "critic",
+      "reporter"
+    ],
+    "communication_edges": [
+      [
+        "planner",
+        "analyst"
+      ],
+      [
+        "analyst",
+        "executor"
+      ],
+      [
+        "executor",
+        "critic"
+      ],
+      [
+        "critic",
+        "reporter"
+      ]
+    ],
+    "routing": {
+      "planner": [
+        "analyst"
+      ],
+      "analyst": [
+        "executor"
+      ],
+      "executor": [
+        "critic"
+      ],
+      "critic": [
+        "reporter"
+      ]
+    },
+    "scheduling_policy": "serial"
+  },
+  "after": {
+    "active_agents": [
+      "planner",
+      "analyst",
+      "executor",
+      "critic",
+      "reporter",
+      "verifier"
+    ],
+    "communication_edges": [
+      [
+        "planner",
+        "analyst"
+      ],
+      [
+        "analyst",
+        "executor"
+      ],
+      [
+        "critic",
+        "reporter"
+      ],
+      [
+        "executor",
+        "verifier"
+      ],
+      [
+        "verifier",
+        "critic"
+      ]
+    ],
+    "routing": {
+      "planner": [
+        "analyst"
+      ],
+      "analyst": [
+        "executor"
+      ],
+      "executor": [
+        "verifier"
+      ],
+      "critic": [
+        "reporter"
+      ],
+      "reporter": [],
+      "verifier": [
+        "critic"
+      ]
+    },
+    "scheduling_policy": "serial"
+  }
+}

@@ -1,10 +1,10 @@
 [
   {
-    "experience_id": "run-f3bf7cfd3ef24731b74231ec4b25cedf",
+    "experience_id": "run-458d044fd89b4a3bbb19d4fe114c4088",
     "task_fingerprint": "8c14077b73f4cf8d4ab00f293abddacff90cbd43c9a831ed05aa4ffcea1979cb",
     "task_type": "policy_report",
     "objective": "评估印花税下调对市场流动性、风险和交易行为的影响，形成证据报告。",
-    "context_key": "f5194f245e248c67ca3d0586607b7651dfe91c59a5e52c2a29636afc7deb1fbb",
+    "context_key": "10eef10b6a3206f09e75f621ab007bede729be090e20731889ec564151287fed",
     "team_configuration": {
       "version": 1,
       "roles": {
@@ -161,10 +161,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:15:51.312570+00:00",
+        "started_at": "2026-09-09T15:40:16.200032+00:00",
         "result_hash": "ddffed045bb61c0b9883632401dbd330f5378c3ded3ad3f6ef67acb9da3d355c",
-        "latency": 0.0021687909902539104,
-        "finished_at": "2026-09-09T15:15:51.314739+00:00"
+        "latency": 0.002279624983202666,
+        "finished_at": "2026-09-09T15:40:16.202312+00:00"
       },
       {
         "call_id": "tool-2",
@@ -175,10 +175,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:15:51.315247+00:00",
+        "started_at": "2026-09-09T15:40:16.202900+00:00",
         "result_hash": "d8f3fcfc47f8090e7168838118c5eed285967c58a2a76b0a4aa5d444eecd828d",
-        "latency": 4.504538582987152,
-        "finished_at": "2026-09-09T15:15:55.819788+00:00"
+        "latency": 4.7277516670001205,
+        "finished_at": "2026-09-09T15:40:20.930665+00:00"
       },
       {
         "call_id": "tool-3",
@@ -189,10 +189,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:15:55.822503+00:00",
+        "started_at": "2026-09-09T15:40:20.933524+00:00",
         "result_hash": "6147957c6bd8e17e2dccee4463aa4fc93763924d88f1480dc906151f90637fb8",
-        "latency": 0.00024379201931878924,
-        "finished_at": "2026-09-09T15:15:55.822747+00:00"
+        "latency": 0.0002212919935118407,
+        "finished_at": "2026-09-09T15:40:20.933745+00:00"
       },
       {
         "call_id": "tool-4",
@@ -203,10 +203,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:15:55.824045+00:00",
+        "started_at": "2026-09-09T15:40:20.934932+00:00",
         "result_hash": "9cce4b7075319cd23db7e4a442264ff9e81fcf52bf66f344f62f25ec68fadab3",
-        "latency": 0.0007709589845035225,
-        "finished_at": "2026-09-09T15:15:55.824816+00:00"
+        "latency": 0.0006905419868417084,
+        "finished_at": "2026-09-09T15:40:20.935623+00:00"
       }
     ],
     "key_failures": [],
@@ -238,7 +238,7 @@
       "retries": 0,
       "tool_calls": 4,
       "token_usage": 0,
-      "latency": 5.402153167000506,
+      "latency": 5.6456096670008264,
       "active_agent_count": 5,
       "dimensions": {
         "completeness": 0.6,
@@ -253,18 +253,18 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 5.402153167000506,
+    "latency": 5.6456096670008264,
     "eligible": false,
     "successful_strategy": null,
     "times_reused": 0,
     "used_by": []
   },
   {
-    "experience_id": "run-55f3ec3716f84e0d8e0c450c6f2bc13d",
+    "experience_id": "run-0522a3c18d4c46528964b43a7d7f1781",
     "task_fingerprint": "8c14077b73f4cf8d4ab00f293abddacff90cbd43c9a831ed05aa4ffcea1979cb",
     "task_type": "policy_report",
     "objective": "评估印花税下调对市场流动性、风险和交易行为的影响，形成证据报告。",
-    "context_key": "f5194f245e248c67ca3d0586607b7651dfe91c59a5e52c2a29636afc7deb1fbb",
+    "context_key": "10eef10b6a3206f09e75f621ab007bede729be090e20731889ec564151287fed",
     "team_configuration": {
       "version": 2,
       "roles": {
@@ -303,7 +303,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0021687909902539104,
+              "average_latency": 0.002279624983202666,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -332,7 +332,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 4.504538582987152,
+              "average_latency": 4.7277516670001205,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -359,7 +359,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.00024379201931878924,
+              "average_latency": 0.0002212919935118407,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -386,7 +386,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0007709589845035225,
+              "average_latency": 0.0006905419868417084,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -490,10 +490,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:15:55.835802+00:00",
+        "started_at": "2026-09-09T15:40:23.256537+00:00",
         "result_hash": "ddffed045bb61c0b9883632401dbd330f5378c3ded3ad3f6ef67acb9da3d355c",
-        "latency": 0.0008054579957388341,
-        "finished_at": "2026-09-09T15:15:55.836607+00:00"
+        "latency": 0.0018278330098837614,
+        "finished_at": "2026-09-09T15:40:23.258364+00:00"
       },
       {
         "call_id": "tool-2",
@@ -504,10 +504,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:15:55.837068+00:00",
+        "started_at": "2026-09-09T15:40:23.259386+00:00",
         "result_hash": "d8f3fcfc47f8090e7168838118c5eed285967c58a2a76b0a4aa5d444eecd828d",
-        "latency": 4.69007720798254,
-        "finished_at": "2026-09-09T15:16:00.527147+00:00"
+        "latency": 4.439254459022777,
+        "finished_at": "2026-09-09T15:40:27.698653+00:00"
       },
       {
         "call_id": "tool-3",
@@ -520,10 +520,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:00.527261+00:00",
+        "started_at": "2026-09-09T15:40:27.698775+00:00",
         "result_hash": "a748c45daa2752db5304e150b1a569d7eb7ad5fd0a51671579216e1477a4a335",
-        "latency": 4.159500749985455,
-        "finished_at": "2026-09-09T15:16:04.686765+00:00"
+        "latency": 3.732556167000439,
+        "finished_at": "2026-09-09T15:40:31.431343+00:00"
       },
       {
         "call_id": "tool-4",
@@ -534,10 +534,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:04.688364+00:00",
+        "started_at": "2026-09-09T15:40:31.432634+00:00",
         "result_hash": "d8f3fcfc47f8090e7168838118c5eed285967c58a2a76b0a4aa5d444eecd828d",
-        "latency": 4.454284250008641,
-        "finished_at": "2026-09-09T15:16:09.142653+00:00"
+        "latency": 4.289378458983265,
+        "finished_at": "2026-09-09T15:40:35.722024+00:00"
       },
       {
         "call_id": "tool-5",
@@ -548,10 +548,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:09.144097+00:00",
+        "started_at": "2026-09-09T15:40:35.724370+00:00",
         "result_hash": "6147957c6bd8e17e2dccee4463aa4fc93763924d88f1480dc906151f90637fb8",
-        "latency": 0.00028533299337141216,
-        "finished_at": "2026-09-09T15:16:09.144382+00:00"
+        "latency": 0.00018620799528434873,
+        "finished_at": "2026-09-09T15:40:35.724557+00:00"
       },
       {
         "call_id": "tool-6",
@@ -562,10 +562,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:09.145251+00:00",
+        "started_at": "2026-09-09T15:40:35.725261+00:00",
         "result_hash": "ba5c62a5b8e5ab7c3cd143b6f7aa39b3e9202bbc67e8543aabf6999d3bcc0ee2",
-        "latency": 0.0008914580103009939,
-        "finished_at": "2026-09-09T15:16:09.146142+00:00"
+        "latency": 0.0008185830083675683,
+        "finished_at": "2026-09-09T15:40:35.726080+00:00"
       }
     ],
     "key_failures": [],
@@ -580,7 +580,7 @@
       "retries": 0,
       "tool_calls": 6,
       "token_usage": 0,
-      "latency": 13.31483649997972,
+      "latency": 12.478374124999391,
       "active_agent_count": 6,
       "dimensions": {
         "completeness": 1.0,
@@ -595,7 +595,7 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 13.31483649997972,
+    "latency": 12.478374124999391,
     "eligible": true,
     "successful_strategy": {
       "version": 2,
@@ -635,7 +635,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0021687909902539104,
+              "average_latency": 0.002279624983202666,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -664,7 +664,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 4.504538582987152,
+              "average_latency": 4.7277516670001205,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -691,7 +691,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.00024379201931878924,
+              "average_latency": 0.0002212919935118407,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -718,7 +718,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0007709589845035225,
+              "average_latency": 0.0006905419868417084,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -806,15 +806,15 @@
     },
     "times_reused": 1,
     "used_by": [
-      "run-c3a2ba3daeed46b09bc910b3a80af118"
+      "run-379fd358e4424b98a3e28fc08f1efa5f"
     ]
   },
   {
-    "experience_id": "run-c3a2ba3daeed46b09bc910b3a80af118",
+    "experience_id": "run-379fd358e4424b98a3e28fc08f1efa5f",
     "task_fingerprint": "8c14077b73f4cf8d4ab00f293abddacff90cbd43c9a831ed05aa4ffcea1979cb",
     "task_type": "policy_report",
     "objective": "评估印花税下调对市场流动性、风险和交易行为的影响，形成证据报告。",
-    "context_key": "f5194f245e248c67ca3d0586607b7651dfe91c59a5e52c2a29636afc7deb1fbb",
+    "context_key": "10eef10b6a3206f09e75f621ab007bede729be090e20731889ec564151287fed",
     "team_configuration": {
       "version": 2,
       "roles": {
@@ -853,7 +853,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0021687909902539104,
+              "average_latency": 0.002279624983202666,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -882,7 +882,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 4.504538582987152,
+              "average_latency": 4.7277516670001205,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -909,7 +909,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.00024379201931878924,
+              "average_latency": 0.0002212919935118407,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -936,7 +936,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0007709589845035225,
+              "average_latency": 0.0006905419868417084,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -1040,10 +1040,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:09.165084+00:00",
+        "started_at": "2026-09-09T15:40:35.741825+00:00",
         "result_hash": "ddffed045bb61c0b9883632401dbd330f5378c3ded3ad3f6ef67acb9da3d355c",
-        "latency": 0.0008387079869862646,
-        "finished_at": "2026-09-09T15:16:09.165923+00:00"
+        "latency": 0.0007845000072848052,
+        "finished_at": "2026-09-09T15:40:35.742609+00:00"
       },
       {
         "call_id": "tool-2",
@@ -1054,10 +1054,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:09.166475+00:00",
+        "started_at": "2026-09-09T15:40:35.743102+00:00",
         "result_hash": "d8f3fcfc47f8090e7168838118c5eed285967c58a2a76b0a4aa5d444eecd828d",
-        "latency": 4.443109124986222,
-        "finished_at": "2026-09-09T15:16:13.609586+00:00"
+        "latency": 4.405526042013662,
+        "finished_at": "2026-09-09T15:40:40.148640+00:00"
       },
       {
         "call_id": "tool-3",
@@ -1070,10 +1070,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:13.609717+00:00",
+        "started_at": "2026-09-09T15:40:40.148741+00:00",
         "result_hash": "a748c45daa2752db5304e150b1a569d7eb7ad5fd0a51671579216e1477a4a335",
-        "latency": 3.7932192079897504,
-        "finished_at": "2026-09-09T15:16:17.402938+00:00"
+        "latency": 3.6898467919963878,
+        "finished_at": "2026-09-09T15:40:43.838599+00:00"
       },
       {
         "call_id": "tool-4",
@@ -1084,10 +1084,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:17.404337+00:00",
+        "started_at": "2026-09-09T15:40:43.839694+00:00",
         "result_hash": "d8f3fcfc47f8090e7168838118c5eed285967c58a2a76b0a4aa5d444eecd828d",
-        "latency": 4.475205708993599,
-        "finished_at": "2026-09-09T15:16:21.879544+00:00"
+        "latency": 4.3872657920001075,
+        "finished_at": "2026-09-09T15:40:48.226974+00:00"
       },
       {
         "call_id": "tool-5",
@@ -1098,10 +1098,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:21.880611+00:00",
+        "started_at": "2026-09-09T15:40:48.228120+00:00",
         "result_hash": "6147957c6bd8e17e2dccee4463aa4fc93763924d88f1480dc906151f90637fb8",
-        "latency": 0.00023049997980706394,
-        "finished_at": "2026-09-09T15:16:21.880841+00:00"
+        "latency": 0.00021345799905247986,
+        "finished_at": "2026-09-09T15:40:48.228334+00:00"
       },
       {
         "call_id": "tool-6",
@@ -1112,10 +1112,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:21.881612+00:00",
+        "started_at": "2026-09-09T15:40:48.229184+00:00",
         "result_hash": "ba5c62a5b8e5ab7c3cd143b6f7aa39b3e9202bbc67e8543aabf6999d3bcc0ee2",
-        "latency": 0.0007777079881634563,
-        "finished_at": "2026-09-09T15:16:21.882390+00:00"
+        "latency": 0.0008658330189064145,
+        "finished_at": "2026-09-09T15:40:48.230049+00:00"
       }
     ],
     "key_failures": [],
@@ -1130,7 +1130,7 @@
       "retries": 0,
       "tool_calls": 6,
       "token_usage": 0,
-      "latency": 12.723491124983411,
+      "latency": 12.493229874991812,
       "active_agent_count": 6,
       "dimensions": {
         "completeness": 1.0,
@@ -1145,7 +1145,7 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 12.723491124983411,
+    "latency": 12.493229874991812,
     "eligible": true,
     "successful_strategy": {
       "version": 2,
@@ -1185,7 +1185,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0021687909902539104,
+              "average_latency": 0.002279624983202666,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -1214,7 +1214,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 4.504538582987152,
+              "average_latency": 4.7277516670001205,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -1241,7 +1241,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.00024379201931878924,
+              "average_latency": 0.0002212919935118407,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -1268,7 +1268,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.7,
-              "average_latency": 0.0007709589845035225,
+              "average_latency": 0.0006905419868417084,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -1358,11 +1358,11 @@
     "used_by": []
   },
   {
-    "experience_id": "run-e892ba1d0b8342b8baf6dbccafe57990",
+    "experience_id": "run-0f131394dfda47789f308e3978c6a973",
     "task_fingerprint": "0d166da3da4fea1c4b5ebd68281c76def8af91ccdb75bd357f2f543030524ddf",
     "task_type": "historical_analysis",
     "objective": "回放 2024 年 9 月政策窗口，量化模拟路径相对上证指数观测走势的偏差。",
-    "context_key": "c3e2b4e138b9f732f18bfad3630a3ab1801a2b9096fcf0f31cb33d77afa09198",
+    "context_key": "161e5ab46d2bdf9ff5067ad322eb35d322b8939442e9b9634a5deb6ae9fb5123",
     "team_configuration": {
       "version": 1,
       "roles": {
@@ -1519,10 +1519,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:21.906444+00:00",
+        "started_at": "2026-09-09T15:40:48.253525+00:00",
         "result_hash": "1144672bd51145cc7a251889a40a2248d4ab84418dbe033057b75bec1b458e24",
-        "latency": 0.0008725829829927534,
-        "finished_at": "2026-09-09T15:16:21.907317+00:00"
+        "latency": 0.0008904999995138496,
+        "finished_at": "2026-09-09T15:40:48.254416+00:00"
       },
       {
         "call_id": "tool-2",
@@ -1533,10 +1533,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:21.907843+00:00",
+        "started_at": "2026-09-09T15:40:48.254996+00:00",
         "result_hash": "a3f0e76963364809c9f7e8f78eb58cf41057cc5eb7171e13e361088541704b8f",
-        "latency": 4.379392834001919,
-        "finished_at": "2026-09-09T15:16:26.287239+00:00"
+        "latency": 4.339033500000369,
+        "finished_at": "2026-09-09T15:40:52.594041+00:00"
       },
       {
         "call_id": "tool-3",
@@ -1547,10 +1547,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.288806+00:00",
+        "started_at": "2026-09-09T15:40:52.595470+00:00",
         "result_hash": "6147957c6bd8e17e2dccee4463aa4fc93763924d88f1480dc906151f90637fb8",
-        "latency": 0.00022495898883789778,
-        "finished_at": "2026-09-09T15:16:26.289031+00:00"
+        "latency": 0.00022133401944302022,
+        "finished_at": "2026-09-09T15:40:52.595692+00:00"
       },
       {
         "call_id": "tool-4",
@@ -1561,10 +1561,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.289800+00:00",
+        "started_at": "2026-09-09T15:40:52.596550+00:00",
         "result_hash": "f08393ff89e4f89dbd8aab690c2118f517b85b1e00d7e5ff8ccdb225efe78365",
-        "latency": 0.0008388749847654253,
-        "finished_at": "2026-09-09T15:16:26.290639+00:00"
+        "latency": 0.0009910840017255396,
+        "finished_at": "2026-09-09T15:40:52.597542+00:00"
       }
     ],
     "key_failures": [],
@@ -1604,7 +1604,7 @@
       "retries": 0,
       "tool_calls": 4,
       "token_usage": 0,
-      "latency": 4.387954375008121,
+      "latency": 4.347798083996167,
       "active_agent_count": 5,
       "dimensions": {
         "completeness": 0.5,
@@ -1619,18 +1619,18 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 4.387954375008121,
+    "latency": 4.347798083996167,
     "eligible": false,
     "successful_strategy": null,
     "times_reused": 0,
     "used_by": []
   },
   {
-    "experience_id": "run-20b7dcefb5e74cbd9aa4ea4f2724eb35",
+    "experience_id": "run-c8f9bd0ac4664d2fb8da9dcb999edaca",
     "task_fingerprint": "0d166da3da4fea1c4b5ebd68281c76def8af91ccdb75bd357f2f543030524ddf",
     "task_type": "historical_analysis",
     "objective": "回放 2024 年 9 月政策窗口，量化模拟路径相对上证指数观测走势的偏差。",
-    "context_key": "c3e2b4e138b9f732f18bfad3630a3ab1801a2b9096fcf0f31cb33d77afa09198",
+    "context_key": "161e5ab46d2bdf9ff5067ad322eb35d322b8939442e9b9634a5deb6ae9fb5123",
     "team_configuration": {
       "version": 2,
       "roles": {
@@ -1669,7 +1669,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008725829829927534,
+              "average_latency": 0.0008904999995138496,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -1698,7 +1698,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -1725,7 +1725,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.00022495898883789778,
+              "average_latency": 0.00022133401944302022,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -1752,7 +1752,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008388749847654253,
+              "average_latency": 0.0009910840017255396,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -1868,7 +1868,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0
             },
@@ -1898,10 +1898,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.301317+00:00",
+        "started_at": "2026-09-09T15:40:54.770112+00:00",
         "result_hash": "1144672bd51145cc7a251889a40a2248d4ab84418dbe033057b75bec1b458e24",
-        "latency": 0.0014987909817136824,
-        "finished_at": "2026-09-09T15:16:26.302815+00:00"
+        "latency": 0.0025000839959830046,
+        "finished_at": "2026-09-09T15:40:54.772613+00:00"
       },
       {
         "call_id": "tool-2",
@@ -1912,10 +1912,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.303394+00:00",
+        "started_at": "2026-09-09T15:40:54.773966+00:00",
         "result_hash": "f01124acb99fb95ce89cb18f213467a390e7d69bffdc88243c25be5aca6a6b46",
-        "latency": 0.08122750002075918,
-        "finished_at": "2026-09-09T15:16:26.384622+00:00"
+        "latency": 0.08755337499314919,
+        "finished_at": "2026-09-09T15:40:54.861520+00:00"
       },
       {
         "call_id": "tool-3",
@@ -1926,10 +1926,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.384702+00:00",
+        "started_at": "2026-09-09T15:40:54.861599+00:00",
         "result_hash": "f01124acb99fb95ce89cb18f213467a390e7d69bffdc88243c25be5aca6a6b46",
-        "latency": 0.003651792008895427,
-        "finished_at": "2026-09-09T15:16:26.388355+00:00"
+        "latency": 0.002723833982599899,
+        "finished_at": "2026-09-09T15:40:54.864323+00:00"
       },
       {
         "call_id": "tool-4",
@@ -1940,10 +1940,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.389065+00:00",
+        "started_at": "2026-09-09T15:40:54.864989+00:00",
         "result_hash": "afdb74af534c8ad962a6773c989295936bc18684b694d2f397168c3b08a6bdb4",
-        "latency": 0.0006286249845288694,
-        "finished_at": "2026-09-09T15:16:26.389694+00:00"
+        "latency": 0.0005156249972060323,
+        "finished_at": "2026-09-09T15:40:54.865504+00:00"
       },
       {
         "call_id": "tool-5",
@@ -1954,10 +1954,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.389318+00:00",
+        "started_at": "2026-09-09T15:40:54.865325+00:00",
         "result_hash": "ccc698734a5732712f2a173623e867be51caf2b70700694c334ea3f6c70bafc9",
-        "latency": 0.000647209002636373,
-        "finished_at": "2026-09-09T15:16:26.389965+00:00"
+        "latency": 0.0003895419940818101,
+        "finished_at": "2026-09-09T15:40:54.865714+00:00"
       },
       {
         "call_id": "tool-6",
@@ -1968,10 +1968,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.390430+00:00",
+        "started_at": "2026-09-09T15:40:54.866132+00:00",
         "result_hash": "57128bc369727da5079bd86a969f28fbb016b684650d61c7dfa5caed9ff102dc",
-        "latency": 8.687499212101102e-05,
-        "finished_at": "2026-09-09T15:16:26.390517+00:00"
+        "latency": 7.345800986513495e-05,
+        "finished_at": "2026-09-09T15:40:54.866205+00:00"
       },
       {
         "call_id": "tool-7",
@@ -1982,10 +1982,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.391124+00:00",
+        "started_at": "2026-09-09T15:40:54.866774+00:00",
         "result_hash": "bedb713a508bb9becfcdbee219ddf4b98559590a090f6e247c38c39001efe1cb",
-        "latency": 0.0008579170098528266,
-        "finished_at": "2026-09-09T15:16:26.391981+00:00"
+        "latency": 0.0007933749875519425,
+        "finished_at": "2026-09-09T15:40:54.867567+00:00"
       }
     ],
     "key_failures": [],
@@ -2000,7 +2000,7 @@
       "retries": 0,
       "tool_calls": 7,
       "token_usage": 0,
-      "latency": 0.094525791995693,
+      "latency": 0.1079873749986291,
       "active_agent_count": 7,
       "dimensions": {
         "completeness": 1.0,
@@ -2018,7 +2018,7 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 0.094525791995693,
+    "latency": 0.1079873749986291,
     "eligible": true,
     "successful_strategy": {
       "version": 2,
@@ -2058,7 +2058,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008725829829927534,
+              "average_latency": 0.0008904999995138496,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -2087,7 +2087,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -2114,7 +2114,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.00022495898883789778,
+              "average_latency": 0.00022133401944302022,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -2141,7 +2141,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008388749847654253,
+              "average_latency": 0.0009910840017255396,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -2257,7 +2257,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0
             },
@@ -2270,15 +2270,15 @@
     },
     "times_reused": 1,
     "used_by": [
-      "run-9ab9925a7a8c401c940cd01cb665e184"
+      "run-975f98292cd34cb2934ada75e49dbd08"
     ]
   },
   {
-    "experience_id": "run-9ab9925a7a8c401c940cd01cb665e184",
+    "experience_id": "run-975f98292cd34cb2934ada75e49dbd08",
     "task_fingerprint": "0d166da3da4fea1c4b5ebd68281c76def8af91ccdb75bd357f2f543030524ddf",
     "task_type": "historical_analysis",
     "objective": "回放 2024 年 9 月政策窗口，量化模拟路径相对上证指数观测走势的偏差。",
-    "context_key": "c3e2b4e138b9f732f18bfad3630a3ab1801a2b9096fcf0f31cb33d77afa09198",
+    "context_key": "161e5ab46d2bdf9ff5067ad322eb35d322b8939442e9b9634a5deb6ae9fb5123",
     "team_configuration": {
       "version": 2,
       "roles": {
@@ -2317,7 +2317,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008725829829927534,
+              "average_latency": 0.0008904999995138496,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -2346,7 +2346,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -2373,7 +2373,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.00022495898883789778,
+              "average_latency": 0.00022133401944302022,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -2400,7 +2400,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008388749847654253,
+              "average_latency": 0.0009910840017255396,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -2516,7 +2516,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0
             },
@@ -2546,10 +2546,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.405094+00:00",
+        "started_at": "2026-09-09T15:40:54.879485+00:00",
         "result_hash": "1144672bd51145cc7a251889a40a2248d4ab84418dbe033057b75bec1b458e24",
-        "latency": 0.0008275409927591681,
-        "finished_at": "2026-09-09T15:16:26.405921+00:00"
+        "latency": 0.0007872919959481806,
+        "finished_at": "2026-09-09T15:40:54.880272+00:00"
       },
       {
         "call_id": "tool-2",
@@ -2560,10 +2560,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.406381+00:00",
+        "started_at": "2026-09-09T15:40:54.880793+00:00",
         "result_hash": "f01124acb99fb95ce89cb18f213467a390e7d69bffdc88243c25be5aca6a6b46",
-        "latency": 0.0030398340022657067,
-        "finished_at": "2026-09-09T15:16:26.409421+00:00"
+        "latency": 0.0026489589945413172,
+        "finished_at": "2026-09-09T15:40:54.883442+00:00"
       },
       {
         "call_id": "tool-3",
@@ -2574,10 +2574,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.409491+00:00",
+        "started_at": "2026-09-09T15:40:54.883499+00:00",
         "result_hash": "f01124acb99fb95ce89cb18f213467a390e7d69bffdc88243c25be5aca6a6b46",
-        "latency": 0.002765957993688062,
-        "finished_at": "2026-09-09T15:16:26.412257+00:00"
+        "latency": 0.002547209005570039,
+        "finished_at": "2026-09-09T15:40:54.886047+00:00"
       },
       {
         "call_id": "tool-4",
@@ -2588,10 +2588,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.412838+00:00",
+        "started_at": "2026-09-09T15:40:54.886550+00:00",
         "result_hash": "afdb74af534c8ad962a6773c989295936bc18684b694d2f397168c3b08a6bdb4",
-        "latency": 0.0005132080113980919,
-        "finished_at": "2026-09-09T15:16:26.413351+00:00"
+        "latency": 0.00043366700992919505,
+        "finished_at": "2026-09-09T15:40:54.886983+00:00"
       },
       {
         "call_id": "tool-5",
@@ -2602,10 +2602,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.413188+00:00",
+        "started_at": "2026-09-09T15:40:54.886752+00:00",
         "result_hash": "ccc698734a5732712f2a173623e867be51caf2b70700694c334ea3f6c70bafc9",
-        "latency": 0.0005028329906053841,
-        "finished_at": "2026-09-09T15:16:26.413691+00:00"
+        "latency": 0.0005291250126902014,
+        "finished_at": "2026-09-09T15:40:54.887281+00:00"
       },
       {
         "call_id": "tool-6",
@@ -2616,10 +2616,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.414160+00:00",
+        "started_at": "2026-09-09T15:40:54.887824+00:00",
         "result_hash": "57128bc369727da5079bd86a969f28fbb016b684650d61c7dfa5caed9ff102dc",
-        "latency": 7.933401502668858e-05,
-        "finished_at": "2026-09-09T15:16:26.414239+00:00"
+        "latency": 0.00010241600102744997,
+        "finished_at": "2026-09-09T15:40:54.887926+00:00"
       },
       {
         "call_id": "tool-7",
@@ -2630,10 +2630,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.414869+00:00",
+        "started_at": "2026-09-09T15:40:54.888501+00:00",
         "result_hash": "bedb713a508bb9becfcdbee219ddf4b98559590a090f6e247c38c39001efe1cb",
-        "latency": 0.0008044579881243408,
-        "finished_at": "2026-09-09T15:16:26.415673+00:00"
+        "latency": 0.0008042499830480665,
+        "finished_at": "2026-09-09T15:40:54.889305+00:00"
       }
     ],
     "key_failures": [],
@@ -2648,7 +2648,7 @@
       "retries": 0,
       "tool_calls": 7,
       "token_usage": 0,
-      "latency": 0.013905208994401619,
+      "latency": 0.01346216700039804,
       "active_agent_count": 7,
       "dimensions": {
         "completeness": 1.0,
@@ -2666,7 +2666,7 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 0.013905208994401619,
+    "latency": 0.01346216700039804,
     "eligible": true,
     "successful_strategy": {
       "version": 2,
@@ -2706,7 +2706,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008725829829927534,
+              "average_latency": 0.0008904999995138496,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -2735,7 +2735,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -2762,7 +2762,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.00022495898883789778,
+              "average_latency": 0.00022133401944302022,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -2789,7 +2789,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 0.0008388749847654253,
+              "average_latency": 0.0009910840017255396,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -2905,7 +2905,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.55,
-              "average_latency": 4.379392834001919,
+              "average_latency": 4.339033500000369,
               "average_token_cost": 0.0,
               "failure_count": 0
             },
@@ -2920,11 +2920,11 @@
     "used_by": []
   },
   {
-    "experience_id": "run-f9c480aeab544ce4b10314311c8221a7",
+    "experience_id": "run-c263f8b049ae4515b6249e755ac32ed3",
     "task_fingerprint": "f2240e18715c0e6c1a3141767ac47442dcc2b5a415de77cc23b42efe72a097a2",
     "task_type": "regulatory_planning",
     "objective": "针对恐慌抛售场景设计预算内的监管干预，比较方案风险与干预成本。",
-    "context_key": "a420c93377e965eecd740c6158590c77ec7d591143667b528b7dd880ca8db213",
+    "context_key": "e5c9386d69c28698c148fd795b52be919ba21e31fa17fc334a2f9bb311c91b7b",
     "team_configuration": {
       "version": 1,
       "roles": {
@@ -3081,10 +3081,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.437236+00:00",
+        "started_at": "2026-09-09T15:40:54.908772+00:00",
         "result_hash": "85653f3c713f2fddee4a288edf7e58e253c73a7f78297f08ef7c65e1c6c3446d",
-        "latency": 0.0009107499790843576,
-        "finished_at": "2026-09-09T15:16:26.438147+00:00"
+        "latency": 0.0008044590067584068,
+        "finished_at": "2026-09-09T15:40:54.909576+00:00"
       },
       {
         "call_id": "tool-2",
@@ -3095,10 +3095,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:26.438644+00:00",
+        "started_at": "2026-09-09T15:40:54.910039+00:00",
         "result_hash": "c57c33105516bf46ecf772e4764bf2099c339200273d21f261453afb387d2bb6",
-        "latency": 5.3328262499999255,
-        "finished_at": "2026-09-09T15:16:31.771485+00:00"
+        "latency": 5.03142820901121,
+        "finished_at": "2026-09-09T15:40:59.941482+00:00"
       },
       {
         "call_id": "tool-3",
@@ -3109,10 +3109,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:31.774051+00:00",
+        "started_at": "2026-09-09T15:40:59.942805+00:00",
         "result_hash": "6c9f7fb79f4b07966b0fdd4ecd68f96029535107b96fdeb4395b6a7b82b4175e",
-        "latency": 0.000349292007740587,
-        "finished_at": "2026-09-09T15:16:31.774400+00:00"
+        "latency": 0.00020937499357387424,
+        "finished_at": "2026-09-09T15:40:59.943015+00:00"
       },
       {
         "call_id": "tool-4",
@@ -3123,10 +3123,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:31.775241+00:00",
+        "started_at": "2026-09-09T15:40:59.943988+00:00",
         "result_hash": "2bd0b54372daf387af0a1d4b6b6e3fcd0629791f9ff4f708798a4487b828ac9a",
-        "latency": 0.0008692499832250178,
-        "finished_at": "2026-09-09T15:16:31.776110+00:00"
+        "latency": 0.0010089169954881072,
+        "finished_at": "2026-09-09T15:40:59.944996+00:00"
       }
     ],
     "key_failures": [],
@@ -3158,7 +3158,7 @@
       "retries": 0,
       "tool_calls": 4,
       "token_usage": 0,
-      "latency": 5.344211791001726,
+      "latency": 5.039541082980577,
       "active_agent_count": 5,
       "dimensions": {
         "completeness": 0.6,
@@ -3173,18 +3173,18 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 5.344211791001726,
+    "latency": 5.039541082980577,
     "eligible": false,
     "successful_strategy": null,
     "times_reused": 0,
     "used_by": []
   },
   {
-    "experience_id": "run-1a0e069f0e844ab996be4c1cef97c43e",
+    "experience_id": "run-57657a381f8940d888942c9fa856b3c7",
     "task_fingerprint": "f2240e18715c0e6c1a3141767ac47442dcc2b5a415de77cc23b42efe72a097a2",
     "task_type": "regulatory_planning",
     "objective": "针对恐慌抛售场景设计预算内的监管干预，比较方案风险与干预成本。",
-    "context_key": "a420c93377e965eecd740c6158590c77ec7d591143667b528b7dd880ca8db213",
+    "context_key": "e5c9386d69c28698c148fd795b52be919ba21e31fa17fc334a2f9bb311c91b7b",
     "team_configuration": {
       "version": 2,
       "roles": {
@@ -3223,7 +3223,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0009107499790843576,
+              "average_latency": 0.0008044590067584068,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -3252,7 +3252,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 5.3328262499999255,
+              "average_latency": 5.03142820901121,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -3279,7 +3279,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.000349292007740587,
+              "average_latency": 0.00020937499357387424,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -3306,7 +3306,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0008692499832250178,
+              "average_latency": 0.0010089169954881072,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -3411,10 +3411,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:31.793062+00:00",
+        "started_at": "2026-09-09T15:41:02.534249+00:00",
         "result_hash": "85653f3c713f2fddee4a288edf7e58e253c73a7f78297f08ef7c65e1c6c3446d",
-        "latency": 0.0010138750076293945,
-        "finished_at": "2026-09-09T15:16:31.794076+00:00"
+        "latency": 0.0020960840047337115,
+        "finished_at": "2026-09-09T15:41:02.536346+00:00"
       },
       {
         "call_id": "tool-2",
@@ -3425,10 +3425,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:31.794630+00:00",
+        "started_at": "2026-09-09T15:41:02.537600+00:00",
         "result_hash": "c57c33105516bf46ecf772e4764bf2099c339200273d21f261453afb387d2bb6",
-        "latency": 5.671372707991395,
-        "finished_at": "2026-09-09T15:16:37.466003+00:00"
+        "latency": 5.0827624590019695,
+        "finished_at": "2026-09-09T15:41:07.620375+00:00"
       },
       {
         "call_id": "tool-3",
@@ -3439,10 +3439,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:37.466166+00:00",
+        "started_at": "2026-09-09T15:41:07.620511+00:00",
         "result_hash": "c57c33105516bf46ecf772e4764bf2099c339200273d21f261453afb387d2bb6",
-        "latency": 5.331466083007399,
-        "finished_at": "2026-09-09T15:16:42.797637+00:00"
+        "latency": 5.116581458016299,
+        "finished_at": "2026-09-09T15:41:12.737106+00:00"
       },
       {
         "call_id": "tool-4",
@@ -3455,10 +3455,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:42.800189+00:00",
+        "started_at": "2026-09-09T15:41:12.739082+00:00",
         "result_hash": "6ad79d258c7fa017164f291e044ab548e370d4c0d697100c3c8dab5c98935ba9",
-        "latency": 4.409659333003219,
-        "finished_at": "2026-09-09T15:16:47.209849+00:00"
+        "latency": 4.4513882089813706,
+        "finished_at": "2026-09-09T15:41:17.190490+00:00"
       },
       {
         "call_id": "tool-5",
@@ -3471,10 +3471,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:47.209992+00:00",
+        "started_at": "2026-09-09T15:41:17.190643+00:00",
         "result_hash": "f8bd3f24d91d11852cd0f939befb9a45084f95543cc9947a26ba3ac4806341db",
-        "latency": 4.28607150001335,
-        "finished_at": "2026-09-09T15:16:51.496072+00:00"
+        "latency": 4.041363042022567,
+        "finished_at": "2026-09-09T15:41:21.232016+00:00"
       },
       {
         "call_id": "tool-6",
@@ -3485,10 +3485,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:51.496197+00:00",
+        "started_at": "2026-09-09T15:41:21.232108+00:00",
         "result_hash": "9a8c706eb1354b609b537de4151c61aedf2f4132c623ab1cc7381e52c6399568",
-        "latency": 0.00019116699695587158,
-        "finished_at": "2026-09-09T15:16:51.496388+00:00"
+        "latency": 0.0001289169886149466,
+        "finished_at": "2026-09-09T15:41:21.232236+00:00"
       },
       {
         "call_id": "tool-7",
@@ -3499,10 +3499,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:51.498680+00:00",
+        "started_at": "2026-09-09T15:41:21.233453+00:00",
         "result_hash": "6c9f7fb79f4b07966b0fdd4ecd68f96029535107b96fdeb4395b6a7b82b4175e",
-        "latency": 0.00040774999069981277,
-        "finished_at": "2026-09-09T15:16:51.499088+00:00"
+        "latency": 0.00018279199139215052,
+        "finished_at": "2026-09-09T15:41:21.233636+00:00"
       },
       {
         "call_id": "tool-8",
@@ -3513,10 +3513,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:51.500074+00:00",
+        "started_at": "2026-09-09T15:41:21.234393+00:00",
         "result_hash": "c1f2e87d0ad665d3451a33b807e2567d5940060994ace714dcfd0f06369df3e2",
-        "latency": 0.001035124994814396,
-        "finished_at": "2026-09-09T15:16:51.501109+00:00"
+        "latency": 0.0008498330134898424,
+        "finished_at": "2026-09-09T15:41:21.235243+00:00"
       }
     ],
     "key_failures": [],
@@ -3531,7 +3531,7 @@
       "retries": 0,
       "tool_calls": 8,
       "token_usage": 0,
-      "latency": 19.714993875008076,
+      "latency": 18.713466957997298,
       "active_agent_count": 6,
       "dimensions": {
         "completeness": 1.0,
@@ -3548,7 +3548,7 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 19.714993875008076,
+    "latency": 18.713466957997298,
     "eligible": true,
     "successful_strategy": {
       "version": 2,
@@ -3588,7 +3588,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0009107499790843576,
+              "average_latency": 0.0008044590067584068,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -3617,7 +3617,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 5.3328262499999255,
+              "average_latency": 5.03142820901121,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -3644,7 +3644,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.000349292007740587,
+              "average_latency": 0.00020937499357387424,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -3671,7 +3671,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0008692499832250178,
+              "average_latency": 0.0010089169954881072,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -3760,15 +3760,15 @@
     },
     "times_reused": 1,
     "used_by": [
-      "run-bc8dca510eee4f99a70970cbf5108b76"
+      "run-2c259e1ff6264fadbc53e5d60b42638f"
     ]
   },
   {
-    "experience_id": "run-bc8dca510eee4f99a70970cbf5108b76",
+    "experience_id": "run-2c259e1ff6264fadbc53e5d60b42638f",
     "task_fingerprint": "f2240e18715c0e6c1a3141767ac47442dcc2b5a415de77cc23b42efe72a097a2",
     "task_type": "regulatory_planning",
     "objective": "针对恐慌抛售场景设计预算内的监管干预，比较方案风险与干预成本。",
-    "context_key": "a420c93377e965eecd740c6158590c77ec7d591143667b528b7dd880ca8db213",
+    "context_key": "e5c9386d69c28698c148fd795b52be919ba21e31fa17fc334a2f9bb311c91b7b",
     "team_configuration": {
       "version": 2,
       "roles": {
@@ -3807,7 +3807,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0009107499790843576,
+              "average_latency": 0.0008044590067584068,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -3836,7 +3836,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 5.3328262499999255,
+              "average_latency": 5.03142820901121,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -3863,7 +3863,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.000349292007740587,
+              "average_latency": 0.00020937499357387424,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -3890,7 +3890,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0008692499832250178,
+              "average_latency": 0.0010089169954881072,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"
@@ -3995,10 +3995,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:51.520366+00:00",
+        "started_at": "2026-09-09T15:41:21.249933+00:00",
         "result_hash": "85653f3c713f2fddee4a288edf7e58e253c73a7f78297f08ef7c65e1c6c3446d",
-        "latency": 0.0010477079777047038,
-        "finished_at": "2026-09-09T15:16:51.521414+00:00"
+        "latency": 0.0008880840032361448,
+        "finished_at": "2026-09-09T15:41:21.250821+00:00"
       },
       {
         "call_id": "tool-2",
@@ -4009,10 +4009,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:51.521977+00:00",
+        "started_at": "2026-09-09T15:41:21.251321+00:00",
         "result_hash": "c57c33105516bf46ecf772e4764bf2099c339200273d21f261453afb387d2bb6",
-        "latency": 5.142451332998462,
-        "finished_at": "2026-09-09T15:16:56.664436+00:00"
+        "latency": 5.080671125004301,
+        "finished_at": "2026-09-09T15:41:26.332002+00:00"
       },
       {
         "call_id": "tool-3",
@@ -4023,10 +4023,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:16:56.664563+00:00",
+        "started_at": "2026-09-09T15:41:26.332125+00:00",
         "result_hash": "c57c33105516bf46ecf772e4764bf2099c339200273d21f261453afb387d2bb6",
-        "latency": 5.298217917006696,
-        "finished_at": "2026-09-09T15:17:01.962786+00:00"
+        "latency": 5.139958458021283,
+        "finished_at": "2026-09-09T15:41:31.472092+00:00"
       },
       {
         "call_id": "tool-4",
@@ -4039,10 +4039,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:17:01.965526+00:00",
+        "started_at": "2026-09-09T15:41:31.473540+00:00",
         "result_hash": "6ad79d258c7fa017164f291e044ab548e370d4c0d697100c3c8dab5c98935ba9",
-        "latency": 4.5091547909833025,
-        "finished_at": "2026-09-09T15:17:06.474689+00:00"
+        "latency": 4.304011708009057,
+        "finished_at": "2026-09-09T15:41:35.777561+00:00"
       },
       {
         "call_id": "tool-5",
@@ -4055,10 +4055,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:17:06.474825+00:00",
+        "started_at": "2026-09-09T15:41:35.777669+00:00",
         "result_hash": "f8bd3f24d91d11852cd0f939befb9a45084f95543cc9947a26ba3ac4806341db",
-        "latency": 4.014030959020602,
-        "finished_at": "2026-09-09T15:17:10.488859+00:00"
+        "latency": 4.09438450000016,
+        "finished_at": "2026-09-09T15:41:39.872063+00:00"
       },
       {
         "call_id": "tool-6",
@@ -4069,10 +4069,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:17:10.488960+00:00",
+        "started_at": "2026-09-09T15:41:39.872156+00:00",
         "result_hash": "9a8c706eb1354b609b537de4151c61aedf2f4132c623ab1cc7381e52c6399568",
-        "latency": 0.00012874999083578587,
-        "finished_at": "2026-09-09T15:17:10.489089+00:00"
+        "latency": 0.00017408299027010798,
+        "finished_at": "2026-09-09T15:41:39.872330+00:00"
       },
       {
         "call_id": "tool-7",
@@ -4083,10 +4083,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:17:10.490241+00:00",
+        "started_at": "2026-09-09T15:41:39.873837+00:00",
         "result_hash": "6c9f7fb79f4b07966b0fdd4ecd68f96029535107b96fdeb4395b6a7b82b4175e",
-        "latency": 0.00015350000467151403,
-        "finished_at": "2026-09-09T15:17:10.490394+00:00"
+        "latency": 0.00021366600412875414,
+        "finished_at": "2026-09-09T15:41:39.874050+00:00"
       },
       {
         "call_id": "tool-8",
@@ -4097,10 +4097,10 @@
         "attempt": 0,
         "token_usage": 0,
         "status": "ok",
-        "started_at": "2026-09-09T15:17:10.491068+00:00",
+        "started_at": "2026-09-09T15:41:39.874762+00:00",
         "result_hash": "c1f2e87d0ad665d3451a33b807e2567d5940060994ace714dcfd0f06369df3e2",
-        "latency": 0.0007999579829629511,
-        "finished_at": "2026-09-09T15:17:10.491868+00:00"
+        "latency": 0.0016599579830653965,
+        "finished_at": "2026-09-09T15:41:39.876423+00:00"
       }
     ],
     "key_failures": [],
@@ -4115,7 +4115,7 @@
       "retries": 0,
       "tool_calls": 8,
       "token_usage": 0,
-      "latency": 18.97677316699992,
+      "latency": 18.630948249978246,
       "active_agent_count": 6,
       "dimensions": {
         "completeness": 1.0,
@@ -4132,7 +4132,7 @@
       "token_usage": 0,
       "currency": null
     },
-    "latency": 18.97677316699992,
+    "latency": 18.630948249978246,
     "eligible": true,
     "successful_strategy": {
       "version": 2,
@@ -4172,7 +4172,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0009107499790843576,
+              "average_latency": 0.0008044590067584068,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "policy_compile"
@@ -4201,7 +4201,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 5.3328262499999255,
+              "average_latency": 5.03142820901121,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "market_simulation"
@@ -4228,7 +4228,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.000349292007740587,
+              "average_latency": 0.00020937499357387424,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "risk_analysis"
@@ -4255,7 +4255,7 @@
               "calls": 1,
               "success_rate": 1.0,
               "average_quality": 0.5800000000000001,
-              "average_latency": 0.0008692499832250178,
+              "average_latency": 0.0010089169954881072,
               "average_token_cost": 0.0,
               "failure_count": 0,
               "tool": "structured_report"

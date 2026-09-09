@@ -1,0 +1,61 @@
+{
+  "schema_version": "qiyuan_evidence_bundle_v1",
+  "experiment_id": "exp-5641d623ad504b1fa60a6a87e364fcae",
+  "task_id": "policy_report_v1",
+  "seed": 42,
+  "dataset_hash": "48abaf185050544cf93ef4adf7dcebab9225555fd4c8ac2be2b3b2b12481fb3c",
+  "source_hash": "51927b4d74244226dd172d5932a667416a65defa1f8a0b25e9d315bd959cb30c",
+  "artifact_base": "CompetitionService output directory",
+  "artifacts": {
+    "baseline_trace.json": {
+      "path": "runs/run-458d044fd89b4a3bbb19d4fe114c4088/run_trace.json",
+      "json_pointer": "",
+      "sha256": "45fc68257e5678d3549419393b8fa9fd20acbd92ac64adccc5edf6679eb147ad"
+    },
+    "evolved_trace.json": {
+      "path": "runs/run-379fd358e4424b98a3e28fc08f1efa5f/run_trace.json",
+      "json_pointer": "",
+      "sha256": "d882070c6a06099a31d094a751abc25442869de755677d806653c292a70eac41"
+    },
+    "evaluation.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/evaluation.json",
+      "json_pointer": "",
+      "sha256": "a52459fb6a22828472c4a15a64530bff676ad4e086c06ac80c399e03635f4613"
+    },
+    "evolution_history.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/evolution_history.json",
+      "json_pointer": "",
+      "sha256": "6bd55315524a04dfe694ba63d8c92140b484cb42f7bfb8ae3defea57cf89682f"
+    },
+    "prompt_diff.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/prompt_diff.json",
+      "json_pointer": "",
+      "sha256": "69de2451e77a7fc0be07df1d7492160b3cbb29575bc654168b8861f73cb25268"
+    },
+    "topology_before.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/team_topology.json",
+      "json_pointer": "/before",
+      "sha256": "9f6f985b56fe45766cc57f469e22261daabad622add69484a6fc071b52edbeb3"
+    },
+    "topology_after.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/team_topology.json",
+      "json_pointer": "/after",
+      "sha256": "9f6f985b56fe45766cc57f469e22261daabad622add69484a6fc071b52edbeb3"
+    },
+    "benchmark_summary.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/benchmark_summary.json",
+      "json_pointer": "",
+      "sha256": "176e849582c66233a566d310727846af9dbcd51fc62c0204a3e8208baabf306f"
+    },
+    "before_after.json": {
+      "path": "comparisons/run-458d044fd89b4a3bbb19d4fe114c4088/before_after.json",
+      "json_pointer": "",
+      "sha256": "1114eba18cb8526dc8a769d6f6f8100da512cec6dd1b868a9f53cd6339521987"
+    },
+    "controller_evo-8fd718d5c91742d2ad032f7fa7ec7a86.json": {
+      "path": "runs/evo-8fd718d5c91742d2ad032f7fa7ec7a86/run_trace.json",
+      "json_pointer": "",
+      "sha256": "9608edaaaeba9f4b16aba6f633479274116b290d9bd11f21a54152a947c45aae"
+    }
+  }
+}

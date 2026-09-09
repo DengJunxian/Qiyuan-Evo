@@ -1,0 +1,843 @@
+{
+  "run_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86",
+  "task_id": "policy_report_v1",
+  "task": {
+    "task_id": "policy_report_v1",
+    "task_type": "policy_report",
+    "objective": "评估印花税下调对市场流动性、风险和交易行为的影响，形成证据报告。",
+    "constraints": {
+      "max_steps": 100,
+      "max_intervention_cost": 1.0,
+      "simulation_days": 12
+    },
+    "expected_outputs": [
+      "policy",
+      "simulation",
+      "risk",
+      "control",
+      "reproducibility"
+    ],
+    "evaluation_rules": {
+      "version": "competition_v1",
+      "success_threshold": 0.85,
+      "weights": {
+        "completeness": 0.3,
+        "evidence": 0.2,
+        "consistency": 0.2,
+        "task_quality": 0.2,
+        "reproducibility": 0.1
+      }
+    },
+    "seed": 42,
+    "dataset_id": "sse_2024_policy_window_v1",
+    "model_config": {
+      "mode": "deterministic",
+      "model": "none"
+    },
+    "inputs": {
+      "policy_text": "证券交易印花税下调，降低交易税费，改善市场流动性。"
+    }
+  },
+  "team_config": {
+    "version": 2,
+    "roles": {
+      "planner": {
+        "role_id": "planner",
+        "role_type": "planner",
+        "prompt_version": "v2",
+        "system_prompt": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>",
+        "tools": [],
+        "skills": [
+          "planner"
+        ],
+        "model_config": {
+          "mode": "deterministic"
+        },
+        "enabled": true,
+        "performance_history": []
+      },
+      "analyst": {
+        "role_id": "analyst",
+        "role_type": "policy_analyst",
+        "prompt_version": "v1",
+        "system_prompt": "将政策编译为 PolicyPackage，保留渠道、对象、时滞和不确定性。",
+        "tools": [
+          "policy_compile"
+        ],
+        "skills": [
+          "policy_analyst"
+        ],
+        "model_config": {
+          "mode": "deterministic"
+        },
+        "enabled": true,
+        "performance_history": [
+          {
+            "calls": 1,
+            "success_rate": 1.0,
+            "average_quality": 0.7,
+            "average_latency": 0.002279624983202666,
+            "average_token_cost": 0.0,
+            "failure_count": 0,
+            "tool": "policy_compile"
+          }
+        ]
+      },
+      "executor": {
+        "role_id": "executor",
+        "role_type": "simulation_executor",
+        "prompt_version": "v1",
+        "system_prompt": "调用 Civitas，输出实测价格、风险与来源。",
+        "tools": [
+          "market_simulation",
+          "historical_replay",
+          "control_simulation"
+        ],
+        "skills": [
+          "policy_simulation"
+        ],
+        "model_config": {
+          "mode": "deterministic"
+        },
+        "enabled": true,
+        "performance_history": [
+          {
+            "calls": 1,
+            "success_rate": 1.0,
+            "average_quality": 0.7,
+            "average_latency": 4.7277516670001205,
+            "average_token_cost": 0.0,
+            "failure_count": 0,
+            "tool": "market_simulation"
+          }
+        ]
+      },
+      "critic": {
+        "role_id": "critic",
+        "role_type": "risk_critic",
+        "prompt_version": "v1",
+        "system_prompt": "独立检查证据、完成度、复现与报告一致性；逐项归因。",
+        "tools": [
+          "risk_analysis"
+        ],
+        "skills": [
+          "risk_critic"
+        ],
+        "model_config": {
+          "mode": "deterministic"
+        },
+        "enabled": true,
+        "performance_history": [
+          {
+            "calls": 1,
+            "success_rate": 1.0,
+            "average_quality": 0.7,
+            "average_latency": 0.0002212919935118407,
+            "average_token_cost": 0.0,
+            "failure_count": 0,
+            "tool": "risk_analysis"
+          }
+        ]
+      },
+      "reporter": {
+        "role_id": "reporter",
+        "role_type": "reporter",
+        "prompt_version": "v1",
+        "system_prompt": "所有结论绑定 evidence / confidence / caveat / source。",
+        "tools": [
+          "structured_report"
+        ],
+        "skills": [
+          "reporter"
+        ],
+        "model_config": {
+          "mode": "deterministic"
+        },
+        "enabled": true,
+        "performance_history": [
+          {
+            "calls": 1,
+            "success_rate": 1.0,
+            "average_quality": 0.7,
+            "average_latency": 0.0006905419868417084,
+            "average_token_cost": 0.0,
+            "failure_count": 0,
+            "tool": "structured_report"
+          }
+        ]
+      },
+      "verifier": {
+        "role_id": "verifier",
+        "role_type": "reproducibility_reviewer",
+        "prompt_version": "v1",
+        "system_prompt": "完成独立核验，返回工具证据和来源。",
+        "tools": [
+          "independent_replicate"
+        ],
+        "skills": [
+          "reproducibility_reviewer"
+        ],
+        "model_config": {
+          "mode": "deterministic"
+        },
+        "enabled": true,
+        "performance_history": []
+      }
+    },
+    "topology": {
+      "active_agents": [
+        "planner",
+        "analyst",
+        "executor",
+        "critic",
+        "reporter",
+        "verifier"
+      ],
+      "communication_edges": [
+        [
+          "planner",
+          "analyst"
+        ],
+        [
+          "analyst",
+          "executor"
+        ],
+        [
+          "critic",
+          "reporter"
+        ],
+        [
+          "executor",
+          "verifier"
+        ],
+        [
+          "verifier",
+          "critic"
+        ]
+      ],
+      "routing": {
+        "planner": [
+          "analyst"
+        ],
+        "analyst": [
+          "executor"
+        ],
+        "executor": [
+          "verifier"
+        ],
+        "critic": [
+          "reporter"
+        ],
+        "reporter": [],
+        "verifier": [
+          "critic"
+        ]
+      },
+      "scheduling_policy": "serial"
+    },
+    "tool_policy": {
+      "executor": {
+        "preferred": "market_simulation",
+        "cache": true,
+        "reason": "reuse identical deterministic calls; replicate always bypasses cache"
+      },
+      "max_retries": 0
+    },
+    "baseline": false
+  },
+  "runtime": {
+    "backend": "LOCAL FALLBACK",
+    "package_version": "0.1.17.post1",
+    "sdk_imported": false,
+    "reason": "application-level evolution controller",
+    "workflow_invoked": false,
+    "workflow_completed": false,
+    "llm_mode": "LOCAL FALLBACK",
+    "llm_reason": "deterministic role implementations",
+    "prompt_optimizer": {
+      "requested_model": "deepseek-v4.1-flash-expires-on-0910",
+      "temperature": 0,
+      "prompt_version": "v1",
+      "timestamp": "2026-09-09T15:40:20.941060+00:00",
+      "input_hash": "215e4091c3761987e76800ab80c070f87059c5e0181648c447fa5404c0f0aace",
+      "prompt_hash": "d3cb1fa9326c673fb30dd4c7124926461451724eb3ca54947e9070adb969f265",
+      "provider_response_hash": "bf1d54f228a306b6a6fa41e2213c3a4ace1e930f917894872daac5d91fff854f",
+      "request_messages_hash": "4eaaeba6d1835375fa1e04fb851645d485b3a87a1012cae152c94b64293f5cbc",
+      "usage": {
+        "input_tokens": 439,
+        "output_tokens": 589,
+        "total_tokens": 1028,
+        "cache_tokens": 256
+      },
+      "response_received": true,
+      "backend": "OPENJIUWEN",
+      "provider_called": true,
+      "api": "FeedbackPromptBuilder.build",
+      "token_usage": 1028,
+      "reason": "SDK feedback optimizer; validated executable contract",
+      "model": "deepseek-v4.1-flash-expires-on-0910",
+      "finished_at": "2026-09-09T15:40:23.243548+00:00",
+      "response_hash": "bf1d54f228a306b6a6fa41e2213c3a4ace1e930f917894872daac5d91fff854f",
+      "latency": 2.3025328749790788
+    }
+  },
+  "mode": "evolution",
+  "agent_events": [
+    {
+      "agent": "evolution_controller",
+      "role_type": "evolution_controller",
+      "status": "completed",
+      "latency": 2.303083874983713,
+      "decision_summary": "由 2 条规划反馈生成 3 个配置变更",
+      "tool_statistics": {
+        "analyst:policy_compile": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.7,
+          "average_latency": 0.002279624983202666,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        },
+        "executor:market_simulation": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.7,
+          "average_latency": 4.7277516670001205,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        },
+        "critic:risk_analysis": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.7,
+          "average_latency": 0.0002212919935118407,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        },
+        "reporter:structured_report": {
+          "calls": 1,
+          "success_rate": 1.0,
+          "average_quality": 0.7,
+          "average_latency": 0.0006905419868417084,
+          "average_token_cost": 0.0,
+          "failure_count": 0
+        }
+      },
+      "started_at": "2026-09-09T15:40:20.940844+00:00",
+      "finished_at": "2026-09-09T15:40:23.244062+00:00"
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "prompt_optimization",
+      "agent": "evolution_controller",
+      "status": "completed",
+      "backend": "OPENJIUWEN",
+      "token_usage": 1028,
+      "latency": 2.3025328749790788
+    }
+  ],
+  "messages": [],
+  "artifacts": {
+    "candidate_config": {
+      "version": 2,
+      "roles": {
+        "planner": {
+          "role_id": "planner",
+          "role_type": "planner",
+          "prompt_version": "v2",
+          "system_prompt": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>",
+          "tools": [],
+          "skills": [
+            "planner"
+          ],
+          "model_config": {
+            "mode": "deterministic"
+          },
+          "enabled": true,
+          "performance_history": []
+        },
+        "analyst": {
+          "role_id": "analyst",
+          "role_type": "policy_analyst",
+          "prompt_version": "v1",
+          "system_prompt": "将政策编译为 PolicyPackage，保留渠道、对象、时滞和不确定性。",
+          "tools": [
+            "policy_compile"
+          ],
+          "skills": [
+            "policy_analyst"
+          ],
+          "model_config": {
+            "mode": "deterministic"
+          },
+          "enabled": true,
+          "performance_history": [
+            {
+              "calls": 1,
+              "success_rate": 1.0,
+              "average_quality": 0.7,
+              "average_latency": 0.002279624983202666,
+              "average_token_cost": 0.0,
+              "failure_count": 0,
+              "tool": "policy_compile"
+            }
+          ]
+        },
+        "executor": {
+          "role_id": "executor",
+          "role_type": "simulation_executor",
+          "prompt_version": "v1",
+          "system_prompt": "调用 Civitas，输出实测价格、风险与来源。",
+          "tools": [
+            "market_simulation",
+            "historical_replay",
+            "control_simulation"
+          ],
+          "skills": [
+            "policy_simulation"
+          ],
+          "model_config": {
+            "mode": "deterministic"
+          },
+          "enabled": true,
+          "performance_history": [
+            {
+              "calls": 1,
+              "success_rate": 1.0,
+              "average_quality": 0.7,
+              "average_latency": 4.7277516670001205,
+              "average_token_cost": 0.0,
+              "failure_count": 0,
+              "tool": "market_simulation"
+            }
+          ]
+        },
+        "critic": {
+          "role_id": "critic",
+          "role_type": "risk_critic",
+          "prompt_version": "v1",
+          "system_prompt": "独立检查证据、完成度、复现与报告一致性；逐项归因。",
+          "tools": [
+            "risk_analysis"
+          ],
+          "skills": [
+            "risk_critic"
+          ],
+          "model_config": {
+            "mode": "deterministic"
+          },
+          "enabled": true,
+          "performance_history": [
+            {
+              "calls": 1,
+              "success_rate": 1.0,
+              "average_quality": 0.7,
+              "average_latency": 0.0002212919935118407,
+              "average_token_cost": 0.0,
+              "failure_count": 0,
+              "tool": "risk_analysis"
+            }
+          ]
+        },
+        "reporter": {
+          "role_id": "reporter",
+          "role_type": "reporter",
+          "prompt_version": "v1",
+          "system_prompt": "所有结论绑定 evidence / confidence / caveat / source。",
+          "tools": [
+            "structured_report"
+          ],
+          "skills": [
+            "reporter"
+          ],
+          "model_config": {
+            "mode": "deterministic"
+          },
+          "enabled": true,
+          "performance_history": [
+            {
+              "calls": 1,
+              "success_rate": 1.0,
+              "average_quality": 0.7,
+              "average_latency": 0.0006905419868417084,
+              "average_token_cost": 0.0,
+              "failure_count": 0,
+              "tool": "structured_report"
+            }
+          ]
+        },
+        "verifier": {
+          "role_id": "verifier",
+          "role_type": "reproducibility_reviewer",
+          "prompt_version": "v1",
+          "system_prompt": "完成独立核验，返回工具证据和来源。",
+          "tools": [
+            "independent_replicate"
+          ],
+          "skills": [
+            "reproducibility_reviewer"
+          ],
+          "model_config": {
+            "mode": "deterministic"
+          },
+          "enabled": true,
+          "performance_history": []
+        }
+      },
+      "topology": {
+        "active_agents": [
+          "planner",
+          "analyst",
+          "executor",
+          "critic",
+          "reporter",
+          "verifier"
+        ],
+        "communication_edges": [
+          [
+            "planner",
+            "analyst"
+          ],
+          [
+            "analyst",
+            "executor"
+          ],
+          [
+            "critic",
+            "reporter"
+          ],
+          [
+            "executor",
+            "verifier"
+          ],
+          [
+            "verifier",
+            "critic"
+          ]
+        ],
+        "routing": {
+          "planner": [
+            "analyst"
+          ],
+          "analyst": [
+            "executor"
+          ],
+          "executor": [
+            "verifier"
+          ],
+          "critic": [
+            "reporter"
+          ],
+          "reporter": [],
+          "verifier": [
+            "critic"
+          ]
+        },
+        "scheduling_policy": "serial"
+      },
+      "tool_policy": {
+        "executor": {
+          "preferred": "market_simulation",
+          "cache": true,
+          "reason": "reuse identical deterministic calls; replicate always bypasses cache"
+        },
+        "max_retries": 0
+      },
+      "baseline": false
+    },
+    "promotion": {
+      "accepted": true,
+      "rule": "strict quality gain; no coverage/critic/success regression; no execution errors",
+      "reason": "candidate improved measured score",
+      "comparison_scope": "same task, seed, dataset and role-model configuration; training-task comparison"
+    },
+    "evolution_actions": [
+      {
+        "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86-1",
+        "target": "planner",
+        "action_type": "prompt_update",
+        "before": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": []}</plan_contract>",
+        "after": "你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n以下机器可读执行契约决定要安排的额外核验任务：\n<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>",
+        "rationale": "Critic 的缺失证据反馈转化为可执行规划契约",
+        "source_trace_ids": [
+          "run-458d044fd89b4a3bbb19d4fe114c4088",
+          "run-0522a3c18d4c46528964b43a7d7f1781"
+        ],
+        "expected_gain": "同输入评估候选；不预设增益",
+        "accepted": true,
+        "evaluation_before": {
+          "task_success": false,
+          "quality_score": 0.7,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 0.6666666666666667,
+          "reproducibility": null,
+          "steps": 5,
+          "retries": 0,
+          "tool_calls": 4,
+          "token_usage": 0,
+          "latency": 5.6456096670008264,
+          "active_agent_count": 5,
+          "dimensions": {
+            "completeness": 0.6,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 0.6,
+            "reproducibility": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "evaluation_after": {
+          "task_success": true,
+          "quality_score": 1.0,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 1.0,
+          "reproducibility": 1.0,
+          "steps": 6,
+          "retries": 0,
+          "tool_calls": 6,
+          "token_usage": 0,
+          "latency": 12.478374124999391,
+          "active_agent_count": 6,
+          "dimensions": {
+            "completeness": 1.0,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 1.0,
+            "reproducibility": 1.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "diff": "--- old_prompt\n+++ new_prompt\n@@ -1,3 +1,3 @@\n 你是启元任务规划员。解析任务，安排政策分析、确定性仿真、独立风险审查和证据报告。不得修改价格事实或评价规则。只输出任务计划和决策摘要。\n 以下机器可读执行契约决定要安排的额外核验任务：\n-<plan_contract>{\"checks\": []}</plan_contract>\n+<plan_contract>{\"checks\": [\"control\", \"replicate\"]}</plan_contract>"
+      },
+      {
+        "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86-2",
+        "target": "tool_policy",
+        "action_type": "tool_routing",
+        "before": {
+          "executor": {
+            "preferred": "market_simulation",
+            "cache": false
+          },
+          "max_retries": 0
+        },
+        "after": {
+          "executor": {
+            "preferred": "market_simulation",
+            "cache": true,
+            "reason": "reuse identical deterministic calls; replicate always bypasses cache"
+          },
+          "max_retries": 0
+        },
+        "rationale": "读取按任务上下文聚合的成功率、质量、时延和失败次数，探索/复用工具策略",
+        "source_trace_ids": [
+          "run-458d044fd89b4a3bbb19d4fe114c4088",
+          "run-0522a3c18d4c46528964b43a7d7f1781"
+        ],
+        "expected_gain": "同输入评估候选；不预设增益",
+        "accepted": true,
+        "evaluation_before": {
+          "task_success": false,
+          "quality_score": 0.7,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 0.6666666666666667,
+          "reproducibility": null,
+          "steps": 5,
+          "retries": 0,
+          "tool_calls": 4,
+          "token_usage": 0,
+          "latency": 5.6456096670008264,
+          "active_agent_count": 5,
+          "dimensions": {
+            "completeness": 0.6,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 0.6,
+            "reproducibility": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "evaluation_after": {
+          "task_success": true,
+          "quality_score": 1.0,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 1.0,
+          "reproducibility": 1.0,
+          "steps": 6,
+          "retries": 0,
+          "tool_calls": 6,
+          "token_usage": 0,
+          "latency": 12.478374124999391,
+          "active_agent_count": 6,
+          "dimensions": {
+            "completeness": 1.0,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 1.0,
+            "reproducibility": 1.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "diff": ""
+      },
+      {
+        "evolution_id": "evo-8fd718d5c91742d2ad032f7fa7ec7a86-3",
+        "target": "topology",
+        "action_type": "spawn_reroute",
+        "before": {
+          "active_agents": [
+            "planner",
+            "analyst",
+            "executor",
+            "critic",
+            "reporter"
+          ],
+          "communication_edges": [
+            [
+              "planner",
+              "analyst"
+            ],
+            [
+              "analyst",
+              "executor"
+            ],
+            [
+              "executor",
+              "critic"
+            ],
+            [
+              "critic",
+              "reporter"
+            ]
+          ],
+          "routing": {
+            "planner": [
+              "analyst"
+            ],
+            "analyst": [
+              "executor"
+            ],
+            "executor": [
+              "critic"
+            ],
+            "critic": [
+              "reporter"
+            ]
+          },
+          "scheduling_policy": "serial"
+        },
+        "after": {
+          "active_agents": [
+            "planner",
+            "analyst",
+            "executor",
+            "critic",
+            "reporter",
+            "verifier"
+          ],
+          "communication_edges": [
+            [
+              "planner",
+              "analyst"
+            ],
+            [
+              "analyst",
+              "executor"
+            ],
+            [
+              "critic",
+              "reporter"
+            ],
+            [
+              "executor",
+              "verifier"
+            ],
+            [
+              "verifier",
+              "critic"
+            ]
+          ],
+          "routing": {
+            "planner": [
+              "analyst"
+            ],
+            "analyst": [
+              "executor"
+            ],
+            "executor": [
+              "verifier"
+            ],
+            "critic": [
+              "reporter"
+            ],
+            "reporter": [],
+            "verifier": [
+              "critic"
+            ]
+          },
+          "scheduling_policy": "serial"
+        },
+        "rationale": "将遗漏任务交给实际执行的专家 ['verifier']；审查等待所有依赖完成",
+        "source_trace_ids": [
+          "run-458d044fd89b4a3bbb19d4fe114c4088",
+          "run-0522a3c18d4c46528964b43a7d7f1781"
+        ],
+        "expected_gain": "同输入评估候选；不预设增益",
+        "accepted": true,
+        "evaluation_before": {
+          "task_success": false,
+          "quality_score": 0.7,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 0.6666666666666667,
+          "reproducibility": null,
+          "steps": 5,
+          "retries": 0,
+          "tool_calls": 4,
+          "token_usage": 0,
+          "latency": 5.6456096670008264,
+          "active_agent_count": 5,
+          "dimensions": {
+            "completeness": 0.6,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 0.6,
+            "reproducibility": 0.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "evaluation_after": {
+          "task_success": true,
+          "quality_score": 1.0,
+          "evidence_coverage": 1.0,
+          "critic_pass_rate": 1.0,
+          "reproducibility": 1.0,
+          "steps": 6,
+          "retries": 0,
+          "tool_calls": 6,
+          "token_usage": 0,
+          "latency": 12.478374124999391,
+          "active_agent_count": 6,
+          "dimensions": {
+            "completeness": 1.0,
+            "evidence": 1.0,
+            "consistency": 1.0,
+            "task_quality": 1.0,
+            "reproducibility": 1.0,
+            "schema_completeness": 1.0
+          }
+        },
+        "diff": ""
+      }
+    ]
+  },
+  "errors": [],
+  "retries": 0,
+  "token_usage": 1028,
+  "latency": 2.303083874983713,
+  "evaluation": {},
+  "plan": {},
+  "critiques": [],
+  "report": {},
+  "semantic_hash": "",
+  "experiment_id": "exp-5641d623ad504b1fa60a6a87e364fcae"
+}

@@ -133,23 +133,53 @@ class PromptOptimizer:
         try:
             from openjiuwen.core.foundation.llm import ModelRequestConfig, ModelClientConfig
             from openjiuwen.dev_tools.prompt_builder.builder.feedback_prompt_builder import FeedbackPromptBuilder
+            from openjiuwen.core.runner import Runner
+            from openjiuwen.core.runner.callback.events import LLMCallEvents
 
+            client = ModelClientConfig(client_provider="OpenAI", api_key=key,
+                                      api_base=os.environ.get("QIYUAN_LLM_BASE_URL", "https://api.deepseek.com/v1"),
+                                      verify_ssl=True, timeout=25, max_retries=0,
+                                      # CLI tasks use separate asyncio.run loops;
+                                      # keep connections within their own loop.
+                                      use_shared_llm_http_client=False)
             builder = FeedbackPromptBuilder(
-                ModelRequestConfig(model=request_model, temperature=0),
-                ModelClientConfig(client_provider="OpenAI", api_key=key,
-                                  api_base=os.environ.get("QIYUAN_LLM_BASE_URL", "https://api.deepseek.com/v1"),
-                                  verify_ssl=True))
-            response = await asyncio.wait_for(builder.build(
-                old_prompt, feedback=feedback + "\n保留且完整输出执行契约：\n" + local,
-                language="zh-CN"), timeout=30)
+                ModelRequestConfig(model=request_model, temperature=0, max_tokens=2048), client)
+            # Observe the SDK's public callback events. Capture only usage and
+            # content hashes, never client credentials or reasoning_content.
+            measured = {}
+            async def on_input(messages=None, model_client_config=None, **_):
+                if getattr(model_client_config, "client_id", None) == client.client_id:
+                    measured["request_messages_hash"] = digest([
+                        m if isinstance(m, dict) else {"role": m.role, "content": m.content}
+                        for m in (messages or [])])
+            async def on_output(result=None, model_client_config=None, **_):
+                if getattr(model_client_config, "client_id", None) != client.client_id:
+                    return
+                usage = getattr(result, "usage_metadata", None)
+                if usage is not None:
+                    measured["usage"] = {k: getattr(usage, k) for k in
+                                         ("input_tokens", "output_tokens", "total_tokens", "cache_tokens")}
+                measured["response_received"] = True
+            framework = Runner.callback_framework
+            framework.register_sync(LLMCallEvents.LLM_INVOKE_INPUT, on_input)
+            framework.register_sync(LLMCallEvents.LLM_INVOKE_OUTPUT, on_output)
+            try:
+                response = await asyncio.wait_for(builder.build(
+                    old_prompt, feedback=feedback + "\n保留且完整输出执行契约：\n" + local,
+                    language="zh-CN"), timeout=30)
+            finally:
+                framework.unregister_sync(LLMCallEvents.LLM_INVOKE_INPUT, on_input)
+                framework.unregister_sync(LLMCallEvents.LLM_INVOKE_OUTPUT, on_output)
+                metadata.update(measured)
             metadata["provider_response_hash"] = digest(response)
             from core.llm_client import strip_nonstandard_tags
             response = strip_nonstandard_tags(response or "")
             if prompt_checks(response) != sorted(set(required_checks)):
                 raise ValueError("Optimizer did not preserve requested execution contract")
             return response, audit({"backend": "OPENJIUWEN", "provider_called": True,
-                              "api": "FeedbackPromptBuilder.build", "token_usage": None,
-                              "reason": "SDK builder returns text without usage; token count unavailable"}, response)
+                              "api": "FeedbackPromptBuilder.build",
+                              "token_usage": measured.get("usage", {}).get("total_tokens"),
+                              "reason": "SDK feedback optimizer; validated executable contract"}, response)
         except Exception as exc:
             return local, audit({"backend": "LOCAL FALLBACK", "provider_called": True,
                            "token_usage": None, "error_type": type(exc).__name__,

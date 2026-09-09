@@ -14,7 +14,7 @@ def test_cockpit_and_seven_primary_pages_and_original_domain_pages():
     assert app.session_state['entry']=='自演进驾驶舱'
     assert app.button(key='ev_demo').label=='重新运行此案例'
     assert any('<svg' in item.proto.srcdoc for item in app.get('iframe'))
-    for page in ('协作过程','演进实验','三类任务','金融政策风洞','历史验证','技术与复现'):
+    for page in ('协作过程','演进实验','三类任务','展示页面','金融政策风洞','历史验证','技术与复现'):
         app.button(key='top_entry_'+page).click().run()
         assert not app.exception,page
         if page=="历史验证":

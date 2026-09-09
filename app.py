@@ -60,9 +60,10 @@ st.set_page_config(
 TEAM_ENTRY = "自演进驾驶舱"
 SHOWCASE_ENTRY = "成果展示"
 OVERVIEW_ENTRY = "系统总览"
-ENTRY_POINTS = [TEAM_ENTRY, "协作过程", "演进实验", "三类任务", "金融政策风洞", "历史验证", "技术与复现"]
+ENTRY_POINTS = [TEAM_ENTRY, "协作过程", "演进实验", "三类任务", "展示页面"]
+RESEARCH_ENTRIES = ["金融政策风洞", "历史验证", "技术与复现"]
 DOMAIN_ENTRIES = [SHOWCASE_ENTRY, OVERVIEW_ENTRY, "政策实验", "研判分析"]
-VALID_ENTRIES = ENTRY_POINTS + DOMAIN_ENTRIES
+VALID_ENTRIES = ENTRY_POINTS + RESEARCH_ENTRIES + DOMAIN_ENTRIES
 ENTRY_ALIASES = {
     "团队自演进": TEAM_ENTRY,
     "默认展示": SHOWCASE_ENTRY,
@@ -321,13 +322,16 @@ def _init_state() -> None:
 
 def _render_top_entry_selector() -> None:
     st.html('<div class="ev-masthead"><div><b>启元</b><span>QIYUAN–EVO</span></div>'
-            '<span>多智能体协作与政策推演</span></div>')
-    columns = st.columns(len(ENTRY_POINTS), gap="small")
+            '<span>基于 openJiuwen 的自演进多智能体系统</span></div>')
+    columns = st.columns([1, 1, 1, 1, 1, .8], gap="small")
     for column, entry in zip(columns, ENTRY_POINTS):
-        display = {"自演进驾驶舱":"驾驶舱", "协作过程":"协作记录", "演进实验":"演进对照", "三类任务":"实验案例", "金融政策风洞":"金融风洞", "技术与复现":"技术资料"}.get(entry, entry)
+        display = {"自演进驾驶舱":"演示总览", "协作过程":"团队协作", "演进实验":"自演进", "三类任务":"三类实验", "展示页面":"运行截图"}.get(entry, entry)
         column.button(display, key="top_entry_" + entry, width="stretch",
                       type="primary" if st.session_state.entry == entry else "secondary",
                       on_click=navigate, args=(entry,))
+    with columns[-1].popover("研究工具", width="stretch"):
+        for entry in RESEARCH_ENTRIES:
+            st.button(entry, key="top_entry_" + entry, width="stretch", on_click=navigate, args=(entry,))
 
 
 
