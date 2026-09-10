@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "type": "original_project_screenshots",
+  "source_repository": "https://github.com/DengJunxian/Civitas-Economica-Demo",
+  "source_commit": "585ffcbaaeb292f0addc10331ae7dae0c57ebd84",
+  "screenshots": [
+    {
+      "file": "01-policy-input.png",
+      "title": "政策输入与实验配置",
+      "page": "政策实验",
+      "source_path": "static/showcase_gallery/01-policy-input.png",
+      "git_blob_sha": "1e8c5a4c19da59a2973ea399d275f92af93a1033",
+      "sha256": "dfd1382ef0c75ed6baec2664c70429abf957b492cee53491f2266b7ded9d5026"
+    },
+    {
+      "file": "02-live-session.png",
+      "title": "市场会话与价格走势",
+      "page": "政策实验",
+      "source_path": "static/showcase_gallery/02-live-session.png",
+      "git_blob_sha": "e11d0f56d1cb37047dc6b0e0cf4b2506390e157e",
+      "sha256": "33ea0c45731d08f64c02195217cc6bf28f60f75973f0cf02a0fba9e306c08317"
+    },
+    {
+      "file": "03-mechanism-analysis.png",
+      "title": "政策传导与主体行为",
+      "page": "政策实验",
+      "source_path": "static/showcase_gallery/03-mechanism-analysis.png",
+      "git_blob_sha": "cc23a3000d033c1f033d44cc410ad4c819b226a5",
+      "sha256": "c7bd314d0efb35dca7661fca8597cc01817de0d1055b6dc02d76b1b559d47c47"
+    },
+    {
+      "file": "04-research-workbench.png",
+      "title": "干预方案对照",
+      "page": "研判分析",
+      "source_path": "static/showcase_gallery/04-research-workbench.png",
+      "git_blob_sha": "31be6ed169f14cf107aa15704d23722fc084d404",
+      "sha256": "19b9561563b69375894ed8799026ff4165274bc235e9627c33fde6ee58d05fdd"
+    },
+    {
+      "file": "07-counterfactual-objectives.png",
+      "title": "反事实方案评估",
+      "page": "研判分析",
+      "source_path": "static/showcase_gallery/07-counterfactual-objectives.png",
+      "git_blob_sha": "6770436638db44c917a4311458cd6eeaccf5cd38",
+      "sha256": "a7b3b671c47f8d7136842bf4c90c3e9ba5eecb5a7d1620e5742c2eb6c70d3816"
+    },
+    {
+      "file": "05-policy-report.png",
+      "title": "政策研究报告",
+      "page": "研判分析",
+      "source_path": "static/showcase_gallery/05-policy-report.png",
+      "git_blob_sha": "ade901e8fb56d7da6048dd7ac3e067243feab0ab",
+      "sha256": "6cf8e56c7ac10837c3f1315a04e8ca02cdde9389ff80ece73d3e1e1be40d1bef"
+    },
+    {
+      "file": "06-history-validation.png",
+      "title": "历史行情与仿真对照",
+      "page": "历史验证",
+      "source_path": "static/showcase_gallery/06-history-validation.png",
+      "git_blob_sha": "24edfce77e40aa1f5a1fccdd11d5f0f09560c023",
+      "sha256": "c3efa27ed19e4b0a2b49a624aee3927600a0996ea0f14dd71732fe7a37b2131e"
+    },
+    {
+      "file": "08-authenticity-overview.png",
+      "title": "拟真评估与偏差分析",
+      "page": "历史验证",
+      "source_path": "static/showcase_gallery/08-authenticity-overview.png",
+      "git_blob_sha": "6c9d7fbaee5151df66d24383d225090e028213bb",
+      "sha256": "f4b857c5a3264cbdacc70cec9c622bffd4367b6d85e05466ad29c3fe1a23fb57"
+    }
+  ]
+}

@@ -31,6 +31,7 @@ from ui.backtest_panel import render_backtest_panel
 from ui.behavioral_diagnostics import render_behavioral_diagnostics
 from ui.default_showcase import render_default_showcase
 from ui.team_evolution import TEAM_PAGES, render_team_evolution, navigate
+from ui.demo_gallery import gallery_page
 from ui.components.replay_scrubber import render_replay_scrubber
 from ui.components.repro_meta import (
     build_experiment_registry_entry,
@@ -58,14 +59,16 @@ st.set_page_config(
 
 
 TEAM_ENTRY = "自演进驾驶舱"
+GALLERY_ENTRY = "展示页面"
 SHOWCASE_ENTRY = "成果展示"
 OVERVIEW_ENTRY = "系统总览"
-ENTRY_POINTS = [TEAM_ENTRY, "协作过程", "演进实验", "三类任务", "展示页面"]
+ENTRY_POINTS = [GALLERY_ENTRY, TEAM_ENTRY, "协作过程", "演进实验", "三类任务"]
 RESEARCH_ENTRIES = ["金融政策风洞", "历史验证", "技术与复现"]
 DOMAIN_ENTRIES = [SHOWCASE_ENTRY, OVERVIEW_ENTRY, "政策实验", "研判分析"]
 VALID_ENTRIES = ENTRY_POINTS + RESEARCH_ENTRIES + DOMAIN_ENTRIES
 ENTRY_ALIASES = {
     "团队自演进": TEAM_ENTRY,
+    "图片演示": GALLERY_ENTRY,
     "默认展示": SHOWCASE_ENTRY,
     "展示窗口": SHOWCASE_ENTRY,
     "默认展示窗口": SHOWCASE_ENTRY,
@@ -280,8 +283,10 @@ def _render_value_bridge_tab() -> None:
 
 
 def _init_state() -> None:
+    # Existing running-experiment links must still recover their cockpit.
+    default_entry = TEAM_ENTRY if st.query_params.get("demo") else GALLERY_ENTRY
     defaults: Dict[str, Any] = {
-        "entry": st.query_params.get("page", TEAM_ENTRY),
+        "entry": st.query_params.get("page", default_entry),
         "controller": None,
         "runtime_mode": LIVE_MODE,
         "competition_mode": "",
@@ -314,24 +319,25 @@ def _init_state() -> None:
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
-    st.session_state.entry = _normalize_entry(str(st.session_state.get("entry", TEAM_ENTRY)))
+    st.session_state.entry = _normalize_entry(str(st.session_state.get("entry", default_entry)))
     if st.session_state.entry not in VALID_ENTRIES:
-        st.session_state.entry = TEAM_ENTRY
+        st.session_state.entry = GALLERY_ENTRY
     _sync_runtime_mode_profile()
 
 
 def _render_top_entry_selector() -> None:
     st.html('<div class="ev-masthead"><div><b>启元</b><span>QIYUAN–EVO</span></div>'
             '<span>基于 openJiuwen 的自演进多智能体系统</span></div>')
-    columns = st.columns([1, 1, 1, 1, 1, .8], gap="small")
-    for column, entry in zip(columns, ENTRY_POINTS):
-        display = {"自演进驾驶舱":"演示总览", "协作过程":"团队协作", "演进实验":"自演进", "三类任务":"三类实验", "展示页面":"运行截图"}.get(entry, entry)
-        column.button(display, key="top_entry_" + entry, width="stretch",
-                      type="primary" if st.session_state.entry == entry else "secondary",
-                      on_click=navigate, args=(entry,))
-    with columns[-1].popover("研究工具", width="stretch"):
-        for entry in RESEARCH_ENTRIES:
-            st.button(entry, key="top_entry_" + entry, width="stretch", on_click=navigate, args=(entry,))
+    with st.container(key="primary_navigation"):
+        columns = st.columns([1, 1, 1, 1, 1, .8], gap="small")
+        for column, entry in zip(columns, ENTRY_POINTS):
+            display = {"自演进驾驶舱":"实验总览", "协作过程":"团队协作", "演进实验":"自演进", "三类任务":"三类实验", "展示页面":"图片演示"}.get(entry, entry)
+            column.button(display, key="top_entry_" + entry, width="stretch",
+                          type="primary" if st.session_state.entry == entry else "secondary",
+                          on_click=navigate, args=(entry,))
+        with columns[-1].popover("研究工具", width="stretch"):
+            for entry in RESEARCH_ENTRIES:
+                st.button(entry, key="top_entry_" + entry, width="stretch", on_click=navigate, args=(entry,))
 
 
 
@@ -1145,7 +1151,9 @@ def main() -> None:
     _render_sidebar_global()
     _render_top_entry_selector()
     entry = st.session_state.entry
-    if entry in TEAM_PAGES:
+    if entry == GALLERY_ENTRY:
+        gallery_page()
+    elif entry in TEAM_PAGES:
         render_team_evolution(entry)
     elif entry == "金融政策风洞":
         _render_domain_hub()

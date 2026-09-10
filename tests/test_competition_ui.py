@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_cockpit_and_seven_primary_pages_and_original_domain_pages():
     app=AppTest.from_file(str(ROOT/'app.py'),default_timeout=60).run()
     assert not app.exception
+    assert app.session_state['entry']=='展示页面'
+    app.button(key='top_entry_自演进驾驶舱').click().run()
     assert app.session_state['entry']=='自演进驾驶舱'
     assert app.button(key='ev_demo').label=='重新运行此案例'
     assert any('<svg' in item.proto.srcdoc for item in app.get('iframe'))
@@ -41,6 +43,7 @@ def test_empty_and_corrupt_archive_has_no_invented_scores(tmp_path,monkeypatch):
     monkeypatch.setenv('QIYUAN_REFERENCE_DIR',str(tmp_path))
     (tmp_path/'before_after.json').write_text('{bad json')
     app=AppTest.from_file(str(ROOT/'app.py'),default_timeout=60).run()
+    app.button(key='top_entry_自演进驾驶舱').click().run()
     assert not app.exception
     assert any('暂无可复现实验结果' in x.value for x in app.info)
     assert any('IDLE' in item.proto.srcdoc for item in app.get('iframe'))

@@ -57,11 +57,13 @@ def test_corrupt_packaged_case_is_not_displayed(tmp_path):
     assert archive.comparisons() == [] and archive.issues
 
 
-def test_default_home_needs_neither_outputs_nor_online_runtime(monkeypatch):
+def test_cockpit_deep_link_needs_neither_outputs_nor_online_runtime(monkeypatch):
     monkeypatch.delenv("QIYUAN_REFERENCE_DIR", raising=False)
     def unavailable(*args, **kwargs): raise ConnectionError("offline")
     monkeypatch.setattr(ExperimentArchive, "runtime", unavailable)
-    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
+    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60)
+    app.query_params["page"] = "自演进驾驶舱"
+    app.run()
     assert not app.exception
     assert app.session_state["ev_scale"] == "完整实验"
     assert not app.caption  # No developer narration under the home modules.
