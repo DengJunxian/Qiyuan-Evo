@@ -6,7 +6,7 @@ import json
 from streamlit.testing.v1 import AppTest
 
 from core.competition_cockpit import ExperimentArchive
-from ui.demo_gallery import gallery_records, domain_gallery_records
+from ui.demo_gallery import gallery_records, domain_gallery_records, archived_gallery_records
 from ui.components.evolution import graph_svg
 from ui.team_evolution import runtime_record
 
@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def test_screenshots_are_bound_to_current_measured_experiments():
-    records=gallery_records()
+    records=archived_gallery_records()
     cases={c['experiment_id']:c for c in ExperimentArchive().comparisons()}
     assert len(records)==8
     for row in records:
@@ -35,7 +35,8 @@ def test_demo_navigation_prompt_memory_gallery_and_fallback_label():
     app.button(key='top_entry_展示页面').click().run()
     html = ' '.join(item.value for item in app.get('html'))
     assert html.count('<figure class="qg-image">') == 16
-    assert '已完成实验截图' in html and '原 Civitas 项目截图' in html
+    assert '演示案例截图 · 示例数据' in html and '原 Civitas 项目截图' in html
+    assert '打开完整案例' in html and '打开此阶段' in html
     assert not app.exception
     case=deepcopy(ExperimentArchive().comparisons()[0])
     assert 'DeepSeek' in runtime_record(case)[1]

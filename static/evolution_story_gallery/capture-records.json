@@ -1,0 +1,42 @@
+[
+  {
+    "file": "01-mission.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=1&appearance=dark",
+    "captured_at": "2026-09-12T12:12:50.911Z"
+  },
+  {
+    "file": "02-baseline.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=2&appearance=dark",
+    "captured_at": "2026-09-12T12:07:31.919Z"
+  },
+  {
+    "file": "03-diagnosis.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=3&appearance=dark",
+    "captured_at": "2026-09-12T12:07:43.704Z"
+  },
+  {
+    "file": "04-strategy.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=4&appearance=dark",
+    "captured_at": "2026-09-12T12:07:53.257Z"
+  },
+  {
+    "file": "05-team.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=5&appearance=dark",
+    "captured_at": "2026-09-12T12:08:05.417Z"
+  },
+  {
+    "file": "06-evaluation.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=6&appearance=dark",
+    "captured_at": "2026-09-12T12:08:17.355Z"
+  },
+  {
+    "file": "07-release.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=7&appearance=dark",
+    "captured_at": "2026-09-12T12:08:29.323Z"
+  },
+  {
+    "file": "08-memory.png",
+    "url": "http://localhost:8503/?page=%E6%BC%94%E8%BF%9B%E6%A1%88%E4%BE%8B&chapter=8&appearance=dark",
+    "captured_at": "2026-09-12T12:12:39.383Z"
+  }
+]

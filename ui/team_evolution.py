@@ -451,12 +451,15 @@ def tasks_page(archive, comparisons, result):
 
 
 def technology_page(archive, comparisons, result):
-    section("RUNTIME / REPRODUCIBILITY", "运行环境与实验资料", "区分已安装、可执行与本次实际完成的运行状态。")
+    from ui.technical_overview import technical_overview
+    technical_overview()
+    st.html('<div id="qy-tech-runtime" class="qy-tech-runtime-anchor"></div>')
+    section("", "当前运行与复现", "查看本机运行环境、选中实验的调用记录与可下载证据。")
     runtime=archive.runtime(st.session_state.get("ev_profile","REPRODUCIBLE DEMO"))
     trace=selected_trace(result)
     info=[("版本",runtime.get("package_version") or "未安装"),("所选执行后端",runtime["backend"]),
           ("环境状态",{"READY":"可用","FALLBACK":"本地备用"}.get(runtime.get("status"),"不可用")),("机制","工作流依赖调度" if runtime.get("sdk_imported") else "本地依赖调度")]
-    st.html('<div class="ev-badges">'+''.join(f'<div><span>{html(k)}</span><strong>{html(v)}</strong></div>' for k,v in info)+'</div>')
+    st.html('<div class="ev-badges qy-runtime-badges">'+''.join(f'<div><span>{html(k)}</span><strong>{html(v)}</strong></div>' for k,v in info)+'</div>')
     if trace:
         st.write(f'选中运行：{trace["runtime"]["backend"]} · 工作流完成：{"是" if trace["runtime"]["workflow_completed"] else "否"}')
         if result.get("evolution_history"):
@@ -475,8 +478,8 @@ def technology_page(archive, comparisons, result):
                   ("优化前后对比","相同任务、种子、数据和评价规则","两轮对照",bool(comparisons)),
                   ("3 类复杂任务",f'{caps["task_count"]} 类固定实验任务',"实验案例",len({c["task_id"] for c in comparisons})>=caps["task_count"]),
                   ("结构化与可解释","任务计划、审查意见与报告证据","任务与证据",bool(trace and trace.get("report")))]
-    st.markdown("### 功能与运行记录")
-    st.dataframe(pd.DataFrame([{"赛题要求":r,"系统实现":i,"现场证据":e,"当前归档": "有执行证据" if ok else "等待运行"} for r,i,e,ok in requirements]),hide_index=True,width="stretch")
+    with st.expander("功能与运行记录"):
+        st.dataframe(pd.DataFrame([{"赛题要求":r,"系统实现":i,"现场证据":e,"当前归档": "有执行证据" if ok else "等待运行"} for r,i,e,ok in requirements]),hide_index=True,width="stretch")
     st.markdown("### 本地复现")
     if result and "baseline" in result:
         source = Path(st.session_state.get("ev_comparison_sources", {}).get(result["baseline"]["run_id"], archive.root))

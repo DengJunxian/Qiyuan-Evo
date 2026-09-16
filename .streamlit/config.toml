@@ -7,21 +7,21 @@ showErrorDetails = "none"
 
 [theme]
 base = "dark"
-primaryColor = "#1890ff"
-backgroundColor = "#050b14"
-secondaryBackgroundColor = "#0a1931"
-textColor = "#e2e8f0"
-borderColor = "#1f365c"
+primaryColor = "#a8caff"
+backgroundColor = "#111a2a"
+secondaryBackgroundColor = "#182439"
+textColor = "#eef2f8"
+borderColor = "#33425a"
 showWidgetBorder = true
 showSidebarBorder = true
 font = "sans-serif"
 
 [theme.sidebar]
-primaryColor = "#1890ff"
-backgroundColor = "#030811"
-secondaryBackgroundColor = "#0a1931"
-textColor = "#e2e8f0"
-borderColor = "#1f365c"
+primaryColor = "#a8caff"
+backgroundColor = "#182439"
+secondaryBackgroundColor = "#24334a"
+textColor = "#eef2f8"
+borderColor = "#33425a"
 showWidgetBorder = true
 
 [server]

@@ -65,7 +65,7 @@ OVERVIEW_ENTRY = "系统总览"
 ENTRY_POINTS = [GALLERY_ENTRY, TEAM_ENTRY, "协作过程", "演进实验", "三类任务"]
 RESEARCH_ENTRIES = ["金融政策风洞", "历史验证", "技术与复现"]
 DOMAIN_ENTRIES = [SHOWCASE_ENTRY, OVERVIEW_ENTRY, "政策实验", "研判分析"]
-VALID_ENTRIES = ENTRY_POINTS + RESEARCH_ENTRIES + DOMAIN_ENTRIES
+VALID_ENTRIES = ENTRY_POINTS + RESEARCH_ENTRIES + DOMAIN_ENTRIES + ["演进案例"]
 ENTRY_ALIASES = {
     "团队自演进": TEAM_ENTRY,
     "图片演示": GALLERY_ENTRY,
@@ -103,7 +103,7 @@ ENTRY_PURPOSE = {
     "历史验证": "验证历史区间下的拟真效果与误差边界",
     "研判分析": "查看证据链、机制诊断、策略建议与研究验证",
 }
-THEME_PATH = Path("theme") / "competition_dark.css"
+THEME_PATH = Path(__file__).resolve().parent / "theme" / "presentation.css"
 MATERIALS_ROOT = Path("outputs") / "competition_materials"
 
 
@@ -142,6 +142,8 @@ def _sync_runtime_mode_profile() -> None:
 
 
 def _load_theme() -> None:
+    if "ui_theme" not in st.session_state:
+        st.session_state.ui_theme = "light" if st.query_params.get("appearance") == "light" else "dark"
     if THEME_PATH.exists():
         css = THEME_PATH.read_text(encoding="utf-8")
     else:
@@ -152,7 +154,7 @@ def _load_theme() -> None:
         .kpi-value { font-size: 28px; font-weight: 700; color: #ffffff; }
         .kpi-note { font-size: 12px; color: #7995bc; }
         """
-    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+    st.html(f'<style>{css}</style><span class="qy-theme-marker" data-theme="{st.session_state.get("ui_theme", "dark")}" aria-hidden="true"></span>')
 
 
 def _runtime_router_summary() -> Dict[str, Any]:
@@ -326,18 +328,28 @@ def _init_state() -> None:
 
 
 def _render_top_entry_selector() -> None:
-    st.html('<div class="ev-masthead"><div><b>启元</b><span>QIYUAN–EVO</span></div>'
-            '<span>基于 openJiuwen 的自演进多智能体系统</span></div>')
     with st.container(key="primary_navigation"):
-        columns = st.columns([1, 1, 1, 1, 1, .8], gap="small")
-        for column, entry in zip(columns, ENTRY_POINTS):
+        columns = st.columns([1.5, 1, 1, 1, .85, 1, 1.15, .4], gap="small", vertical_alignment="center")
+        with columns[0]:
+            appearance = st.session_state.get("ui_theme", "dark")
+            st.html(f'<a class="qy-brand" href="?page=%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2&amp;appearance={appearance}" target="_self" aria-label="启元首页"><b>启元</b><span>Qiyuan Evo</span></a>')
+        for column, entry in zip(columns[1:6], ENTRY_POINTS):
             display = {"自演进驾驶舱":"实验总览", "协作过程":"团队协作", "演进实验":"自演进", "三类任务":"三类实验", "展示页面":"图片演示"}.get(entry, entry)
             column.button(display, key="top_entry_" + entry, width="stretch",
-                          type="primary" if st.session_state.entry == entry else "secondary",
+                          type="primary" if st.session_state.entry == entry or (entry == GALLERY_ENTRY and st.session_state.entry == "演进案例") else "secondary",
                           on_click=navigate, args=(entry,))
-        with columns[-1].popover("研究工具", width="stretch"):
+        with columns[6].popover("研究工具", width="stretch"):
             for entry in RESEARCH_ENTRIES:
                 st.button(entry, key="top_entry_" + entry, width="stretch", on_click=navigate, args=(entry,))
+        with columns[7]:
+            dark = st.session_state.get("ui_theme", "dark") == "dark"
+            st.button("切换浅色外观" if dark else "切换深色外观", icon=":material/light_mode:" if dark else ":material/dark_mode:",
+                      key="appearance_toggle", on_click=_toggle_appearance, help="切换浅色 / 深色外观")
+
+
+def _toggle_appearance() -> None:
+    st.session_state.ui_theme = "light" if st.session_state.get("ui_theme") == "dark" else "dark"
+    st.query_params["appearance"] = st.session_state.ui_theme
 
 
 
@@ -1153,6 +1165,9 @@ def main() -> None:
     entry = st.session_state.entry
     if entry == GALLERY_ENTRY:
         gallery_page()
+    elif entry == "演进案例":
+        from ui.evolution_case import render_evolution_case
+        render_evolution_case()
     elif entry in TEAM_PAGES:
         render_team_evolution(entry)
     elif entry == "金融政策风洞":
@@ -1171,13 +1186,12 @@ def main() -> None:
     if st.session_state.pop("ev_scroll_to_top", False):
         # Streamlit preserves scroll position across reruns. A next-page button
         # at the bottom must reveal the next page's heading, not its footer.
-        st.iframe('''<!doctype html><html><body style="margin:0;background:transparent"><script>
-        requestAnimationFrame(() => {
-          const main = window.parent.document.querySelector('[data-testid="stMain"]');
-          if (main) main.scrollTo(0, 0);
-          window.parent.scrollTo(0, 0);
-        });
-        </script></body></html>''', height=1)
+        st.html('''<script>
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          const main = document.querySelector('[data-testid="stMain"]');
+          if (main) main.scrollTo({top: 0, behavior: 'instant'});
+        }));
+        </script>''', unsafe_allow_javascript=True)
 
 
 if __name__ == "__main__":

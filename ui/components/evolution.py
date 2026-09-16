@@ -120,14 +120,15 @@ def graph_svg(trace, previous=None):
 
 
 def render_graph(trace, *, inspect=False, controller=None, previous=None):
+    from ui.appearance import diagram_colors
     height = math.ceil(len(trace["team_config"]["topology"]["active_agents"]) / 3) * 139 + 4
     # st.html sanitizes SVG in some Streamlit builds. All variable text below is
     # escaped; this static local document needs no CDN or executable scripts.
     document = ('<!doctype html><html><head><meta charset="utf-8"><style>'
                 'body{margin:0;background:transparent;font-family:Arial,"Microsoft YaHei",sans-serif}'
                 'svg{display:block;width:100%;height:auto;max-height:390px}'
-                '.ev-node:hover rect{stroke:#58bac7}'
-                '</style></head><body>' + graph_svg(trace,previous) + '</body></html>')
+                '.ev-node:hover rect{stroke:#0071e3}'
+                '</style></head><body>' + diagram_colors(graph_svg(trace,previous)) + '</body></html>')
     st.iframe(document, height="content")
     if controller:
         status = "EVOLVING" if controller.get("status") == "running" else controller.get("status", "IDLE").upper()
